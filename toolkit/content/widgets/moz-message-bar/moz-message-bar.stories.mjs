@@ -17,7 +17,7 @@ export default {
   component: "moz-message-bar",
   argTypes: {
     type: {
-      options: ["info", "warning", "success", "error"],
+      options: ["info", "warning", "success", "error", "promo"],
       control: { type: "select" },
     },
     l10nId: {
@@ -34,6 +34,14 @@ export default {
         disable: true,
       },
     },
+    iconAlignment: {
+      options: ["start", "end", "bottom"],
+      control: { type: "select" },
+    },
+    promoType: {
+      options: ["default", "fun"],
+      control: { type: "select" },
+    }
   },
   parameters: {
     status: "stable",
@@ -59,6 +67,9 @@ const Template = ({
   dismissable,
   hasSupportLink,
   hasActionButton,
+  iconSrc,
+  iconAlignment,
+  promoType,
 }) => html`
   <moz-message-bar
     type=${type}
@@ -66,6 +77,9 @@ const Template = ({
     message=${ifDefined(message)}
     data-l10n-id=${ifDefined(l10nId)}
     ?dismissable=${dismissable}
+    iconSrc=${ifDefined(iconSrc)}
+    iconAlignment=${ifDefined(iconAlignment)}
+    promoType=${ifDefined(promoType)}
   >
     ${hasSupportLink
       ? html`
@@ -124,4 +138,21 @@ export const WithHeading = Template.bind({});
 WithHeading.args = {
   ...Default.args,
   l10nId: "moz-message-bar-message-heading",
+};
+
+export const Promo = Template.bind({});
+Promo.args = {
+  ...Default.args,
+  type: "promo",
+  promoType: "default",
+  l10nId: "moz-message-bar-message-heading-long",
+  dismissable: false,
+  iconSrc: "chrome://global/skin/illustrations/about-license.svg",
+  iconAlignment: "end",
+};
+
+export const FunPromo = Template.bind({});
+FunPromo.args = {
+  ...Promo.args,
+  promoType: "fun",
 };

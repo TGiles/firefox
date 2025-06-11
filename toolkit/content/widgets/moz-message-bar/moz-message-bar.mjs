@@ -65,6 +65,9 @@ export default class MozMessageBar extends MozLitElement {
     dismissable: { type: Boolean },
     messageL10nId: { type: String },
     messageL10nArgs: { type: String },
+    iconSrc: { type: String, reflect: true },
+    iconAlignment: { type: String },
+    promoType: {type: String },
   };
 
   constructor() {
@@ -113,6 +116,15 @@ export default class MozMessageBar extends MozLitElement {
           />
         </div>
       `;
+    } else if (this.iconSrc && this.type == "promo") {
+      return html`
+          <div class="icon-container">
+            <img
+              class="icon"
+              src=${this.iconSrc}
+          />
+        </div>
+      `;
     }
     return "";
   }
@@ -139,27 +151,69 @@ export default class MozMessageBar extends MozLitElement {
     return "";
   }
 
-  render() {
-    return html`
-      <link
-        rel="stylesheet"
-        href="chrome://global/content/elements/moz-message-bar.css"
-      />
-      <div class="container">
-        <div class="content">
+  contentTemplate() {
+    if (this.type == "promo") {
+      if (this.iconAlignment == "end" || this.iconAlignment == "bottom") {
+        return html`
           <div class="text-container">
-            ${this.iconTemplate()}
+            <div class="text-content">
+              ${this.headingTemplate()}
+              <div>
+                <div
+                  class="message"
+                  data-l10n-id=${ifDefined(this.messageL10nId)}
+                  data-l10n-args=${ifDefined(JSON.stringify(this.messageL10nArgs))}
+                >
+                ${this.message}
+                </div>
+                ${this.actionsTemplate()}
+                <span class="link">
+                  <slot
+                    name="support-link"
+                    @slotchange=${this.onLinkSlotChange}
+                  ></slot>
+                </span>
+              </div>
+            </div>
+             ${this.iconTemplate()}
+          </div>`
+      } else {
+        return html`
+        <div class="text-container">
+          ${this.iconTemplate()}
+            <div class="text-content">
+              ${this.headingTemplate()}
+              <div>
+                <div
+                  class="message"
+                  data-l10n-id=${ifDefined(this.messageL10nId)}
+                  data-l10n-args=${ifDefined(JSON.stringify(this.messageL10nArgs))}
+                >
+                ${this.message}
+                </div>
+                ${this.actionsTemplate()}
+                <span class="link">
+                  <slot
+                    name="support-link"
+                    @slotchange=${this.onLinkSlotChange}
+                  ></slot>
+                </span>
+              </div>
+            </div>
+        </div>`
+      }
+    } else {
+      return html`<div class="text-container">
+      ${this.iconTemplate()}
             <div class="text-content">
               ${this.headingTemplate()}
               <div>
                 <span
                   class="message"
                   data-l10n-id=${ifDefined(this.messageL10nId)}
-                  data-l10n-args=${ifDefined(
-                    JSON.stringify(this.messageL10nArgs)
-                  )}
+                  data-l10n-args=${ifDefined(JSON.stringify(this.messageL10nArgs))}
                 >
-                  ${this.message}
+                ${this.message}
                 </span>
                 <span class="link">
                   <slot
@@ -169,10 +223,26 @@ export default class MozMessageBar extends MozLitElement {
                 </span>
               </div>
             </div>
-          </div>
-          <span class="actions">
+          </div>`
+    }
+  }
+
+  actionsTemplate() {
+    return html`<span class="actions">
             <slot name="actions" @slotchange=${this.onActionSlotchange}></slot>
-          </span>
+          </span>`;
+  }
+
+  render() {
+    return html`
+      <link
+        rel="stylesheet"
+        href="chrome://global/content/elements/moz-message-bar.css"
+      />
+      <div class="container">
+        <div class="content">
+          ${this.contentTemplate()}
+          ${this.actionsTemplate()}
         </div>
         ${this.closeButtonTemplate()}
       </div>
