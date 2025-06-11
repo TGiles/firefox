@@ -1,0 +1,29 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+:host([type="fun"]) {
+  --message-bar-icon-color: purple;
+  --message-bar-background-color: purple;
+}
+
+:host {
+  --message-bar-background-color: var(--background-color-box);
+  --message-bar-icon-color: var(--icon-color);
+  width: 600px;
+  img {
+    width: unset;
+    height: unset;
+  }
+  .icon-container {
+    height: unset;
+  }
+  &:host([iconalignment="bottom"]) {
+    .text-container {
+      flex-direction: column;
+    }
+  }
+  .message {
+    padding-block-end: var(--space-medium);
+  }
+}

@@ -3,8 +3,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { html, ifDefined } from "../vendor/lit.all.mjs";
-import "./moz-message-bar.mjs";
+import "./moz-promo.mjs";
 import "../moz-support-link/moz-support-link.mjs";
+
 
 const fluentStrings = [
   "moz-message-bar-message",
@@ -13,11 +14,11 @@ const fluentStrings = [
 ];
 
 export default {
-  title: "UI Widgets/Message Bar",
-  component: "moz-message-bar",
+  title: "UI Widgets/Promo",
+  component: "moz-promo",
   argTypes: {
     type: {
-      options: ["info", "warning", "success", "error"],
+      options: ["default", "fun"],
       control: { type: "select" },
     },
     l10nId: {
@@ -34,9 +35,13 @@ export default {
         disable: true,
       },
     },
+    iconAlignment: {
+      options: ["start", "end", "bottom"],
+      control: { type: "select" }
+    }
   },
   parameters: {
-    status: "stable",
+    status: "in-development",
     fluent: `
 moz-message-bar-message =
   .message = For your information message
@@ -48,10 +53,10 @@ moz-message-bar-message-heading-long =
   .message = Some message that we use to check text wrapping. Some message that we use to check text wrapping.
 moz-message-bar-button = Click me!
     `,
-  },
+  }
 };
 
-const Template = ({
+const Template = ({ 
   type,
   heading,
   message,
@@ -59,13 +64,17 @@ const Template = ({
   dismissable,
   hasSupportLink,
   hasActionButton,
+  iconSrc,
+  iconAlignment,
 }) => html`
-  <moz-message-bar
+  <moz-promo
     type=${type}
     heading=${ifDefined(heading)}
     message=${ifDefined(message)}
     data-l10n-id=${ifDefined(l10nId)}
     ?dismissable=${dismissable}
+    iconSrc=${ifDefined(iconSrc)}
+    iconAlignment=${ifDefined(iconAlignment)}
   >
     ${hasSupportLink
       ? html`
@@ -81,47 +90,28 @@ const Template = ({
           <button data-l10n-id="moz-message-bar-button" slot="actions"></button>
         `
       : ""}
-  </moz-message-bar>
+  </moz-promo>
 `;
 
 export const Default = Template.bind({});
 Default.args = {
-  type: "info",
-  l10nId: "moz-message-bar-message",
+  type: "default",
+  l10nId: "moz-message-bar-message-heading-long",
   dismissable: false,
   hasSupportLink: false,
   hasActionButton: false,
+  iconSrc: "chrome://global/skin/illustrations/about-license.svg",
+  iconAlignment: "start"
 };
 
-export const Dismissable = Template.bind({});
-Dismissable.args = {
-  type: "info",
-  l10nId: "moz-message-bar-message",
-  dismissable: true,
-  hasSupportLink: false,
-  hasActionButton: false,
-};
-
-export const WithActionButton = Template.bind({});
-WithActionButton.args = {
-  type: "info",
-  l10nId: "moz-message-bar-message",
-  dismissable: false,
-  hasSupportLink: false,
-  hasActionButton: true,
-};
-
-export const WithSupportLink = Template.bind({});
-WithSupportLink.args = {
-  type: "info",
-  l10nId: "moz-message-bar-message",
-  dismissable: false,
-  hasSupportLink: true,
-  hasActionButton: false,
-};
-
-export const WithHeading = Template.bind({});
-WithHeading.args = {
+export const IconAtEnd = Template.bind({});
+IconAtEnd.args = {
   ...Default.args,
-  l10nId: "moz-message-bar-message-heading",
+  iconAlignment: "end",
+};
+
+export const IconUnderContent = Template.bind({});
+IconUnderContent.args = {
+  ...Default.args,
+  iconAlignment: "bottom"
 };
