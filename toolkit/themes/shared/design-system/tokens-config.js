@@ -3,10 +3,17 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* eslint-env node */
+debugger;
+import { createPropertyFormatter, usesReferences, getReferences } from "style-dictionary/utils";
+import StyleDictionary from "style-dictionary";
+import {transformGroups} from "style-dictionary/enums";
+// const figmaConfig = require("./figma-tokens-config");
+import { platform, formats } from "./figma-tokens-config.js";
 
-const StyleDictionary = require("style-dictionary");
-const { createPropertyFormatter } = StyleDictionary.formatHelpers;
-const figmaConfig = require("./figma-tokens-config");
+const figmaConfig = {
+  platform,
+  formats
+};
 
 const TOKEN_SECTIONS = {
   "Attention Dot": "attention-dot",
@@ -239,8 +246,8 @@ function getOriginalTokenValue(token, prop, surface) {
  */
 function transformToken(token, originalVal, dictionary, surface) {
   let value = originalVal;
-  if (dictionary.usesReference(value)) {
-    dictionary.getReferences(value).forEach(ref => {
+  if (usesReferences(value, dictionary.tokens)) {
+    getReferences(value, dictionary.tokens).forEach(ref => {
       value = value.replace(`{${ref.path.join(".")}}`, `var(--${ref.name})`);
     });
   }
@@ -274,7 +281,9 @@ const createLightDarkTransform = surface => {
 
   // Function that uses the token's original value to create a new "default"
   // light-dark value and updates the original value object.
-  let transformer = token => {
+
+  let transform = token => {
+    console.log(token.original.value);
     if (surface != "shared") {
       let lightDarkVal = `light-dark(${token.original.value[surface].light}, ${token.original.value[surface].dark})`;
       token.original.value[surface].default = lightDarkVal;
@@ -290,7 +299,7 @@ const createLightDarkTransform = surface => {
     transitive: true,
     name,
     matcher,
-    transformer,
+    transform,
   });
 
   return name;
@@ -449,8 +458,8 @@ function resolveReferences(dictionary, originalVal) {
 
 function getValueWithReferences(dictionary, value) {
   let valWithRefs = value;
-  if (dictionary.usesReference(value)) {
-    dictionary.getReferences(value).forEach(ref => {
+  if (usesReferences(value, dictionary.tokens)) {
+    getReferences(value, dictionary.tokens).forEach(ref => {
       valWithRefs = valWithRefs.replace(
         `{${ref.path.join(".")}}`,
         `var(--${ref.name})`
@@ -502,13 +511,48 @@ function getTableName(tokenName) {
     : `${category}-${type}`;
 }
 
-module.exports = {
+StyleDictionary.registerFormat({
+  name: "css/variables/shared",
+  format: createDesktopFormat()
+});
+
+StyleDictionary.registerFormat({
+  name: "css/variables/brand",
+  format: createDesktopFormat("brand")
+});
+
+StyleDictionary.registerFormat({
+  name: "css/variables/platform",
+  format: createDesktopFormat("platform")
+});
+
+StyleDictionary.registerFormat({
+  name: "javascript/storybook",
+  format: storybookJSFormat
+});
+
+StyleDictionary.registerFormat({
+  name: "json/figma/colors",
+  format: figmaConfig.formats["json/figma/colors"]
+});
+
+StyleDictionary.registerFormat({
+  name: "json/figma/primitives",
+  format: figmaConfig.formats["json/figma/primitives"]
+});
+
+StyleDictionary.registerFormat({
+  name: "json/figma/theme",
+  format: figmaConfig.formats["json/figma/theme"]
+});
+
+export default {
   source: ["design-tokens.json"],
   format: {
-    "css/variables/shared": createDesktopFormat(),
-    "css/variables/brand": createDesktopFormat("brand"),
-    "css/variables/platform": createDesktopFormat("platform"),
-    "javascript/storybook": storybookJSFormat,
+    // "css/variables/shared": createDesktopFormat(),
+    // "css/variables/brand": createDesktopFormat("brand"),
+    // "css/variables/platform": createDesktopFormat("platform"),
+    // "javascript/storybook": storybookJSFormat,
     ...figmaConfig.formats,
   },
   platforms: {
@@ -517,8 +561,8 @@ module.exports = {
         outputReferences: true,
         showFileHeader: false,
       },
+      transformGroup: transformGroups.css,
       transforms: [
-        ...StyleDictionary.transformGroup.css,
         ...["shared", "platform", "brand"].map(createLightDarkTransform),
       ],
       files: [
@@ -547,8 +591,8 @@ module.exports = {
         outputReferences: true,
         showFileHeader: false,
       },
+      transformGroup: transformGroups.css,
       transforms: [
-        ...StyleDictionary.transformGroup.css,
         ...["shared", "platform", "brand"].map(createLightDarkTransform),
       ],
       files: [

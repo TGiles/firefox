@@ -1,10 +1,6 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+import StyleDictionary from "style-dictionary";
 
-/* eslint-env node */
-
-const StyleDictionary = require("style-dictionary");
+import { usesReferences, getReferences } from 'style-dictionary/utils';
 
 const COLLECTIONS = {
   colors: "Colors",
@@ -38,7 +34,7 @@ const HCM_VALUES = [
 StyleDictionary.registerTransform({
   type: "name",
   name: "name/figma",
-  transformer: token => token.path.join("/").replace("/@base", ""),
+  transform: token => token.path.join("/").replace("/@base", ""),
 });
 
 /**
@@ -77,7 +73,7 @@ function isNestedDefaultObject(value) {
 StyleDictionary.registerTransform({
   type: "attribute",
   name: "attribute/figma",
-  transformer: token => {
+  transform: token => {
     // Collection attribute
     let collection = COLLECTIONS.theme;
 
@@ -137,8 +133,8 @@ const formatTokens = collection => args => {
 
     // If the current token references another token that will be destructured,
     // we skip it altogether
-    if (dictionary.usesReference(originalVal)) {
-      const references = dictionary.getReferences(originalVal);
+    if (usesReferences(originalVal, dictionary.tokens)) {
+      const references = getReferences(originalVal, dictionary.tokens);
       if (references.some(ref => ref.attributes.willBeDestructured)) {
         console.warn(
           `[formatTokens] Skipping token ${token.name} because it references a token that will be destructured`
@@ -266,7 +262,7 @@ function transformTokenValue(token, originalVal, dictionary) {
         newValue.forcedColors = "transparent";
       }
     }
-  } else if (dictionary.usesReference(newValue)) {
+  } else if (usesReferences(newValue, dictionary.tokens)) {
     newValue = replaceReferences(dictionary, newValue);
   }
 
@@ -323,7 +319,7 @@ function replaceReferences(dictionary, value) {
   if (typeof value === "string") {
     value = value.replace(/calc\(([^()]+)\)/g, (_, calcContent) => {
       // Replace references inside the calc() content with their actual values
-      dictionary.getReferences(calcContent).forEach(ref => {
+      getReferences(calcContent, dictionary.tokens).forEach(ref => {
         calcContent = calcContent.replace(
           `{${ref.path.join(".")}}`, // Reference path in the format {path.to.reference}
           ref.value // Replace with the actual value of the reference
@@ -336,10 +332,10 @@ function replaceReferences(dictionary, value) {
   }
 
   // Check if the value contains any references
-  if (dictionary.usesReference(value)) {
+  if (usesReferences(value, dictionary.tokens)) {
     // Replace the style dictionary references with
     // the format expected by the figma import script
-    dictionary.getReferences(value).forEach(ref => {
+    getReferences(value, dictionary.tokens).forEach(ref => {
       value = value.replace(
         `{${ref.path.join(".")}}`,
         `{${ref.attributes.collection}$${ref.name}}`
@@ -747,7 +743,7 @@ function filterBase(pathItem) {
 // Style Dictionary Configuration
 // ---------
 
-const platform = {
+export const platform = {
   options: {
     outputReferences: true,
     showFileHeader: false,
@@ -769,11 +765,17 @@ const platform = {
   ],
 };
 
-module.exports = {
-  platform,
-  formats: {
-    "json/figma/colors": formatTokens(COLLECTIONS.colors),
+// module.exports = {
+//   platform,
+//   formats: {
+//     "json/figma/colors": formatTokens(COLLECTIONS.colors),
+//     "json/figma/primitives": formatTokens(COLLECTIONS.primitives),
+//     "json/figma/theme": formatTokens(COLLECTIONS.theme),
+//   },
+// };
+
+export const formats = {
+   "json/figma/colors": formatTokens(COLLECTIONS.colors),
     "json/figma/primitives": formatTokens(COLLECTIONS.primitives),
     "json/figma/theme": formatTokens(COLLECTIONS.theme),
-  },
 };

@@ -17,13 +17,15 @@ const { readFileSync, rmSync } = require("fs");
 const chalk = require("chalk");
 const path = require("path");
 const prettier = require("prettier");
-const StyleDictionary = require("style-dictionary");
+// migration recipe
+import StyleDictionary from "style-dictionary";
+
 const config = require("../tokens-config.js");
 
 const TEST_BUILD_PATH = "tests/build/css/";
 const PROJECT_ROOT = path.resolve(__dirname, "../../../../../");
-
-function buildFilesWithTestConfig() {
+// migration recipes
+async function buildFilesWithTestConfig() {
   // Use our real config, just modify some values for the test. This prevents us
   // from re-building the CSS files that get checked in when we run the tests.
   let testConfig = Object.assign({}, config);
@@ -34,7 +36,8 @@ function buildFilesWithTestConfig() {
 
   // This is effectively the same as running `npm run build` and allows us to
   // use the modified config.
-  StyleDictionary.extend(testConfig).buildAllPlatforms();
+  // migration recipe
+  await StyleDictionary.extend(testConfig).buildAllPlatforms();
 }
 
 function logErrors(tool, errors) {
