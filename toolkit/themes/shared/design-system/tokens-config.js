@@ -4,15 +4,22 @@
 
 /* eslint-env node */
 debugger;
-import { createPropertyFormatter, usesReferences, getReferences } from "style-dictionary/utils";
+import {
+  createPropertyFormatter,
+  usesReferences,
+  getReferences,
+} from "style-dictionary/utils";
 import StyleDictionary from "style-dictionary";
-import {transformGroups} from "style-dictionary/enums";
+import { transformGroups } from "style-dictionary/enums";
+// import { formats as StyleDictionaryFormats } from "style-dictionary/enums";
+import { formats as fileFormats } from "style-dictionary/enums";
 // const figmaConfig = require("./figma-tokens-config");
+const { javascriptModuleFlat } = fileFormats;
 import { platform, formats } from "./figma-tokens-config.js";
 
 const figmaConfig = {
   platform,
-  formats
+  formats,
 };
 
 const TOKEN_SECTIONS = {
@@ -155,6 +162,9 @@ const createDesktopFormat = surface => args => {
  * @returns {string} Tokens formatted into a CSS string.
  */
 function formatTokens({ mediaQuery, surface, args }) {
+  // console.log(surface);
+  // console.log(args);
+  // console.log(`which surface are we failing on? ${surface}`);
   let prop = MEDIA_QUERY_PROPERTY_MAP[mediaQuery] ?? "default";
   let dictionary = Object.assign({}, args.dictionary);
   let tokens = [];
@@ -162,6 +172,10 @@ function formatTokens({ mediaQuery, surface, args }) {
   dictionary.allTokens.forEach(token => {
     let originalVal = getOriginalTokenValue(token, prop, surface);
     if (originalVal != undefined) {
+      // console.log(`current token value: `);
+      // console.log(token.value);
+      // console.log(`original token value: ${originalVal}`);
+      // console.log(`current surface: ${surface}`);
       let formattedToken = transformToken(
         token,
         originalVal,
@@ -246,7 +260,16 @@ function getOriginalTokenValue(token, prop, surface) {
  */
 function transformToken(token, originalVal, dictionary, surface) {
   let value = originalVal;
+  // console.log(token);
   if (usesReferences(value, dictionary.tokens)) {
+    console.log("what is bar?");
+    console.log(value);
+    console.log(JSON.stringify(token, undefined, 2));
+
+    // console.log(getReferences(value, dictionary.tokens));
+    let foo = getReferences(value, dictionary.tokens);
+    console.log(`what is foo?`);
+    console.log(foo);
     getReferences(value, dictionary.tokens).forEach(ref => {
       value = value.replace(`{${ref.path.join(".")}}`, `var(--${ref.name})`);
     });
@@ -267,9 +290,9 @@ function transformToken(token, originalVal, dictionary, surface) {
 const createLightDarkTransform = surface => {
   let name = `lightDarkTransform/${surface}`;
 
-  // Matcher function for determining if a token's value needs to undergo
+  // Filter function for determining if a token's value needs to undergo
   // a light-dark transform.
-  let matcher = token => {
+  let filter = token => {
     if (surface != "shared") {
       return (
         token.original.value[surface]?.light &&
@@ -283,7 +306,6 @@ const createLightDarkTransform = surface => {
   // light-dark value and updates the original value object.
 
   let transform = token => {
-    console.log(token.original.value);
     if (surface != "shared") {
       let lightDarkVal = `light-dark(${token.original.value[surface].light}, ${token.original.value[surface].dark})`;
       token.original.value[surface].default = lightDarkVal;
@@ -298,7 +320,7 @@ const createLightDarkTransform = surface => {
     type: "value",
     transitive: true,
     name,
-    matcher,
+    filter,
     transform,
   });
 
@@ -424,17 +446,20 @@ function storybookJSFormat(args) {
   });
   dictionary.allTokens = dictionary.allProperties = resolvedTokens;
 
-  let parsedData = JSON.parse(
-    formatBaseTokenNames(
-      StyleDictionary.format["javascript/module-flat"]({
-        ...args,
-        dictionary,
-      })
-    )
-      .trim()
-      .replaceAll(/(^module\.exports\s*=\s*|\;$)/g, "")
-  );
-  let storybookTables = formatTokensTablesData(parsedData);
+  // console.log("did we resolve all the tokens?");
+  // console.log(dictionary.allTokens);
+  // console.log(JSON.parse(dictionary));
+  // let parsedData = JSON.parse(
+  //   formatBaseTokenNames(
+  //     javascriptModuleFlat({
+  //       ...args,
+  //       dictionary,
+  //     })
+  //   )
+  //     .trim()
+  //     .replaceAll(/(^module\.exports\s*=\s*|\;$)/g, "")
+  // );
+  let storybookTables = formatTokensTablesData(dictionary.allTokens);
 
   return `${customFileHeader({ platform: "storybook" })}
   export const storybookTables = ${JSON.stringify(storybookTables)};
@@ -513,37 +538,37 @@ function getTableName(tokenName) {
 
 StyleDictionary.registerFormat({
   name: "css/variables/shared",
-  format: createDesktopFormat()
+  format: createDesktopFormat(),
 });
 
 StyleDictionary.registerFormat({
   name: "css/variables/brand",
-  format: createDesktopFormat("brand")
+  format: createDesktopFormat("brand"),
 });
 
 StyleDictionary.registerFormat({
   name: "css/variables/platform",
-  format: createDesktopFormat("platform")
+  format: createDesktopFormat("platform"),
 });
 
-StyleDictionary.registerFormat({
-  name: "javascript/storybook",
-  format: storybookJSFormat
-});
+// StyleDictionary.registerFormat({
+//   name: "javascript/storybook",
+//   format: storybookJSFormat,
+// });
 
 StyleDictionary.registerFormat({
   name: "json/figma/colors",
-  format: figmaConfig.formats["json/figma/colors"]
+  format: figmaConfig.formats["json/figma/colors"],
 });
 
 StyleDictionary.registerFormat({
   name: "json/figma/primitives",
-  format: figmaConfig.formats["json/figma/primitives"]
+  format: figmaConfig.formats["json/figma/primitives"],
 });
 
 StyleDictionary.registerFormat({
   name: "json/figma/theme",
-  format: figmaConfig.formats["json/figma/theme"]
+  format: figmaConfig.formats["json/figma/theme"],
 });
 
 export default {
@@ -553,7 +578,7 @@ export default {
     // "css/variables/brand": createDesktopFormat("brand"),
     // "css/variables/platform": createDesktopFormat("platform"),
     // "javascript/storybook": storybookJSFormat,
-    ...figmaConfig.formats,
+    // ...figmaConfig.formats,
   },
   platforms: {
     css: {
@@ -586,22 +611,22 @@ export default {
         },
       ],
     },
-    storybook: {
-      options: {
-        outputReferences: true,
-        showFileHeader: false,
-      },
-      transformGroup: transformGroups.css,
-      transforms: [
-        ...["shared", "platform", "brand"].map(createLightDarkTransform),
-      ],
-      files: [
-        {
-          destination: "tokens-storybook.mjs",
-          format: "javascript/storybook",
-        },
-      ],
-    },
-    figma: figmaConfig.platform,
+    // storybook: {
+    //   options: {
+    //     outputReferences: true,
+    //     showFileHeader: false,
+    //   },
+    //   transformGroup: transformGroups.css,
+    //   transforms: [
+    //     ...["shared", "platform", "brand"].map(createLightDarkTransform),
+    //   ],
+    //   files: [
+    //     {
+    //       destination: "tokens-storybook.mjs",
+    //       format: "javascript/storybook",
+    //     },
+    //   ],
+    // },
+    // figma: figmaConfig.platform,
   },
 };

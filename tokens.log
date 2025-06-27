@@ -1,0 +1,7212 @@
+
+> build
+> (npm ls || npm ci) && style-dictionary build --config ./tokens-config.js && prettier ./tokens-storybook.mjs ./tokens-figma-*.json ./tokens-*.css --write
+
+design-system@ G:\mozilla\firefox\toolkit\themes\shared\design-system
+└── style-dictionary@4.4.0
+
+what is bar?
+light-dark({color.white}, {color.gray.80})
+{
+  "value": "light-dark(#ffffff, #23222b)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.white}",
+      "dark": "{color.gray.80}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.white}, {color.gray.80})"
+    }
+  },
+  "name": "background-color-box",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "box"
+  },
+  "path": [
+    "background",
+    "color",
+    "box"
+  ],
+  "key": "{background.color.box}"
+}
+what is foo?
+[
+  {
+    value: '#ffffff',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#ffffff' },
+    name: 'color-white',
+    attributes: { category: 'color', type: 'white' },
+    path: [ 'color', 'white' ],
+    ref: [ 'color', 'white' ]
+  },
+  {
+    value: '#23222b',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#23222b' },
+    name: 'color-gray-80',
+    attributes: { category: 'color', type: 'gray', item: '80' },
+    path: [ 'color', 'gray', '80' ],
+    ref: [ 'color', 'gray', '80' ]
+  }
+]
+what is bar?
+light-dark({color.red.0}, {color.red.90})
+{
+  "value": "light-dark(oklch(97% 0.05 15), oklch(34% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.0}",
+      "dark": "{color.red.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.red.0}, {color.red.90})"
+    }
+  },
+  "name": "background-color-critical",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "critical"
+  },
+  "path": [
+    "background",
+    "color",
+    "critical"
+  ],
+  "key": "{background.color.critical}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(97% 0.05 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(97% 0.05 15)' },
+    name: 'color-red-0',
+    attributes: { category: 'color', type: 'red', item: '0' },
+    path: [ 'color', 'red', '0' ],
+    ref: [ 'color', 'red', '0' ]
+  },
+  {
+    value: 'oklch(34% 0.14 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(34% 0.14 15)' },
+    name: 'color-red-90',
+    attributes: { category: 'color', type: 'red', item: '90' },
+    path: [ 'color', 'red', '90' ],
+    ref: [ 'color', 'red', '90' ]
+  }
+]
+what is bar?
+light-dark({color.blue.0}, {color.blue.90})
+{
+  "value": "light-dark(oklch(97% 0.05 260), oklch(34% 0.14 260))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.blue.0}",
+      "dark": "{color.blue.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.blue.0}, {color.blue.90})"
+    }
+  },
+  "name": "background-color-information",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "information"
+  },
+  "path": [
+    "background",
+    "color",
+    "information"
+  ],
+  "key": "{background.color.information}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(97% 0.05 260)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(97% 0.05 260)' },
+    name: 'color-blue-0',
+    attributes: { category: 'color', type: 'blue', item: '0' },
+    path: [ 'color', 'blue', '0' ],
+    ref: [ 'color', 'blue', '0' ]
+  },
+  {
+    value: 'oklch(34% 0.14 260)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(34% 0.14 260)' },
+    name: 'color-blue-90',
+    attributes: { category: 'color', type: 'blue', item: '90' },
+    path: [ 'color', 'blue', '90' ],
+    ref: [ 'color', 'blue', '90' ]
+  }
+]
+what is bar?
+light-dark({color.green.0}, {color.green.90})
+{
+  "value": "light-dark(oklch(97% 0.05 145), oklch(34% 0.14 145))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.green.0}",
+      "dark": "{color.green.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.green.0}, {color.green.90})"
+    }
+  },
+  "name": "background-color-success",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "success"
+  },
+  "path": [
+    "background",
+    "color",
+    "success"
+  ],
+  "key": "{background.color.success}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(97% 0.05 145)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(97% 0.05 145)' },
+    name: 'color-green-0',
+    attributes: { category: 'color', type: 'green', item: '0' },
+    path: [ 'color', 'green', '0' ],
+    ref: [ 'color', 'green', '0' ]
+  },
+  {
+    value: 'oklch(34% 0.14 145)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(34% 0.14 145)' },
+    name: 'color-green-90',
+    attributes: { category: 'color', type: 'green', item: '90' },
+    path: [ 'color', 'green', '90' ],
+    ref: [ 'color', 'green', '90' ]
+  }
+]
+what is bar?
+light-dark({color.yellow.0}, {color.yellow.90})
+{
+  "value": "light-dark(oklch(97% 0.05 90), oklch(34% 0.17 90))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.yellow.0}",
+      "dark": "{color.yellow.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.yellow.0}, {color.yellow.90})"
+    }
+  },
+  "name": "background-color-warning",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "warning"
+  },
+  "path": [
+    "background",
+    "color",
+    "warning"
+  ],
+  "key": "{background.color.warning}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(97% 0.05 90)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(97% 0.05 90)' },
+    name: 'color-yellow-0',
+    attributes: { category: 'color', type: 'yellow', item: '0' },
+    path: [ 'color', 'yellow', '0' ],
+    ref: [ 'color', 'yellow', '0' ]
+  },
+  {
+    value: 'oklch(34% 0.17 90)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(34% 0.17 90)' },
+    name: 'color-yellow-90',
+    attributes: { category: 'color', type: 'yellow', item: '90' },
+    path: [ 'color', 'yellow', '90' ],
+    ref: [ 'color', 'yellow', '90' ]
+  }
+]
+what is bar?
+{border.color.interactive.@base}
+{
+  "value": {
+    "default": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    },
+    "forcedColors": "SelectedItem"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{border.color.interactive.@base}",
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "name": "border-color-interactive-hover",
+  "attributes": {
+    "category": "border",
+    "type": "color",
+    "item": "interactive",
+    "subitem": "hover"
+  },
+  "path": [
+    "border",
+    "color",
+    "interactive",
+    "hover"
+  ],
+  "key": "{border.color.interactive.hover}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: [Object],
+      forcedColors: 'ButtonText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-base',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: '@base'
+    },
+    path: [ 'border', 'color', 'interactive', '@base' ],
+    ref: [ 'border', 'color', 'interactive', '@base' ]
+  }
+]
+what is bar?
+{border.color.interactive.@base}
+{
+  "value": {
+    "default": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    },
+    "forcedColors": "ButtonText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{border.color.interactive.@base}",
+      "forcedColors": "ButtonText"
+    }
+  },
+  "name": "border-color-interactive-active",
+  "attributes": {
+    "category": "border",
+    "type": "color",
+    "item": "interactive",
+    "subitem": "active"
+  },
+  "path": [
+    "border",
+    "color",
+    "interactive",
+    "active"
+  ],
+  "key": "{border.color.interactive.active}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: [Object],
+      forcedColors: 'ButtonText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-base',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: '@base'
+    },
+    path: [ 'border', 'color', 'interactive', '@base' ],
+    ref: [ 'border', 'color', 'interactive', '@base' ]
+  }
+]
+what is bar?
+{border.color.interactive.@base}
+{
+  "value": {
+    "default": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    },
+    "forcedColors": "GrayText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{border.color.interactive.@base}",
+      "forcedColors": "GrayText"
+    }
+  },
+  "name": "border-color-interactive-disabled",
+  "attributes": {
+    "category": "border",
+    "type": "color",
+    "item": "interactive",
+    "subitem": "disabled"
+  },
+  "path": [
+    "border",
+    "color",
+    "interactive",
+    "disabled"
+  ],
+  "key": "{border.color.interactive.disabled}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: [Object],
+      forcedColors: 'ButtonText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-base',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: '@base'
+    },
+    path: [ 'border', 'color', 'interactive', '@base' ],
+    ref: [ 'border', 'color', 'interactive', '@base' ]
+  }
+]
+what is bar?
+{button.background.color.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonFace",
+      "brand": {
+        "default": "color-mix(in srgb, currentColor 7%, transparent)"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 13%, transparent)"
+      }
+    },
+    "forcedColors": "ButtonFace"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.@base}",
+      "forcedColors": "ButtonFace"
+    }
+  },
+  "name": "button-background-color-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "disabled"
+  ],
+  "key": "{button.background.color.disabled}"
+}
+what is foo?
+[
+  {
+    comment: 'TODO Bug 1821203 - Gray use needs to be consolidated',
+    value: { forcedColors: 'ButtonFace', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: {
+      comment: 'TODO Bug 1821203 - Gray use needs to be consolidated',
+      value: [Object]
+    },
+    name: 'button-background-color-base',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'background', 'color', '@base' ],
+    ref: [ 'button', 'background', 'color', '@base' ]
+  }
+]
+what is bar?
+{color.accent.primary.@base}
+{
+  "value": {
+    "forcedColors": "ButtonText",
+    "brand": {
+      "light": "oklch(55% 0.24 260)",
+      "dark": "oklch(76% 0.14 205)"
+    },
+    "platform": {
+      "default": "AccentColor"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{color.accent.primary.@base}"
+  },
+  "name": "button-background-color-primary-base",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "primary",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "primary",
+    "@base"
+  ],
+  "key": "{button.background.color.primary.@base}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'color-accent-primary-base',
+    attributes: {
+      category: 'color',
+      type: 'accent',
+      item: 'primary',
+      subitem: '@base'
+    },
+    path: [ 'color', 'accent', 'primary', '@base' ],
+    ref: [ 'color', 'accent', 'primary', '@base' ]
+  }
+]
+what is bar?
+{color.accent.primary.hover}
+{
+  "value": {
+    "forcedColors": "SelectedItem",
+    "brand": {
+      "light": "oklch(48% 0.2 260)",
+      "dark": "oklch(83% 0.11 205)"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, black 10%, var(--color-accent-primary))"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{color.accent.primary.hover}"
+  },
+  "name": "button-background-color-primary-hover",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "primary",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "primary",
+    "hover"
+  ],
+  "key": "{button.background.color.primary.hover}"
+}
+what is foo?
+[
+  {
+    value: {
+      forcedColors: 'SelectedItem',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'color-accent-primary-hover',
+    attributes: {
+      category: 'color',
+      type: 'accent',
+      item: 'primary',
+      subitem: 'hover'
+    },
+    path: [ 'color', 'accent', 'primary', 'hover' ],
+    ref: [ 'color', 'accent', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{color.accent.primary.active}
+{
+  "value": {
+    "forcedColors": {
+      "forcedColors": "SelectedItem",
+      "brand": {
+        "light": "oklch(48% 0.2 260)",
+        "dark": "oklch(83% 0.11 205)"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, black 10%, var(--color-accent-primary))"
+      }
+    },
+    "brand": {
+      "light": "oklch(41% 0.17 260)",
+      "dark": "oklch(90% 0.07 205)"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, black 20%, var(--color-accent-primary))"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{color.accent.primary.active}"
+  },
+  "name": "button-background-color-primary-active",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "primary",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "primary",
+    "active"
+  ],
+  "key": "{button.background.color.primary.active}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: [Object], brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'color-accent-primary-active',
+    attributes: {
+      category: 'color',
+      type: 'accent',
+      item: 'primary',
+      subitem: 'active'
+    },
+    path: [ 'color', 'accent', 'primary', 'active' ],
+    ref: [ 'color', 'accent', 'primary', 'active' ]
+  }
+]
+what is bar?
+{button.background.color.primary.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "oklch(55% 0.24 260)",
+        "dark": "oklch(76% 0.14 205)"
+      },
+      "platform": {
+        "default": "AccentColor"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "GrayText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.primary.@base}",
+      "forcedColors": "{button.text.color.disabled}"
+    }
+  },
+  "name": "button-background-color-primary-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "primary",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "primary",
+    "disabled"
+  ],
+  "key": "{button.background.color.primary.disabled}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{color.accent.primary.@base}' },
+    name: 'button-background-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'background', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'background', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+light-dark({color.red.60}, {color.red.30})
+{
+  "value": "light-dark(oklch(55% 0.21 15), oklch(76% 0.17 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.60}",
+      "dark": "{color.red.30}",
+      "forcedColors": "{button.background.color.primary.@base}",
+      "default": "light-dark({color.red.60}, {color.red.30})"
+    }
+  },
+  "name": "button-background-color-destructive-base",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "@base"
+  ],
+  "key": "{button.background.color.destructive.@base}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(55% 0.21 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(55% 0.21 15)' },
+    name: 'color-red-60',
+    attributes: { category: 'color', type: 'red', item: '60' },
+    path: [ 'color', 'red', '60' ],
+    ref: [ 'color', 'red', '60' ]
+  },
+  {
+    value: 'oklch(76% 0.17 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(76% 0.17 15)' },
+    name: 'color-red-30',
+    attributes: { category: 'color', type: 'red', item: '30' },
+    path: [ 'color', 'red', '30' ],
+    ref: [ 'color', 'red', '30' ]
+  }
+]
+what is bar?
+light-dark({color.red.80}, {color.red.10})
+{
+  "value": "light-dark(oklch(41% 0.17 15), oklch(90% 0.1 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.80}",
+      "dark": "{color.red.10}",
+      "forcedColors": "{button.background.color.primary.active}",
+      "default": "light-dark({color.red.80}, {color.red.10})"
+    }
+  },
+  "name": "button-background-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.background.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(41% 0.17 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(41% 0.17 15)' },
+    name: 'color-red-80',
+    attributes: { category: 'color', type: 'red', item: '80' },
+    path: [ 'color', 'red', '80' ],
+    ref: [ 'color', 'red', '80' ]
+  },
+  {
+    value: 'oklch(90% 0.1 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(90% 0.1 15)' },
+    name: 'color-red-10',
+    attributes: { category: 'color', type: 'red', item: '10' },
+    path: [ 'color', 'red', '10' ],
+    ref: [ 'color', 'red', '10' ]
+  }
+]
+what is bar?
+{button.background.color.destructive.@base}
+{
+  "value": {
+    "default": "light-dark(oklch(55% 0.21 15), oklch(76% 0.17 15))",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "oklch(55% 0.24 260)",
+          "dark": "oklch(76% 0.14 205)"
+        },
+        "platform": {
+          "default": "AccentColor"
+        }
+      },
+      "forcedColors": {
+        "default": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "GrayText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.destructive.@base}",
+      "forcedColors": "{button.background.color.primary.disabled}"
+    }
+  },
+  "name": "button-background-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.background.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(oklch(55% 0.21 15), oklch(76% 0.17 15))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-background-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'background', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'background', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+light-dark({color.red.70}, {color.red.20})
+{
+  "value": "light-dark(oklch(48% 0.2 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.70}",
+      "dark": "{color.red.20}",
+      "forcedColors": "{button.background.color.primary.hover}",
+      "default": "light-dark({color.red.70}, {color.red.20})"
+    }
+  },
+  "name": "button-background-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.background.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(48% 0.2 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(48% 0.2 15)' },
+    name: 'color-red-70',
+    attributes: { category: 'color', type: 'red', item: '70' },
+    path: [ 'color', 'red', '70' ],
+    ref: [ 'color', 'red', '70' ]
+  },
+  {
+    value: 'oklch(83% 0.14 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.14 15)' },
+    name: 'color-red-20',
+    attributes: { category: 'color', type: 'red', item: '20' },
+    path: [ 'color', 'red', '20' ],
+    ref: [ 'color', 'red', '20' ]
+  }
+]
+what is bar?
+{button.background.color.active}
+{
+  "value": {
+    "forcedColors": "SelectedItemText",
+    "brand": {
+      "default": "color-mix(in srgb, currentColor 21%, transparent)"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, currentColor 30%, transparent)"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.background.color.active}"
+  },
+  "name": "button-background-color-ghost-active",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "ghost",
+    "active"
+  ],
+  "key": "{button.background.color.ghost.active}"
+}
+what is foo?
+[
+  {
+    value: {
+      forcedColors: 'SelectedItemText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-background-color-active',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'active'
+    },
+    path: [ 'button', 'background', 'color', 'active' ],
+    ref: [ 'button', 'background', 'color', 'active' ]
+  }
+]
+what is bar?
+{button.background.color.ghost.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "brand": {
+        "forcedColors": {
+          "forcedColors": "ButtonFace",
+          "brand": {
+            "default": "color-mix(in srgb, currentColor 7%, transparent)"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 13%, transparent)"
+          }
+        }
+      }
+    },
+    "brand": {
+      "forcedColors": {
+        "default": {
+          "forcedColors": "ButtonFace",
+          "brand": {
+            "default": "color-mix(in srgb, currentColor 7%, transparent)"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 13%, transparent)"
+          }
+        },
+        "forcedColors": "ButtonFace"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.ghost.@base}",
+      "brand": {
+        "forcedColors": "{button.background.color.disabled}"
+      }
+    }
+  },
+  "name": "button-background-color-ghost-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "ghost",
+    "disabled"
+  ],
+  "key": "{button.background.color.ghost.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', brand: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-background-color-ghost-base',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'ghost',
+      state: '@base'
+    },
+    path: [ 'button', 'background', 'color', 'ghost', '@base' ],
+    ref: [ 'button', 'background', 'color', 'ghost', '@base' ]
+  }
+]
+what is bar?
+{button.background.color.hover}
+{
+  "value": {
+    "forcedColors": "SelectedItemText",
+    "brand": {
+      "default": "color-mix(in srgb, currentColor 14%, transparent)"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, currentColor 17%, transparent)"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.background.color.hover}"
+  },
+  "name": "button-background-color-ghost-hover",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "ghost",
+    "hover"
+  ],
+  "key": "{button.background.color.ghost.hover}"
+}
+what is foo?
+[
+  {
+    value: {
+      forcedColors: 'SelectedItemText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-background-color-hover',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'hover'
+    },
+    path: [ 'button', 'background', 'color', 'hover' ],
+    ref: [ 'button', 'background', 'color', 'hover' ]
+  }
+]
+what is bar?
+{border.width} solid {button.border.color.@base}
+{
+  "value": {
+    "default": "transparent",
+    "prefersContrast": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{border.width} solid {button.border.color.@base}"
+  },
+  "name": "button-border-base",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "@base"
+  },
+  "path": [
+    "button",
+    "border",
+    "@base"
+  ],
+  "key": "{button.border.@base}"
+}
+what is foo?
+[
+  {
+    value: '1px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '1px' },
+    name: 'border-width',
+    attributes: { category: 'border', type: 'width' },
+    path: [ 'border', 'width' ],
+    ref: [ 'border', 'width' ]
+  },
+  {
+    value: {
+      default: 'transparent',
+      prefersContrast: [Object],
+      forcedColors: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'border', 'color', '@base' ],
+    ref: [ 'button', 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "ButtonText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.active}"
+    }
+  },
+  "name": "button-border-color-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "active"
+  ],
+  "key": "{button.border.color.active}"
+}
+what is foo?
+[
+  {
+    value: {
+      default: 'transparent',
+      prefersContrast: [Object],
+      forcedColors: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'border', 'color', '@base' ],
+    ref: [ 'button', 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.destructive.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      },
+      "forcedColors": "ButtonText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.active}"
+    }
+  },
+  "name": "button-border-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.border.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'border', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.destructive.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": "transparent",
+      "forcedColors": "ButtonFace"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.disabled}"
+    }
+  },
+  "name": "button-border-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.border.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'border', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.destructive.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.hover}"
+    }
+  },
+  "name": "button-border-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.border.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'border', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "GrayText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.disabled}"
+    }
+  },
+  "name": "button-border-color-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "disabled"
+  ],
+  "key": "{button.border.color.disabled}"
+}
+what is foo?
+[
+  {
+    value: {
+      default: 'transparent',
+      prefersContrast: [Object],
+      forcedColors: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'border', 'color', '@base' ],
+    ref: [ 'button', 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}"
+    }
+  },
+  "name": "button-border-color-ghost-base",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "ghost",
+    "@base"
+  ],
+  "key": "{button.border.color.ghost.@base}"
+}
+what is foo?
+[
+  {
+    value: {
+      default: 'transparent',
+      prefersContrast: [Object],
+      forcedColors: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'border', 'color', '@base' ],
+    ref: [ 'button', 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.active}
+{
+  "value": {
+    "default": {
+      "default": {
+        "default": "transparent",
+        "prefersContrast": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        }
+      },
+      "forcedColors": {
+        "default": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        },
+        "forcedColors": "ButtonText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.active}"
+    }
+  },
+  "name": "button-border-color-ghost-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "ghost",
+    "active"
+  ],
+  "key": "{button.border.color.ghost.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-active',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'active'
+    },
+    path: [ 'button', 'border', 'color', 'active' ],
+    ref: [ 'button', 'border', 'color', 'active' ]
+  }
+]
+what is bar?
+{button.border.color.disabled}
+{
+  "value": {
+    "default": {
+      "default": {
+        "default": "transparent",
+        "prefersContrast": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        }
+      },
+      "forcedColors": {
+        "default": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        },
+        "forcedColors": "GrayText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.disabled}"
+    }
+  },
+  "name": "button-border-color-ghost-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "ghost",
+    "disabled"
+  ],
+  "key": "{button.border.color.ghost.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-disabled',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'disabled'
+    },
+    path: [ 'button', 'border', 'color', 'disabled' ],
+    ref: [ 'button', 'border', 'color', 'disabled' ]
+  }
+]
+what is bar?
+{button.border.color.hover}
+{
+  "value": {
+    "default": {
+      "default": {
+        "default": "transparent",
+        "prefersContrast": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        }
+      },
+      "forcedColors": {
+        "default": {
+          "prefersContrast": {
+            "prefersContrast": "CanvasText",
+            "brand": {
+              "light": "#15141a",
+              "dark": "#fbfbfe"
+            },
+            "platform": {
+              "default": "currentColor"
+            }
+          },
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#8f8f9d",
+            "dark": "#bfbfc9"
+          },
+          "platform": {
+            "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+          }
+        },
+        "forcedColors": "SelectedItem"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.hover}"
+    }
+  },
+  "name": "button-border-color-ghost-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "ghost",
+    "hover"
+  ],
+  "key": "{button.border.color.ghost.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-hover',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'hover'
+    },
+    path: [ 'button', 'border', 'color', 'hover' ],
+    ref: [ 'button', 'border', 'color', 'hover' ]
+  }
+]
+what is bar?
+{button.border.color.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.hover}"
+    }
+  },
+  "name": "button-border-color-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "hover"
+  ],
+  "key": "{button.border.color.hover}"
+}
+what is foo?
+[
+  {
+    value: {
+      default: 'transparent',
+      prefersContrast: [Object],
+      forcedColors: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'border', 'color', '@base' ],
+    ref: [ 'button', 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.primary.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": "ButtonFace"
+    },
+    "forcedColors": "ButtonText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.primary.@base}",
+      "forcedColors": "ButtonText"
+    }
+  },
+  "name": "button-border-color-primary-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "primary",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "primary",
+    "active"
+  ],
+  "key": "{button.border.color.primary.active}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: 'ButtonFace' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'border', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.primary.@base}
+{
+  "value": {
+    "default": "transparent",
+    "forcedColors": "ButtonFace"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.border.color.primary.@base}"
+  },
+  "name": "button-border-color-primary-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "primary",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "primary",
+    "disabled"
+  ],
+  "key": "{button.border.color.primary.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: 'ButtonFace' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'border', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.primary.@base}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": "ButtonFace"
+    },
+    "forcedColors": "SelectedItemText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.primary.@base}",
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "name": "button-border-color-primary-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "primary",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "primary",
+    "hover"
+  ],
+  "key": "{button.border.color.primary.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: 'ButtonFace' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'border', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{border.radius.small}
+{
+  "value": "4px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{border.radius.small}"
+  },
+  "name": "button-border-radius",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "radius"
+  },
+  "path": [
+    "button",
+    "border",
+    "radius"
+  ],
+  "key": "{button.border.radius}"
+}
+what is foo?
+[
+  {
+    value: '4px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '4px' },
+    name: 'border-radius-small',
+    attributes: { category: 'border', type: 'radius', item: 'small' },
+    path: [ 'border', 'radius', 'small' ],
+    ref: [ 'border', 'radius', 'small' ]
+  }
+]
+what is bar?
+{font.size.root}
+{
+  "value": {
+    "brand": {
+      "default": "15px"
+    },
+    "platform": {
+      "default": "unset"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{font.size.root}"
+  },
+  "name": "button-font-size-base",
+  "attributes": {
+    "category": "button",
+    "type": "font",
+    "item": "size",
+    "subitem": "@base"
+  },
+  "path": [
+    "button",
+    "font",
+    "size",
+    "@base"
+  ],
+  "key": "{button.font.size.@base}"
+}
+what is foo?
+[
+  {
+    value: { brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'font-size-root',
+    attributes: { category: 'font', type: 'size', item: 'root' },
+    path: [ 'font', 'size', 'root' ],
+    ref: [ 'font', 'size', 'root' ]
+  }
+]
+what is bar?
+{font.size.small}
+{
+  "value": {
+    "brand": {
+      "default": "0.867rem",
+      "comment": "13px"
+    },
+    "platform": {
+      "default": "unset"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{font.size.small}"
+  },
+  "name": "button-font-size-small",
+  "attributes": {
+    "category": "button",
+    "type": "font",
+    "item": "size",
+    "subitem": "small"
+  },
+  "path": [
+    "button",
+    "font",
+    "size",
+    "small"
+  ],
+  "key": "{button.font.size.small}"
+}
+what is foo?
+[
+  {
+    value: { brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'font-size-small',
+    attributes: { category: 'font', type: 'size', item: 'small' },
+    path: [ 'font', 'size', 'small' ],
+    ref: [ 'font', 'size', 'small' ]
+  }
+]
+what is bar?
+{font.weight.bold}
+{
+  "value": 600,
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{font.weight.bold}"
+  },
+  "name": "button-font-weight",
+  "attributes": {
+    "category": "button",
+    "type": "font",
+    "item": "weight"
+  },
+  "path": [
+    "button",
+    "font",
+    "weight"
+  ],
+  "key": "{button.font.weight}"
+}
+what is foo?
+[
+  {
+    value: 600,
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 600 },
+    name: 'font-weight-bold',
+    attributes: { category: 'font', type: 'weight', item: 'bold' },
+    path: [ 'font', 'weight', 'bold' ],
+    ref: [ 'font', 'weight', 'bold' ]
+  }
+]
+what is bar?
+{button.icon.fill}
+{
+  "value": "currentColor",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.icon.fill}"
+  },
+  "name": "button-icon-stroke",
+  "attributes": {
+    "category": "button",
+    "type": "icon",
+    "item": "stroke"
+  },
+  "path": [
+    "button",
+    "icon",
+    "stroke"
+  ],
+  "key": "{button.icon.stroke}"
+}
+what is foo?
+[
+  {
+    value: 'currentColor',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'currentColor' },
+    name: 'button-icon-fill',
+    attributes: { category: 'button', type: 'icon', item: 'fill' },
+    path: [ 'button', 'icon', 'fill' ],
+    ref: [ 'button', 'icon', 'fill' ]
+  }
+]
+what is bar?
+{size.item.large}
+{
+  "value": "32px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{size.item.large}"
+  },
+  "name": "button-min-height-base",
+  "attributes": {
+    "category": "button",
+    "type": "min",
+    "item": "height",
+    "subitem": "@base"
+  },
+  "path": [
+    "button",
+    "min",
+    "height",
+    "@base"
+  ],
+  "key": "{button.min.height.@base}"
+}
+what is foo?
+[
+  {
+    value: '32px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '32px' },
+    name: 'size-item-large',
+    attributes: { category: 'size', type: 'item', item: 'large' },
+    path: [ 'size', 'item', 'large' ],
+    ref: [ 'size', 'item', 'large' ]
+  }
+]
+what is bar?
+{size.item.medium}
+{
+  "value": "24px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{size.item.medium}"
+  },
+  "name": "button-min-height-small",
+  "attributes": {
+    "category": "button",
+    "type": "min",
+    "item": "height",
+    "subitem": "small"
+  },
+  "path": [
+    "button",
+    "min",
+    "height",
+    "small"
+  ],
+  "key": "{button.min.height.small}"
+}
+what is foo?
+[
+  {
+    value: '24px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '24px' },
+    name: 'size-item-medium',
+    attributes: { category: 'size', type: 'item', item: 'medium' },
+    path: [ 'size', 'item', 'medium' ],
+    ref: [ 'size', 'item', 'medium' ]
+  }
+]
+what is bar?
+{space.xsmall} {space.large}
+{
+  "value": "0.267rem calc(4 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{space.xsmall} {space.large}"
+  },
+  "name": "button-padding-base",
+  "attributes": {
+    "category": "button",
+    "type": "padding",
+    "item": "@base"
+  },
+  "path": [
+    "button",
+    "padding",
+    "@base"
+  ],
+  "key": "{button.padding.@base}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  },
+  {
+    comment: '16px',
+    value: 'calc(4 * 0.267rem)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '16px', value: 'calc(4 * {space.xsmall})' },
+    name: 'space-large',
+    attributes: { category: 'space', type: 'large' },
+    path: [ 'space', 'large' ],
+    ref: [ 'space', 'large' ]
+  }
+]
+what is bar?
+{button.min.height.@base}
+{
+  "value": "32px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.min.height.@base}"
+  },
+  "name": "button-size-icon-base",
+  "attributes": {
+    "category": "button",
+    "type": "size",
+    "item": "icon",
+    "subitem": "@base"
+  },
+  "path": [
+    "button",
+    "size",
+    "icon",
+    "@base"
+  ],
+  "key": "{button.size.icon.@base}"
+}
+what is foo?
+[
+  {
+    value: '32px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{size.item.large}' },
+    name: 'button-min-height-base',
+    attributes: {
+      category: 'button',
+      type: 'min',
+      item: 'height',
+      subitem: '@base'
+    },
+    path: [ 'button', 'min', 'height', '@base' ],
+    ref: [ 'button', 'min', 'height', '@base' ]
+  }
+]
+what is bar?
+{button.min.height.small}
+{
+  "value": "24px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.min.height.small}"
+  },
+  "name": "button-size-icon-small",
+  "attributes": {
+    "category": "button",
+    "type": "size",
+    "item": "icon",
+    "subitem": "small"
+  },
+  "path": [
+    "button",
+    "size",
+    "icon",
+    "small"
+  ],
+  "key": "{button.size.icon.small}"
+}
+what is foo?
+[
+  {
+    value: '24px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{size.item.medium}' },
+    name: 'button-min-height-small',
+    attributes: {
+      category: 'button',
+      type: 'min',
+      item: 'height',
+      subitem: 'small'
+    },
+    path: [ 'button', 'min', 'height', 'small' ],
+    ref: [ 'button', 'min', 'height', 'small' ]
+  }
+]
+what is bar?
+{button.text.color.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": "SelectedItem"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.@base}",
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "name": "button-text-color-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "active"
+  ],
+  "key": "{button.text.color.active}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'text', 'color', '@base' ],
+    ref: [ 'button', 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+light-dark({color.white}, {color.gray.100})
+{
+  "value": "light-dark(#ffffff, #15141a)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.white}",
+      "dark": "{color.gray.100}",
+      "forcedColors": "{button.text.color.primary.@base}",
+      "default": "light-dark({color.white}, {color.gray.100})"
+    }
+  },
+  "name": "button-text-color-destructive-base",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "@base"
+  ],
+  "key": "{button.text.color.destructive.@base}"
+}
+what is foo?
+[
+  {
+    value: '#ffffff',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#ffffff' },
+    name: 'color-white',
+    attributes: { category: 'color', type: 'white' },
+    path: [ 'color', 'white' ],
+    ref: [ 'color', 'white' ]
+  },
+  {
+    value: '#15141a',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#15141a' },
+    name: 'color-gray-100',
+    attributes: { category: 'color', type: 'gray', item: '100' },
+    path: [ 'color', 'gray', '100' ],
+    ref: [ 'color', 'gray', '100' ]
+  }
+]
+what is bar?
+{button.text.color.destructive.@base}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonFace",
+        "brand": {
+          "light": "#ffffff",
+          "dark": "#15141a"
+        },
+        "platform": {
+          "default": "AccentColorText"
+        }
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.active}"
+    }
+  },
+  "name": "button-text-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.text.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#ffffff, #15141a)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'text', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.destructive.@base}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "forcedColors": "ButtonFace",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#15141a"
+      },
+      "platform": {
+        "default": "AccentColorText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.disabled}"
+    }
+  },
+  "name": "button-text-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.text.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#ffffff, #15141a)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'text', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.destructive.@base}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonFace",
+        "brand": {
+          "light": "#ffffff",
+          "dark": "#15141a"
+        },
+        "platform": {
+          "default": "AccentColorText"
+        }
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.hover}"
+    }
+  },
+  "name": "button-text-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.text.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#ffffff, #15141a)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-destructive-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'destructive',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'destructive', '@base' ],
+    ref: [ 'button', 'text', 'color', 'destructive', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": "GrayText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.@base}",
+      "forcedColors": "GrayText"
+    }
+  },
+  "name": "button-text-color-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "disabled"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "disabled"
+  ],
+  "key": "{button.text.color.disabled}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'text', 'color', '@base' ],
+    ref: [ 'button', 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": "SelectedItem"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.@base}",
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "name": "button-text-color-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "hover"
+  ],
+  "key": "{button.text.color.hover}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'text', 'color', '@base' ],
+    ref: [ 'button', 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.primary.hover}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonFace",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#15141a"
+      },
+      "platform": {
+        "default": "AccentColorText"
+      }
+    },
+    "forcedColors": "SelectedItemText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.text.color.primary.hover}"
+  },
+  "name": "button-text-color-primary-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "primary",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "primary",
+    "active"
+  ],
+  "key": "{button.text.color.primary.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItemText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-primary-hover',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: 'hover'
+    },
+    path: [ 'button', 'text', 'color', 'primary', 'hover' ],
+    ref: [ 'button', 'text', 'color', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{button.text.color.primary.@base}
+{
+  "value": {
+    "forcedColors": "ButtonFace",
+    "brand": {
+      "light": "#ffffff",
+      "dark": "#15141a"
+    },
+    "platform": {
+      "default": "AccentColorText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.text.color.primary.@base}"
+  },
+  "name": "button-text-color-primary-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "primary",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "primary",
+    "disabled"
+  ],
+  "key": "{button.text.color.primary.disabled}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonFace', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'text', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.primary.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonFace",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#15141a"
+      },
+      "platform": {
+        "default": "AccentColorText"
+      }
+    },
+    "forcedColors": "SelectedItemText"
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.primary.@base}",
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "name": "button-text-color-primary-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "primary",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "primary",
+    "hover"
+  ],
+  "key": "{button.text.color.primary.hover}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonFace', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'text', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{space.small}
+{
+  "value": "calc(2 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{space.small}"
+  },
+  "name": "checkbox-margin-inline",
+  "attributes": {
+    "category": "checkbox",
+    "type": "margin",
+    "item": "inline"
+  },
+  "path": [
+    "checkbox",
+    "margin",
+    "inline"
+  ],
+  "key": "{checkbox.margin.inline}"
+}
+what is foo?
+[
+  {
+    comment: '8px',
+    value: 'calc(2 * 0.267rem)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '8px', value: 'calc(2 * {space.xsmall})' },
+    name: 'space-small',
+    attributes: { category: 'space', type: 'small' },
+    path: [ 'space', 'small' ],
+    ref: [ 'space', 'small' ]
+  }
+]
+what is bar?
+{size.item.small}
+{
+  "comment": "TODO Bug 1876537: Make this em-based, probably?",
+  "value": "16px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "TODO Bug 1876537: Make this em-based, probably?",
+    "value": "{size.item.small}"
+  },
+  "name": "checkbox-size",
+  "attributes": {
+    "category": "checkbox",
+    "type": "size"
+  },
+  "path": [
+    "checkbox",
+    "size"
+  ],
+  "key": "{checkbox.size}"
+}
+what is foo?
+[
+  {
+    value: '16px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '16px' },
+    name: 'size-item-small',
+    attributes: { category: 'size', type: 'item', item: 'small' },
+    path: [ 'size', 'item', 'small' ],
+    ref: [ 'size', 'item', 'small' ]
+  }
+]
+what is bar?
+{focus.outline.width} solid {focus.outline.color}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "oklch(55% 0.24 260)",
+        "dark": "oklch(76% 0.14 205)"
+      },
+      "platform": {
+        "default": "AccentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": "CanvasText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{focus.outline.width} solid {focus.outline.color}"
+  },
+  "name": "focus-outline-base",
+  "attributes": {
+    "category": "focus",
+    "type": "outline",
+    "item": "@base"
+  },
+  "path": [
+    "focus",
+    "outline",
+    "@base"
+  ],
+  "key": "{focus.outline.@base}"
+}
+what is foo?
+[
+  {
+    value: '2px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '2px' },
+    name: 'focus-outline-width',
+    attributes: { category: 'focus', type: 'outline', item: 'width' },
+    path: [ 'focus', 'outline', 'width' ],
+    ref: [ 'focus', 'outline', 'width' ]
+  },
+  {
+    value: { default: [Object], forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'focus-outline-color',
+    attributes: { category: 'focus', type: 'outline', item: 'color' },
+    path: [ 'focus', 'outline', 'color' ],
+    ref: [ 'focus', 'outline', 'color' ]
+  }
+]
+what is bar?
+{color.accent.primary.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "oklch(55% 0.24 260)",
+        "dark": "oklch(76% 0.14 205)"
+      },
+      "platform": {
+        "default": "AccentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": "CanvasText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{color.accent.primary.@base}",
+      "forcedColors": "{text.color.@base}"
+    }
+  },
+  "name": "focus-outline-color",
+  "attributes": {
+    "category": "focus",
+    "type": "outline",
+    "item": "color"
+  },
+  "path": [
+    "focus",
+    "outline",
+    "color"
+  ],
+  "key": "{focus.outline.color}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'color-accent-primary-base',
+    attributes: {
+      category: 'color',
+      type: 'accent',
+      item: 'primary',
+      subitem: '@base'
+    },
+    path: [ 'color', 'accent', 'primary', '@base' ],
+    ref: [ 'color', 'accent', 'primary', '@base' ]
+  }
+]
+what is bar?
+calc(-1 * {focus.outline.width})
+{
+  "value": "calc(-1 * 2px)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "calc(-1 * {focus.outline.width})"
+  },
+  "name": "focus-outline-inset",
+  "attributes": {
+    "category": "focus",
+    "type": "outline",
+    "item": "inset"
+  },
+  "path": [
+    "focus",
+    "outline",
+    "inset"
+  ],
+  "key": "{focus.outline.inset}"
+}
+what is foo?
+[
+  {
+    value: '2px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '2px' },
+    name: 'focus-outline-width',
+    attributes: { category: 'focus', type: 'outline', item: 'width' },
+    path: [ 'focus', 'outline', 'width' ],
+    ref: [ 'focus', 'outline', 'width' ]
+  }
+]
+what is bar?
+light-dark({color.gray.70}, {color.gray.05})
+{
+  "value": "light-dark(#5b5b66, #fbfbfe)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.gray.70}",
+      "dark": "{color.gray.05}",
+      "prefersContrast": "{text.color.@base}",
+      "default": "light-dark({color.gray.70}, {color.gray.05})"
+    }
+  },
+  "name": "icon-color-base",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "@base"
+  },
+  "path": [
+    "icon",
+    "color",
+    "@base"
+  ],
+  "key": "{icon.color.@base}"
+}
+what is foo?
+[
+  {
+    value: '#5b5b66',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#5b5b66' },
+    name: 'color-gray-70',
+    attributes: { category: 'color', type: 'gray', item: '70' },
+    path: [ 'color', 'gray', '70' ],
+    ref: [ 'color', 'gray', '70' ]
+  },
+  {
+    value: '#fbfbfe',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '#fbfbfe' },
+    name: 'color-gray-05',
+    attributes: { category: 'color', type: 'gray', item: '05' },
+    path: [ 'color', 'gray', '05' ],
+    ref: [ 'color', 'gray', '05' ]
+  }
+]
+what is bar?
+light-dark({color.blue.60}, {color.blue.20})
+{
+  "value": "light-dark(oklch(55% 0.24 260), oklch(83% 0.17 260))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.blue.60}",
+      "dark": "{color.blue.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.blue.60}, {color.blue.20})"
+    }
+  },
+  "name": "icon-color-information",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "information"
+  },
+  "path": [
+    "icon",
+    "color",
+    "information"
+  ],
+  "key": "{icon.color.information}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(55% 0.24 260)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(55% 0.24 260)' },
+    name: 'color-blue-60',
+    attributes: { category: 'color', type: 'blue', item: '60' },
+    path: [ 'color', 'blue', '60' ],
+    ref: [ 'color', 'blue', '60' ]
+  },
+  {
+    value: 'oklch(83% 0.17 260)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.17 260)' },
+    name: 'color-blue-20',
+    attributes: { category: 'color', type: 'blue', item: '20' },
+    path: [ 'color', 'blue', '20' ],
+    ref: [ 'color', 'blue', '20' ]
+  }
+]
+what is bar?
+light-dark({color.green.60}, {color.green.20})
+{
+  "value": "light-dark(oklch(55% 0.21 145), oklch(83% 0.14 145))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.green.60}",
+      "dark": "{color.green.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.green.60}, {color.green.20})"
+    }
+  },
+  "name": "icon-color-success",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "success"
+  },
+  "path": [
+    "icon",
+    "color",
+    "success"
+  ],
+  "key": "{icon.color.success}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(55% 0.21 145)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(55% 0.21 145)' },
+    name: 'color-green-60',
+    attributes: { category: 'color', type: 'green', item: '60' },
+    path: [ 'color', 'green', '60' ],
+    ref: [ 'color', 'green', '60' ]
+  },
+  {
+    value: 'oklch(83% 0.14 145)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.14 145)' },
+    name: 'color-green-20',
+    attributes: { category: 'color', type: 'green', item: '20' },
+    path: [ 'color', 'green', '20' ],
+    ref: [ 'color', 'green', '20' ]
+  }
+]
+what is bar?
+light-dark({color.yellow.60}, {color.yellow.20})
+{
+  "value": "light-dark(oklch(58% 0.24 90), oklch(86% 0.14 90))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.yellow.60}",
+      "dark": "{color.yellow.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.yellow.60}, {color.yellow.20})"
+    }
+  },
+  "name": "icon-color-warning",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "warning"
+  },
+  "path": [
+    "icon",
+    "color",
+    "warning"
+  ],
+  "key": "{icon.color.warning}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(58% 0.24 90)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(58% 0.24 90)' },
+    name: 'color-yellow-60',
+    attributes: { category: 'color', type: 'yellow', item: '60' },
+    path: [ 'color', 'yellow', '60' ],
+    ref: [ 'color', 'yellow', '60' ]
+  },
+  {
+    value: 'oklch(86% 0.14 90)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(86% 0.14 90)' },
+    name: 'color-yellow-20',
+    attributes: { category: 'color', type: 'yellow', item: '20' },
+    path: [ 'color', 'yellow', '20' ],
+    ref: [ 'color', 'yellow', '20' ]
+  }
+]
+what is bar?
+light-dark({color.red.60}, {color.red.20})
+{
+  "value": "light-dark(oklch(55% 0.21 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.60}",
+      "dark": "{color.red.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.red.60}, {color.red.20})"
+    }
+  },
+  "name": "icon-color-critical",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "critical"
+  },
+  "path": [
+    "icon",
+    "color",
+    "critical"
+  ],
+  "key": "{icon.color.critical}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(55% 0.21 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(55% 0.21 15)' },
+    name: 'color-red-60',
+    attributes: { category: 'color', type: 'red', item: '60' },
+    path: [ 'color', 'red', '60' ],
+    ref: [ 'color', 'red', '60' ]
+  },
+  {
+    value: 'oklch(83% 0.14 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.14 15)' },
+    name: 'color-red-20',
+    attributes: { category: 'color', type: 'red', item: '20' },
+    path: [ 'color', 'red', '20' ],
+    ref: [ 'color', 'red', '20' ]
+  }
+]
+what is bar?
+{icon.size.small}
+{
+  "value": "16px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{icon.size.small}"
+  },
+  "name": "icon-size-default",
+  "attributes": {
+    "category": "icon",
+    "type": "size",
+    "item": "default"
+  },
+  "path": [
+    "icon",
+    "size",
+    "default"
+  ],
+  "key": "{icon.size.default}"
+}
+what is foo?
+[
+  {
+    value: '16px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{size.item.small}' },
+    name: 'icon-size-small',
+    attributes: { category: 'icon', type: 'size', item: 'small' },
+    path: [ 'icon', 'size', 'small' ],
+    ref: [ 'icon', 'size', 'small' ]
+  }
+]
+what is bar?
+{size.item.small}
+{
+  "value": "16px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{size.item.small}"
+  },
+  "name": "icon-size-small",
+  "attributes": {
+    "category": "icon",
+    "type": "size",
+    "item": "small"
+  },
+  "path": [
+    "icon",
+    "size",
+    "small"
+  ],
+  "key": "{icon.size.small}"
+}
+what is foo?
+[
+  {
+    value: '16px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '16px' },
+    name: 'size-item-small',
+    attributes: { category: 'size', type: 'item', item: 'small' },
+    path: [ 'size', 'item', 'small' ],
+    ref: [ 'size', 'item', 'small' ]
+  }
+]
+what is bar?
+{size.item.large}
+{
+  "value": "32px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{size.item.large}"
+  },
+  "name": "icon-size-xlarge",
+  "attributes": {
+    "category": "icon",
+    "type": "size",
+    "item": "xlarge"
+  },
+  "path": [
+    "icon",
+    "size",
+    "xlarge"
+  ],
+  "key": "{icon.size.xlarge}"
+}
+what is foo?
+[
+  {
+    value: '32px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '32px' },
+    name: 'size-item-large',
+    attributes: { category: 'size', type: 'item', item: 'large' },
+    path: [ 'size', 'item', 'large' ],
+    ref: [ 'size', 'item', 'large' ]
+  }
+]
+what is bar?
+{button.min.height.@base}
+{
+  "value": "32px",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{button.min.height.@base}"
+  },
+  "name": "input-text-min-height",
+  "attributes": {
+    "category": "input",
+    "type": "text",
+    "item": "min",
+    "subitem": "height"
+  },
+  "path": [
+    "input",
+    "text",
+    "min",
+    "height"
+  ],
+  "key": "{input.text.min.height}"
+}
+what is foo?
+[
+  {
+    value: '32px',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{size.item.large}' },
+    name: 'button-min-height-base',
+    attributes: {
+      category: 'button',
+      type: 'min',
+      item: 'height',
+      subitem: '@base'
+    },
+    path: [ 'button', 'min', 'height', '@base' ],
+    ref: [ 'button', 'min', 'height', '@base' ]
+  }
+]
+what is bar?
+{space.xsmall}
+{
+  "value": "0.267rem",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{space.xsmall}"
+  },
+  "name": "input-space-block",
+  "attributes": {
+    "category": "input",
+    "type": "space",
+    "item": "block"
+  },
+  "path": [
+    "input",
+    "space",
+    "block"
+  ],
+  "key": "{input.space.block}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+light-dark({color.red.70}, {color.red.20})
+{
+  "value": "light-dark(oklch(48% 0.2 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.70}",
+      "dark": "{color.red.20}",
+      "prefersContrast": "{border.color.@base}",
+      "default": "light-dark({color.red.70}, {color.red.20})"
+    }
+  },
+  "name": "outline-color-error",
+  "attributes": {
+    "category": "outline",
+    "type": "color",
+    "item": "error"
+  },
+  "path": [
+    "outline",
+    "color",
+    "error"
+  ],
+  "key": "{outline.color.error}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(48% 0.2 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(48% 0.2 15)' },
+    name: 'color-red-70',
+    attributes: { category: 'color', type: 'red', item: '70' },
+    path: [ 'color', 'red', '70' ],
+    ref: [ 'color', 'red', '70' ]
+  },
+  {
+    value: 'oklch(83% 0.14 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.14 15)' },
+    name: 'color-red-20',
+    attributes: { category: 'color', type: 'red', item: '20' },
+    path: [ 'color', 'red', '20' ],
+    ref: [ 'color', 'red', '20' ]
+  }
+]
+what is bar?
+calc(0.5 * {space.xsmall})
+{
+  "comment": "2px",
+  "value": "calc(0.5 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "2px",
+    "value": "calc(0.5 * {space.xsmall})"
+  },
+  "name": "space-xxsmall",
+  "attributes": {
+    "category": "space",
+    "type": "xxsmall"
+  },
+  "path": [
+    "space",
+    "xxsmall"
+  ],
+  "key": "{space.xxsmall}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+calc(2 * {space.xsmall})
+{
+  "comment": "8px",
+  "value": "calc(2 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "8px",
+    "value": "calc(2 * {space.xsmall})"
+  },
+  "name": "space-small",
+  "attributes": {
+    "category": "space",
+    "type": "small"
+  },
+  "path": [
+    "space",
+    "small"
+  ],
+  "key": "{space.small}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+calc(3 * {space.xsmall})
+{
+  "comment": "12px",
+  "value": "calc(3 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "12px",
+    "value": "calc(3 * {space.xsmall})"
+  },
+  "name": "space-medium",
+  "attributes": {
+    "category": "space",
+    "type": "medium"
+  },
+  "path": [
+    "space",
+    "medium"
+  ],
+  "key": "{space.medium}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+calc(4 * {space.xsmall})
+{
+  "comment": "16px",
+  "value": "calc(4 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "16px",
+    "value": "calc(4 * {space.xsmall})"
+  },
+  "name": "space-large",
+  "attributes": {
+    "category": "space",
+    "type": "large"
+  },
+  "path": [
+    "space",
+    "large"
+  ],
+  "key": "{space.large}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+calc(6 * {space.xsmall})
+{
+  "comment": "24px",
+  "value": "calc(6 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "24px",
+    "value": "calc(6 * {space.xsmall})"
+  },
+  "name": "space-xlarge",
+  "attributes": {
+    "category": "space",
+    "type": "xlarge"
+  },
+  "path": [
+    "space",
+    "xlarge"
+  ],
+  "key": "{space.xlarge}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+calc(8 * {space.xsmall})
+{
+  "comment": "32px",
+  "value": "calc(8 * 0.267rem)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "32px",
+    "value": "calc(8 * {space.xsmall})"
+  },
+  "name": "space-xxlarge",
+  "attributes": {
+    "category": "space",
+    "type": "xxlarge"
+  },
+  "path": [
+    "space",
+    "xxlarge"
+  ],
+  "key": "{space.xxlarge}"
+}
+what is foo?
+[
+  {
+    comment: '4px',
+    value: '0.267rem',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { comment: '4px', value: '0.267rem' },
+    name: 'space-xsmall',
+    attributes: { category: 'space', type: 'xsmall' },
+    path: [ 'space', 'xsmall' ],
+    ref: [ 'space', 'xsmall' ]
+  }
+]
+what is bar?
+0 0 1px {box.shadow.color.darker.layer-1}, 0 1px 2px {box.shadow.color.darker.layer-2}
+{
+  "value": "0 0 1px light-dark(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.2)), 0 1px 2px light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "0 0 1px {box.shadow.color.darker.layer-1}, 0 1px 2px {box.shadow.color.darker.layer-2}"
+  },
+  "name": "box-shadow-level-1",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "level-1"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "level-1"
+  ],
+  "key": "{box.shadow.level-1}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.2))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-darker-layer-1',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'darker',
+      state: 'layer-1'
+    },
+    path: [ 'box', 'shadow', 'color', 'darker', 'layer-1' ],
+    ref: [ 'box', 'shadow', 'color', 'darker', 'layer-1' ]
+  },
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-darker-layer-2',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'darker',
+      state: 'layer-2'
+    },
+    path: [ 'box', 'shadow', 'color', 'darker', 'layer-2' ],
+    ref: [ 'box', 'shadow', 'color', 'darker', 'layer-2' ]
+  }
+]
+what is bar?
+0 0.25px 0.75px {box.shadow.color.lighter.layer-1}, 0 2px 6px {box.shadow.color.lighter.layer-2}
+{
+  "value": "0 0.25px 0.75px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 2px 6px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "0 0.25px 0.75px {box.shadow.color.lighter.layer-1}, 0 2px 6px {box.shadow.color.lighter.layer-2}"
+  },
+  "name": "box-shadow-level-2",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "level-2"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "level-2"
+  ],
+  "key": "{box.shadow.level-2}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-1',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-1'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ]
+  },
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-2',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-2'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ]
+  }
+]
+what is bar?
+0 0.375px 1.5px {box.shadow.color.lighter.layer-1}, 0 3px 12px {box.shadow.color.lighter.layer-2}
+{
+  "value": "0 0.375px 1.5px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 3px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "0 0.375px 1.5px {box.shadow.color.lighter.layer-1}, 0 3px 12px {box.shadow.color.lighter.layer-2}"
+  },
+  "name": "box-shadow-level-3",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "level-3"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "level-3"
+  ],
+  "key": "{box.shadow.level-3}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-1',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-1'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ]
+  },
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-2',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-2'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ]
+  }
+]
+what is bar?
+0 0.5px 2px {box.shadow.color.lighter.layer-1}, 0 4px 16px {box.shadow.color.lighter.layer-2}
+{
+  "value": "0 0.5px 2px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 4px 16px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "0 0.5px 2px {box.shadow.color.lighter.layer-1}, 0 4px 16px {box.shadow.color.lighter.layer-2}"
+  },
+  "name": "box-shadow-level-4",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "level-4"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "level-4"
+  ],
+  "key": "{box.shadow.level-4}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-1',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-1'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-1' ]
+  },
+  {
+    value: 'light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'box-shadow-color-lighter-layer-2',
+    attributes: {
+      category: 'box',
+      type: 'shadow',
+      item: 'color',
+      subitem: 'lighter',
+      state: 'layer-2'
+    },
+    path: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ],
+    ref: [ 'box', 'shadow', 'color', 'lighter', 'layer-2' ]
+  }
+]
+what is bar?
+{box.shadow.level-1}
+{
+  "value": "0 0 1px light-dark(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.2)), 0 1px 2px light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{box.shadow.level-1}"
+  },
+  "name": "box-shadow-tab",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "tab"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "tab"
+  ],
+  "key": "{box.shadow.tab}"
+}
+what is foo?
+[
+  {
+    value: '0 0 1px light-dark(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.2)), 0 1px 2px light-dark(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: {
+      value: '0 0 1px {box.shadow.color.darker.layer-1}, 0 1px 2px {box.shadow.color.darker.layer-2}'
+    },
+    name: 'box-shadow-level-1',
+    attributes: { category: 'box', type: 'shadow', item: 'level-1' },
+    path: [ 'box', 'shadow', 'level-1' ],
+    ref: [ 'box', 'shadow', 'level-1' ]
+  }
+]
+what is bar?
+{box.shadow.level-2}
+{
+  "value": "0 0.25px 0.75px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 2px 6px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{box.shadow.level-2}"
+  },
+  "name": "box-shadow-card",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "card"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "card"
+  ],
+  "key": "{box.shadow.card}"
+}
+what is foo?
+[
+  {
+    value: '0 0.25px 0.75px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 2px 6px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: {
+      value: '0 0.25px 0.75px {box.shadow.color.lighter.layer-1}, 0 2px 6px {box.shadow.color.lighter.layer-2}'
+    },
+    name: 'box-shadow-level-2',
+    attributes: { category: 'box', type: 'shadow', item: 'level-2' },
+    path: [ 'box', 'shadow', 'level-2' ],
+    ref: [ 'box', 'shadow', 'level-2' ]
+  }
+]
+what is bar?
+{box.shadow.level-4}
+{
+  "value": "0 0.5px 2px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 4px 16px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{box.shadow.level-4}"
+  },
+  "name": "box-shadow-card-hover",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "card-hover"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "card-hover"
+  ],
+  "key": "{box.shadow.card-hover}"
+}
+what is foo?
+[
+  {
+    value: '0 0.5px 2px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 4px 16px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: {
+      value: '0 0.5px 2px {box.shadow.color.lighter.layer-1}, 0 4px 16px {box.shadow.color.lighter.layer-2}'
+    },
+    name: 'box-shadow-level-4',
+    attributes: { category: 'box', type: 'shadow', item: 'level-4' },
+    path: [ 'box', 'shadow', 'level-4' ],
+    ref: [ 'box', 'shadow', 'level-4' ]
+  }
+]
+what is bar?
+{box.shadow.level-3}
+{
+  "value": "0 0.375px 1.5px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 3px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": "{box.shadow.level-3}"
+  },
+  "name": "box-shadow-popup",
+  "attributes": {
+    "category": "box",
+    "type": "shadow",
+    "item": "popup"
+  },
+  "path": [
+    "box",
+    "shadow",
+    "popup"
+  ],
+  "key": "{box.shadow.popup}"
+}
+what is foo?
+[
+  {
+    value: '0 0.375px 1.5px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.2)), 0 3px 12px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4))',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: {
+      value: '0 0.375px 1.5px {box.shadow.color.lighter.layer-1}, 0 3px 12px {box.shadow.color.lighter.layer-2}'
+    },
+    name: 'box-shadow-level-3',
+    attributes: { category: 'box', type: 'shadow', item: 'level-3' },
+    path: [ 'box', 'shadow', 'level-3' ],
+    ref: [ 'box', 'shadow', 'level-3' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": {
+    "default": {
+      "prefersContrast": "Canvas",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#1c1b22"
+      },
+      "platform": {
+        "default": "Canvas"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{background.color.canvas}"
+    }
+  },
+  "name": "table-row-background-color-base",
+  "attributes": {
+    "category": "table",
+    "type": "row",
+    "item": "background",
+    "subitem": "color",
+    "state": "@base"
+  },
+  "path": [
+    "table",
+    "row",
+    "background",
+    "color",
+    "@base"
+  ],
+  "key": "{table.row.background.color.@base}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+light-dark({color.red.70}, {color.red.20})
+{
+  "value": "light-dark(oklch(48% 0.2 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.70}",
+      "dark": "{color.red.20}",
+      "prefersContrast": "inherit",
+      "default": "light-dark({color.red.70}, {color.red.20})"
+    }
+  },
+  "name": "text-color-error",
+  "attributes": {
+    "category": "text",
+    "type": "color",
+    "item": "error"
+  },
+  "path": [
+    "text",
+    "color",
+    "error"
+  ],
+  "key": "{text.color.error}"
+}
+what is foo?
+[
+  {
+    value: 'oklch(48% 0.2 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(48% 0.2 15)' },
+    name: 'color-red-70',
+    attributes: { category: 'color', type: 'red', item: '70' },
+    path: [ 'color', 'red', '70' ],
+    ref: [ 'color', 'red', '70' ]
+  },
+  {
+    value: 'oklch(83% 0.14 15)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: 'oklch(83% 0.14 15)' },
+    name: 'color-red-20',
+    attributes: { category: 'color', type: 'red', item: '20' },
+    path: [ 'color', 'red', '20' ],
+    ref: [ 'color', 'red', '20' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": "light-dark(#ffffff, #23222b)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.white}",
+      "dark": "{color.gray.80}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.white}, {color.gray.80})"
+    }
+  },
+  "name": "background-color-box",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "box"
+  },
+  "path": [
+    "background",
+    "color",
+    "box"
+  ],
+  "key": "{background.color.box}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": "light-dark(oklch(97% 0.05 15), oklch(34% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.0}",
+      "dark": "{color.red.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.red.0}, {color.red.90})"
+    }
+  },
+  "name": "background-color-critical",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "critical"
+  },
+  "path": [
+    "background",
+    "color",
+    "critical"
+  ],
+  "key": "{background.color.critical}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": "light-dark(oklch(97% 0.05 260), oklch(34% 0.14 260))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.blue.0}",
+      "dark": "{color.blue.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.blue.0}, {color.blue.90})"
+    }
+  },
+  "name": "background-color-information",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "information"
+  },
+  "path": [
+    "background",
+    "color",
+    "information"
+  ],
+  "key": "{background.color.information}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": "light-dark(oklch(97% 0.05 145), oklch(34% 0.14 145))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.green.0}",
+      "dark": "{color.green.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.green.0}, {color.green.90})"
+    }
+  },
+  "name": "background-color-success",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "success"
+  },
+  "path": [
+    "background",
+    "color",
+    "success"
+  ],
+  "key": "{background.color.success}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "value": "light-dark(oklch(97% 0.05 90), oklch(34% 0.17 90))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.yellow.0}",
+      "dark": "{color.yellow.90}",
+      "prefersContrast": "{background.color.canvas}",
+      "default": "light-dark({color.yellow.0}, {color.yellow.90})"
+    }
+  },
+  "name": "background-color-warning",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "warning"
+  },
+  "path": [
+    "background",
+    "color",
+    "warning"
+  ],
+  "key": "{background.color.warning}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+{text.color.@base}
+{
+  "value": {
+    "prefersContrast": {
+      "prefersContrast": "CanvasText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": "ButtonText",
+    "brand": {
+      "light": "#8f8f9d",
+      "dark": "#bfbfc9"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "prefersContrast": "{text.color.@base}",
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "{color.gray.60}",
+        "dark": "{color.gray.50}",
+        "default": "light-dark({color.gray.60}, {color.gray.50})"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, {color.gray.60})"
+      }
+    }
+  },
+  "name": "border-color-interactive-base",
+  "attributes": {
+    "category": "border",
+    "type": "color",
+    "item": "interactive",
+    "subitem": "@base"
+  },
+  "path": [
+    "border",
+    "color",
+    "interactive",
+    "@base"
+  ],
+  "key": "{border.color.interactive.@base}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: 'CanvasText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'text-color-base',
+    attributes: { category: 'text', type: 'color', item: '@base' },
+    path: [ 'text', 'color', '@base' ],
+    ref: [ 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.@base}
+{
+  "value": {
+    "default": "transparent",
+    "prefersContrast": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "transparent",
+      "prefersContrast": "{button.text.color.@base}",
+      "forcedColors": "{border.color.interactive.@base}"
+    }
+  },
+  "name": "button-border-color-base",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "@base"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "@base"
+  ],
+  "key": "{button.border.color.@base}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: '@base'
+    },
+    path: [ 'button', 'text', 'color', '@base' ],
+    ref: [ 'button', 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.active}
+{
+  "value": {
+    "default": "inherit",
+    "prefersContrast": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "inherit",
+      "prefersContrast": "{button.text.color.active}",
+      "forcedColors": "{button.text.color.active}"
+    }
+  },
+  "name": "button-text-color-ghost-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "ghost",
+    "active"
+  ],
+  "key": "{button.text.color.ghost.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItem' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-active',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'active'
+    },
+    path: [ 'button', 'text', 'color', 'active' ],
+    ref: [ 'button', 'text', 'color', 'active' ]
+  }
+]
+what is bar?
+{button.text.color.hover}
+{
+  "value": {
+    "default": "inherit",
+    "prefersContrast": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "inherit",
+      "prefersContrast": "{button.text.color.hover}",
+      "forcedColors": "{button.text.color.hover}"
+    }
+  },
+  "name": "button-text-color-ghost-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "ghost",
+    "hover"
+  ],
+  "key": "{button.text.color.ghost.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItem' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-hover',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'hover'
+    },
+    path: [ 'button', 'text', 'color', 'hover' ],
+    ref: [ 'button', 'text', 'color', 'hover' ]
+  }
+]
+what is bar?
+{text.color.@base}
+{
+  "value": "light-dark(#5b5b66, #fbfbfe)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.gray.70}",
+      "dark": "{color.gray.05}",
+      "prefersContrast": "{text.color.@base}",
+      "default": "light-dark({color.gray.70}, {color.gray.05})"
+    }
+  },
+  "name": "icon-color-base",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "@base"
+  },
+  "path": [
+    "icon",
+    "color",
+    "@base"
+  ],
+  "key": "{icon.color.@base}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: 'CanvasText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'text-color-base',
+    attributes: { category: 'text', type: 'color', item: '@base' },
+    path: [ 'text', 'color', '@base' ],
+    ref: [ 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{icon.color.@base}
+{
+  "value": "light-dark(oklch(55% 0.24 260), oklch(83% 0.17 260))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.blue.60}",
+      "dark": "{color.blue.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.blue.60}, {color.blue.20})"
+    }
+  },
+  "name": "icon-color-information",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "information"
+  },
+  "path": [
+    "icon",
+    "color",
+    "information"
+  ],
+  "key": "{icon.color.information}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#5b5b66, #fbfbfe)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'icon-color-base',
+    attributes: { category: 'icon', type: 'color', item: '@base' },
+    path: [ 'icon', 'color', '@base' ],
+    ref: [ 'icon', 'color', '@base' ]
+  }
+]
+what is bar?
+{icon.color.@base}
+{
+  "value": "light-dark(oklch(55% 0.21 145), oklch(83% 0.14 145))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.green.60}",
+      "dark": "{color.green.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.green.60}, {color.green.20})"
+    }
+  },
+  "name": "icon-color-success",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "success"
+  },
+  "path": [
+    "icon",
+    "color",
+    "success"
+  ],
+  "key": "{icon.color.success}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#5b5b66, #fbfbfe)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'icon-color-base',
+    attributes: { category: 'icon', type: 'color', item: '@base' },
+    path: [ 'icon', 'color', '@base' ],
+    ref: [ 'icon', 'color', '@base' ]
+  }
+]
+what is bar?
+{icon.color.@base}
+{
+  "value": "light-dark(oklch(58% 0.24 90), oklch(86% 0.14 90))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.yellow.60}",
+      "dark": "{color.yellow.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.yellow.60}, {color.yellow.20})"
+    }
+  },
+  "name": "icon-color-warning",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "warning"
+  },
+  "path": [
+    "icon",
+    "color",
+    "warning"
+  ],
+  "key": "{icon.color.warning}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#5b5b66, #fbfbfe)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'icon-color-base',
+    attributes: { category: 'icon', type: 'color', item: '@base' },
+    path: [ 'icon', 'color', '@base' ],
+    ref: [ 'icon', 'color', '@base' ]
+  }
+]
+what is bar?
+{icon.color.@base}
+{
+  "value": "light-dark(oklch(55% 0.21 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.60}",
+      "dark": "{color.red.20}",
+      "prefersContrast": "{icon.color.@base}",
+      "default": "light-dark({color.red.60}, {color.red.20})"
+    }
+  },
+  "name": "icon-color-critical",
+  "attributes": {
+    "category": "icon",
+    "type": "color",
+    "item": "critical"
+  },
+  "path": [
+    "icon",
+    "color",
+    "critical"
+  ],
+  "key": "{icon.color.critical}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#5b5b66, #fbfbfe)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'icon-color-base',
+    attributes: { category: 'icon', type: 'color', item: '@base' },
+    path: [ 'icon', 'color', '@base' ],
+    ref: [ 'icon', 'color', '@base' ]
+  }
+]
+what is bar?
+{border.color.@base}
+{
+  "value": "light-dark(oklch(48% 0.2 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.70}",
+      "dark": "{color.red.20}",
+      "prefersContrast": "{border.color.@base}",
+      "default": "light-dark({color.red.70}, {color.red.20})"
+    }
+  },
+  "name": "outline-color-error",
+  "attributes": {
+    "category": "outline",
+    "type": "color",
+    "item": "error"
+  },
+  "path": [
+    "outline",
+    "color",
+    "error"
+  ],
+  "key": "{outline.color.error}"
+}
+what is foo?
+[
+  {
+    value: 'light-dark(#CFCFD8, #3A3944)',
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-base',
+    attributes: { category: 'border', type: 'color', item: '@base' },
+    path: [ 'border', 'color', '@base' ],
+    ref: [ 'border', 'color', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.disabled}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "oklch(55% 0.24 260)",
+        "dark": "oklch(76% 0.14 205)"
+      },
+      "platform": {
+        "default": "AccentColor"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "GrayText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.primary.@base}",
+      "forcedColors": "{button.text.color.disabled}"
+    }
+  },
+  "name": "button-background-color-primary-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "primary",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "primary",
+    "disabled"
+  ],
+  "key": "{button.background.color.primary.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'GrayText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-disabled',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'disabled'
+    },
+    path: [ 'button', 'text', 'color', 'disabled' ],
+    ref: [ 'button', 'text', 'color', 'disabled' ]
+  }
+]
+what is bar?
+{button.background.color.primary.@base}
+{
+  "value": "light-dark(oklch(55% 0.21 15), oklch(76% 0.17 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.60}",
+      "dark": "{color.red.30}",
+      "forcedColors": "{button.background.color.primary.@base}",
+      "default": "light-dark({color.red.60}, {color.red.30})"
+    }
+  },
+  "name": "button-background-color-destructive-base",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "@base"
+  ],
+  "key": "{button.background.color.destructive.@base}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{color.accent.primary.@base}' },
+    name: 'button-background-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'background', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'background', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.background.color.primary.active}
+{
+  "value": "light-dark(oklch(41% 0.17 15), oklch(90% 0.1 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.80}",
+      "dark": "{color.red.10}",
+      "forcedColors": "{button.background.color.primary.active}",
+      "default": "light-dark({color.red.80}, {color.red.10})"
+    }
+  },
+  "name": "button-background-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.background.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: [Object], brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{color.accent.primary.active}' },
+    name: 'button-background-color-primary-active',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'primary',
+      state: 'active'
+    },
+    path: [ 'button', 'background', 'color', 'primary', 'active' ],
+    ref: [ 'button', 'background', 'color', 'primary', 'active' ]
+  }
+]
+what is bar?
+{button.background.color.primary.disabled}
+{
+  "value": {
+    "default": "light-dark(oklch(55% 0.21 15), oklch(76% 0.17 15))",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "oklch(55% 0.24 260)",
+          "dark": "oklch(76% 0.14 205)"
+        },
+        "platform": {
+          "default": "AccentColor"
+        }
+      },
+      "forcedColors": {
+        "default": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "GrayText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.background.color.destructive.@base}",
+      "forcedColors": "{button.background.color.primary.disabled}"
+    }
+  },
+  "name": "button-background-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.background.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-background-color-primary-disabled',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'primary',
+      state: 'disabled'
+    },
+    path: [ 'button', 'background', 'color', 'primary', 'disabled' ],
+    ref: [ 'button', 'background', 'color', 'primary', 'disabled' ]
+  }
+]
+what is bar?
+{button.background.color.primary.hover}
+{
+  "value": "light-dark(oklch(48% 0.2 15), oklch(83% 0.14 15))",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.red.70}",
+      "dark": "{color.red.20}",
+      "forcedColors": "{button.background.color.primary.hover}",
+      "default": "light-dark({color.red.70}, {color.red.20})"
+    }
+  },
+  "name": "button-background-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "background",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "background",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.background.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: {
+      forcedColors: 'SelectedItem',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{color.accent.primary.hover}' },
+    name: 'button-background-color-primary-hover',
+    attributes: {
+      category: 'button',
+      type: 'background',
+      item: 'color',
+      subitem: 'primary',
+      state: 'hover'
+    },
+    path: [ 'button', 'background', 'color', 'primary', 'hover' ],
+    ref: [ 'button', 'background', 'color', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{border.color.interactive.@base}
+{
+  "value": {
+    "default": "transparent",
+    "prefersContrast": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": {
+        "prefersContrast": "CanvasText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "#8f8f9d",
+        "dark": "#bfbfc9"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "transparent",
+      "prefersContrast": "{button.text.color.@base}",
+      "forcedColors": "{border.color.interactive.@base}"
+    }
+  },
+  "name": "button-border-color-base",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "@base"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "@base"
+  ],
+  "key": "{button.border.color.@base}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: [Object],
+      forcedColors: 'ButtonText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-base',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: '@base'
+    },
+    path: [ 'border', 'color', 'interactive', '@base' ],
+    ref: [ 'border', 'color', 'interactive', '@base' ]
+  }
+]
+what is bar?
+{border.color.interactive.active}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "ButtonText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.active}"
+    }
+  },
+  "name": "button-border-color-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "active"
+  ],
+  "key": "{button.border.color.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'ButtonText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-active',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: 'active'
+    },
+    path: [ 'border', 'color', 'interactive', 'active' ],
+    ref: [ 'border', 'color', 'interactive', 'active' ]
+  }
+]
+what is bar?
+{button.border.color.primary.@base}
+{
+  "value": {
+    "default": "transparent",
+    "forcedColors": {
+      "default": "transparent",
+      "forcedColors": "ButtonFace"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "transparent",
+      "forcedColors": "{button.border.color.primary.@base}"
+    }
+  },
+  "name": "button-border-color-destructive-base",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "@base"
+  ],
+  "key": "{button.border.color.destructive.@base}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: 'ButtonFace' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'border', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'border', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.border.color.primary.active}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      },
+      "forcedColors": "ButtonText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.active}"
+    }
+  },
+  "name": "button-border-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.border.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'ButtonText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-active',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: 'active'
+    },
+    path: [ 'button', 'border', 'color', 'primary', 'active' ],
+    ref: [ 'button', 'border', 'color', 'primary', 'active' ]
+  }
+]
+what is bar?
+{button.border.color.primary.disabled}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": "transparent",
+      "forcedColors": "ButtonFace"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.disabled}"
+    }
+  },
+  "name": "button-border-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.border.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: 'transparent', forcedColors: 'ButtonFace' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{button.border.color.primary.@base}' },
+    name: 'button-border-color-primary-disabled',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: 'disabled'
+    },
+    path: [ 'button', 'border', 'color', 'primary', 'disabled' ],
+    ref: [ 'button', 'border', 'color', 'primary', 'disabled' ]
+  }
+]
+what is bar?
+{button.border.color.primary.hover}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "forcedColors": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "default": "transparent",
+        "forcedColors": "ButtonFace"
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.destructive.@base}",
+      "forcedColors": "{button.border.color.primary.hover}"
+    }
+  },
+  "name": "button-border-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.border.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItemText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-border-color-primary-hover',
+    attributes: {
+      category: 'button',
+      type: 'border',
+      item: 'color',
+      subitem: 'primary',
+      state: 'hover'
+    },
+    path: [ 'button', 'border', 'color', 'primary', 'hover' ],
+    ref: [ 'button', 'border', 'color', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{border.color.interactive.disabled}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "GrayText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.disabled}"
+    }
+  },
+  "name": "button-border-color-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "disabled"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "disabled"
+  ],
+  "key": "{button.border.color.disabled}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'GrayText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-disabled',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: 'disabled'
+    },
+    path: [ 'border', 'color', 'interactive', 'disabled' ],
+    ref: [ 'border', 'color', 'interactive', 'disabled' ]
+  }
+]
+what is bar?
+{border.color.interactive.hover}
+{
+  "value": {
+    "default": {
+      "default": "transparent",
+      "prefersContrast": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      }
+    },
+    "forcedColors": {
+      "default": {
+        "prefersContrast": {
+          "prefersContrast": "CanvasText",
+          "brand": {
+            "light": "#15141a",
+            "dark": "#fbfbfe"
+          },
+          "platform": {
+            "default": "currentColor"
+          }
+        },
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#8f8f9d",
+          "dark": "#bfbfc9"
+        },
+        "platform": {
+          "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.border.color.@base}",
+      "forcedColors": "{border.color.interactive.hover}"
+    }
+  },
+  "name": "button-border-color-hover",
+  "attributes": {
+    "category": "button",
+    "type": "border",
+    "item": "color",
+    "subitem": "hover"
+  },
+  "path": [
+    "button",
+    "border",
+    "color",
+    "hover"
+  ],
+  "key": "{button.border.color.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItem' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'border-color-interactive-hover',
+    attributes: {
+      category: 'border',
+      type: 'color',
+      item: 'interactive',
+      subitem: 'hover'
+    },
+    path: [ 'border', 'color', 'interactive', 'hover' ],
+    ref: [ 'border', 'color', 'interactive', 'hover' ]
+  }
+]
+what is bar?
+{button.text.color.primary.@base}
+{
+  "value": "light-dark(#ffffff, #15141a)",
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "light": "{color.white}",
+      "dark": "{color.gray.100}",
+      "forcedColors": "{button.text.color.primary.@base}",
+      "default": "light-dark({color.white}, {color.gray.100})"
+    }
+  },
+  "name": "button-text-color-destructive-base",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "@base"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "@base"
+  ],
+  "key": "{button.text.color.destructive.@base}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonFace', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-primary-base',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: '@base'
+    },
+    path: [ 'button', 'text', 'color', 'primary', '@base' ],
+    ref: [ 'button', 'text', 'color', 'primary', '@base' ]
+  }
+]
+what is bar?
+{button.text.color.primary.active}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonFace",
+        "brand": {
+          "light": "#ffffff",
+          "dark": "#15141a"
+        },
+        "platform": {
+          "default": "AccentColorText"
+        }
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.active}"
+    }
+  },
+  "name": "button-text-color-destructive-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "active"
+  ],
+  "key": "{button.text.color.destructive.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItemText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{button.text.color.primary.hover}' },
+    name: 'button-text-color-primary-active',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: 'active'
+    },
+    path: [ 'button', 'text', 'color', 'primary', 'active' ],
+    ref: [ 'button', 'text', 'color', 'primary', 'active' ]
+  }
+]
+what is bar?
+{button.text.color.primary.disabled}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "forcedColors": "ButtonFace",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#15141a"
+      },
+      "platform": {
+        "default": "AccentColorText"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.disabled}"
+    }
+  },
+  "name": "button-text-color-destructive-disabled",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "disabled"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "disabled"
+  ],
+  "key": "{button.text.color.destructive.disabled}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'ButtonFace', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: '{button.text.color.primary.@base}' },
+    name: 'button-text-color-primary-disabled',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: 'disabled'
+    },
+    path: [ 'button', 'text', 'color', 'primary', 'disabled' ],
+    ref: [ 'button', 'text', 'color', 'primary', 'disabled' ]
+  }
+]
+what is bar?
+{button.text.color.primary.hover}
+{
+  "value": {
+    "default": "light-dark(#ffffff, #15141a)",
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonFace",
+        "brand": {
+          "light": "#ffffff",
+          "dark": "#15141a"
+        },
+        "platform": {
+          "default": "AccentColorText"
+        }
+      },
+      "forcedColors": "SelectedItemText"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{button.text.color.destructive.@base}",
+      "forcedColors": "{button.text.color.primary.hover}"
+    }
+  },
+  "name": "button-text-color-destructive-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "destructive",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "destructive",
+    "hover"
+  ],
+  "key": "{button.text.color.destructive.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItemText' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-primary-hover',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'primary',
+      state: 'hover'
+    },
+    path: [ 'button', 'text', 'color', 'primary', 'hover' ],
+    ref: [ 'button', 'text', 'color', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{button.text.color.active}
+{
+  "value": {
+    "default": "inherit",
+    "prefersContrast": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "inherit",
+      "prefersContrast": "{button.text.color.active}",
+      "forcedColors": "{button.text.color.active}"
+    }
+  },
+  "name": "button-text-color-ghost-active",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "active"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "ghost",
+    "active"
+  ],
+  "key": "{button.text.color.ghost.active}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItem' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-active',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'active'
+    },
+    path: [ 'button', 'text', 'color', 'active' ],
+    ref: [ 'button', 'text', 'color', 'active' ]
+  }
+]
+what is bar?
+{button.text.color.hover}
+{
+  "value": {
+    "default": "inherit",
+    "prefersContrast": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    },
+    "forcedColors": {
+      "default": {
+        "forcedColors": "ButtonText",
+        "brand": {
+          "light": "#15141a",
+          "dark": "#fbfbfe"
+        },
+        "platform": {
+          "default": "currentColor"
+        }
+      },
+      "forcedColors": "SelectedItem"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "inherit",
+      "prefersContrast": "{button.text.color.hover}",
+      "forcedColors": "{button.text.color.hover}"
+    }
+  },
+  "name": "button-text-color-ghost-hover",
+  "attributes": {
+    "category": "button",
+    "type": "text",
+    "item": "color",
+    "subitem": "ghost",
+    "state": "hover"
+  },
+  "path": [
+    "button",
+    "text",
+    "color",
+    "ghost",
+    "hover"
+  ],
+  "key": "{button.text.color.ghost.hover}"
+}
+what is foo?
+[
+  {
+    value: { default: [Object], forcedColors: 'SelectedItem' },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'button-text-color-hover',
+    attributes: {
+      category: 'button',
+      type: 'text',
+      item: 'color',
+      subitem: 'hover'
+    },
+    path: [ 'button', 'text', 'color', 'hover' ],
+    ref: [ 'button', 'text', 'color', 'hover' ]
+  }
+]
+what is bar?
+{color.accent.primary.hover}
+{
+  "value": {
+    "forcedColors": {
+      "forcedColors": "SelectedItem",
+      "brand": {
+        "light": "oklch(48% 0.2 260)",
+        "dark": "oklch(83% 0.11 205)"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, black 10%, var(--color-accent-primary))"
+      }
+    },
+    "brand": {
+      "light": "oklch(41% 0.17 260)",
+      "dark": "oklch(90% 0.07 205)"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, black 20%, var(--color-accent-primary))"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "forcedColors": "{color.accent.primary.hover}",
+      "brand": {
+        "light": "{color.blue.80}",
+        "dark": "{color.cyan.10}",
+        "default": "light-dark({color.blue.80}, {color.cyan.10})"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, black 20%, var(--color-accent-primary))"
+      }
+    }
+  },
+  "name": "color-accent-primary-active",
+  "attributes": {
+    "category": "color",
+    "type": "accent",
+    "item": "primary",
+    "subitem": "active"
+  },
+  "path": [
+    "color",
+    "accent",
+    "primary",
+    "active"
+  ],
+  "key": "{color.accent.primary.active}"
+}
+what is foo?
+[
+  {
+    value: {
+      forcedColors: 'SelectedItem',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'color-accent-primary-hover',
+    attributes: {
+      category: 'color',
+      type: 'accent',
+      item: 'primary',
+      subitem: 'hover'
+    },
+    path: [ 'color', 'accent', 'primary', 'hover' ],
+    ref: [ 'color', 'accent', 'primary', 'hover' ]
+  }
+]
+what is bar?
+{text.color.@base}
+{
+  "value": {
+    "default": {
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "oklch(55% 0.24 260)",
+        "dark": "oklch(76% 0.14 205)"
+      },
+      "platform": {
+        "default": "AccentColor"
+      }
+    },
+    "forcedColors": {
+      "prefersContrast": "CanvasText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "default": "{color.accent.primary.@base}",
+      "forcedColors": "{text.color.@base}"
+    }
+  },
+  "name": "focus-outline-color",
+  "attributes": {
+    "category": "focus",
+    "type": "outline",
+    "item": "color"
+  },
+  "path": [
+    "focus",
+    "outline",
+    "color"
+  ],
+  "key": "{focus.outline.color}"
+}
+what is foo?
+[
+  {
+    value: {
+      prefersContrast: 'CanvasText',
+      brand: [Object],
+      platform: [Object]
+    },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'text-color-base',
+    attributes: { category: 'text', type: 'color', item: '@base' },
+    path: [ 'text', 'color', '@base' ],
+    ref: [ 'text', 'color', '@base' ]
+  }
+]
+what is bar?
+{link.color.@base}
+{
+  "value": {
+    "forcedColors": {
+      "forcedColors": "LinkText",
+      "brand": {
+        "default": {
+          "forcedColors": "ButtonText",
+          "brand": {
+            "light": "oklch(55% 0.24 260)",
+            "dark": "oklch(76% 0.14 205)"
+          },
+          "platform": {
+            "default": "AccentColor"
+          }
+        }
+      },
+      "platform": {
+        "default": "LinkText"
+      }
+    },
+    "brand": {
+      "default": {
+        "forcedColors": "LinkText",
+        "brand": {
+          "default": {
+            "forcedColors": "ButtonText",
+            "brand": {
+              "light": "oklch(55% 0.24 260)",
+              "dark": "oklch(76% 0.14 205)"
+            },
+            "platform": {
+              "default": "AccentColor"
+            }
+          }
+        },
+        "platform": {
+          "default": "LinkText"
+        }
+      }
+    },
+    "platform": {
+      "default": {
+        "forcedColors": "LinkText",
+        "brand": {
+          "default": {
+            "forcedColors": "ButtonText",
+            "brand": {
+              "light": "oklch(55% 0.24 260)",
+              "dark": "oklch(76% 0.14 205)"
+            },
+            "platform": {
+              "default": "AccentColor"
+            }
+          }
+        },
+        "platform": {
+          "default": "LinkText"
+        }
+      }
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "forcedColors": "{link.color.@base}",
+      "brand": {
+        "default": "{link.color.@base}"
+      },
+      "platform": {
+        "default": "{link.color.@base}"
+      }
+    }
+  },
+  "name": "link-color-visited",
+  "attributes": {
+    "category": "link",
+    "type": "color",
+    "item": "visited"
+  },
+  "path": [
+    "link",
+    "color",
+    "visited"
+  ],
+  "key": "{link.color.visited}"
+}
+what is foo?
+[
+  {
+    value: { forcedColors: 'LinkText', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'link-color-base',
+    attributes: { category: 'link', type: 'color', item: '@base' },
+    path: [ 'link', 'color', '@base' ],
+    ref: [ 'link', 'color', '@base' ]
+  }
+]
+what is bar?
+{background.color.canvas}
+{
+  "comment": "TODO Bug 1821203 - Gray use needs to be consolidated",
+  "value": {
+    "forcedColors": {
+      "prefersContrast": "Canvas",
+      "brand": {
+        "light": "#ffffff",
+        "dark": "#1c1b22"
+      },
+      "platform": {
+        "default": "Canvas"
+      }
+    },
+    "brand": {
+      "light": "#f0f0f4",
+      "dark": "#23222b"
+    },
+    "platform": {
+      "light": "rgba(0,0,0,5%)",
+      "dark": "rgba(255,255,255,5%)"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "comment": "TODO Bug 1821203 - Gray use needs to be consolidated",
+    "value": {
+      "forcedColors": "{background.color.canvas}",
+      "brand": {
+        "light": "#f0f0f4",
+        "dark": "{color.gray.80}",
+        "default": "light-dark(#f0f0f4, {color.gray.80})"
+      },
+      "platform": {
+        "light": "rgba(0,0,0,5%)",
+        "dark": "rgba(255,255,255,5%)",
+        "default": "light-dark(rgba(0,0,0,5%), rgba(255,255,255,5%))"
+      }
+    }
+  },
+  "name": "table-row-background-color-alternate",
+  "attributes": {
+    "category": "table",
+    "type": "row",
+    "item": "background",
+    "subitem": "color",
+    "state": "alternate"
+  },
+  "path": [
+    "table",
+    "row",
+    "background",
+    "color",
+    "alternate"
+  ],
+  "key": "{table.row.background.color.alternate}"
+}
+what is foo?
+[
+  {
+    value: { prefersContrast: 'Canvas', brand: [Object], platform: [Object] },
+    filePath: 'design-tokens.json',
+    isSource: true,
+    original: { value: [Object] },
+    name: 'background-color-canvas',
+    attributes: { category: 'background', type: 'color', item: 'canvas' },
+    path: [ 'background', 'color', 'canvas' ],
+    ref: [ 'background', 'color', 'canvas' ]
+  }
+]
+what is bar?
+light-dark({color.white}, {color.gray.90})
+{
+  "value": {
+    "prefersContrast": "Canvas",
+    "brand": {
+      "light": "#ffffff",
+      "dark": "#1c1b22"
+    },
+    "platform": {
+      "default": "Canvas"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "prefersContrast": "Canvas",
+      "brand": {
+        "light": "{color.white}",
+        "dark": "{color.gray.90}",
+        "default": "light-dark({color.white}, {color.gray.90})"
+      },
+      "platform": {
+        "default": "Canvas"
+      }
+    }
+  },
+  "name": "background-color-canvas",
+  "attributes": {
+    "category": "background",
+    "type": "color",
+    "item": "canvas"
+  },
+  "path": [
+    "background",
+    "color",
+    "canvas"
+  ],
+  "key": "{background.color.canvas}"
+}
+what is bar?
+color-mix(in srgb, currentColor 15%, {color.gray.60})
+{
+  "value": {
+    "prefersContrast": {
+      "prefersContrast": "CanvasText",
+      "brand": {
+        "light": "#15141a",
+        "dark": "#fbfbfe"
+      },
+      "platform": {
+        "default": "currentColor"
+      }
+    },
+    "forcedColors": "ButtonText",
+    "brand": {
+      "light": "#8f8f9d",
+      "dark": "#bfbfc9"
+    },
+    "platform": {
+      "default": "color-mix(in srgb, currentColor 15%, #8f8f9d)"
+    }
+  },
+  "filePath": "design-tokens.json",
+  "isSource": true,
+  "original": {
+    "value": {
+      "prefersContrast": "{text.color.@base}",
+      "forcedColors": "ButtonText",
+      "brand": {
+        "light": "{color.gray.60}",
+        "dark": "{color.gray.50}",
+        "default": "light-dark({color.gray.60}, {color.gray.50})"
+      },
+      "platform": {
+        "default": "color-mix(in srgb, currentColor 15%, {color.gray.60})"
+      }
+    }
+  },
+  "name": "border-color-interactive-base",
+  "attributes": {
+    "category": "border",
+    "type": "color",
+    "item": "interactive",
+    "subitem": "@base"
+  },
+  "path": [
+    "border",
+    "color",
+    "interactive",
+    "@base"
+  ],
+  "key": "{border.color.interactive.@base}"
+}
