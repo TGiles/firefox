@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* eslint-env node */
-debugger;
+
 import {
   createPropertyFormatter,
   usesReferences,
@@ -11,7 +11,6 @@ import {
 } from "style-dictionary/utils";
 import StyleDictionary from "style-dictionary";
 import { transformGroups } from "style-dictionary/enums";
-import { formats as fileFormats } from "style-dictionary/enums";
 import { platform, formats } from "./figma-tokens-config.js";
 
 const figmaConfig = {
@@ -107,8 +106,6 @@ const MEDIA_QUERY_PROPERTY_MAP = {
   "forced-colors": "forcedColors",
   "prefers-contrast": "prefersContrast",
 };
-
-let TOKENS_SHARED_DICTIONARY = {};
 
 function formatBaseTokenNames(str) {
   return str.replaceAll(/(?<tokenName>\w+)-base(?=\b)/g, "$<tokenName>");
@@ -429,16 +426,6 @@ function storybookJSFormat(args) {
   });
   dictionary.allTokens = dictionary.allProperties = resolvedTokens;
 
-  // let parsedData = JSON.parse(
-  //   formatBaseTokenNames(
-  //     javascriptModuleFlat({
-  //       ...args,
-  //       dictionary,
-  //     })
-  //   )
-  //     .trim()
-  //     .replaceAll(/(^module\.exports\s*=\s*|\;$)/g, "")
-  // );
   let storybookTables = formatTokensTablesData(dictionary.allTokens);
 
   return `${customFileHeader({ platform: "storybook" })}
@@ -477,13 +464,13 @@ function getValueWithReferences(dictionary, value) {
 function formatTokensTablesData(tokensData) {
   let tokensTables = {};
   Object.entries(tokensData).forEach(([key, value]) => {
-    variableLookupTable[key] = value;
-    let formattedToken = {
-      value,
-      name: `--${key}`,
-    };
-
-    let tableName = getTableName(key);
+    /* Needed to use value.name and just value due to changes in the
+    generated tokens structure. Otherwise we end up outputting 1, 2, 3...
+    for the name of the token instead of the actual token name. 
+    */
+    variableLookupTable[value.name] = value;
+    let formattedToken = value;
+    let tableName = getTableName(value.name);
     if (tokensTables[tableName]) {
       tokensTables[tableName].push(formattedToken);
     } else {
@@ -516,6 +503,10 @@ function getTableName(tokenName) {
     : `${category}-${type}`;
 }
 
+/* (1) We can either register formats by calling:
+  StyleDictionary.registerFormat({name: [...], format: [...]})
+  or by calling StyleDictionary.registerFormat(...) in the default export.
+*/
 // StyleDictionary.registerFormat({
 //   name: "css/variables/shared",
 //   format: createDesktopFormat(),
@@ -531,10 +522,10 @@ function getTableName(tokenName) {
 //   format: createDesktopFormat("platform"),
 // });
 
-// StyleDictionary.registerFormat({
-//   name: "javascript/storybook",
-//   format: storybookJSFormat,
-// });
+StyleDictionary.registerFormat({
+  name: "javascript/storybook",
+  format: storybookJSFormat,
+});
 
 StyleDictionary.registerFormat({
   name: "json/figma/colors",
@@ -553,6 +544,10 @@ StyleDictionary.registerFormat({
 
 export default {
   source: ["design-tokens.json"],
+  /* (1) We can either register formats by calling:
+    StyleDictionary.registerFormat({name: [...], format: [...]})
+    or by calling StyleDictionary.registerFormat(...) in the default export.
+  */
   format: {
     "css/variables/shared": StyleDictionary.registerFormat({
       name: "css/variables/shared",
@@ -587,29 +582,35 @@ export default {
         {
           destination: "tokens-brand.css",
           format: "css/variables/brand",
+          /* (2) We need to remove the previous filter we had,
+          otherwise we end up filtering out tokens from tokens-shared
+          which we need to resolve references (color.white for example) */
         },
         {
           destination: "tokens-platform.css",
           format: "css/variables/platform",
+          /* (2) We need to remove the previous filter we had,
+          otherwise we end up filtering out tokens from tokens-shared
+          which we need to resolve references (color.white for example) */
         },
       ],
     },
-    // storybook: {
-    //   options: {
-    //     outputReferences: true,
-    //     showFileHeader: false,
-    //   },
-    //   transformGroup: transformGroups.css,
-    //   transforms: [
-    //     ...["shared", "platform", "brand"].map(createLightDarkTransform),
-    //   ],
-    //   files: [
-    //     {
-    //       destination: "tokens-storybook.mjs",
-    //       format: "javascript/storybook",
-    //     },
-    //   ],
-    // },
-    // figma: figmaConfig.platform,
+    storybook: {
+      options: {
+        outputReferences: true,
+        showFileHeader: false,
+      },
+      transformGroup: transformGroups.css,
+      transforms: [
+        ...["shared", "platform", "brand"].map(createLightDarkTransform),
+      ],
+      files: [
+        {
+          destination: "tokens-storybook.mjs",
+          format: "javascript/storybook",
+        },
+      ],
+    },
+    figma: figmaConfig.platform,
   },
 };
