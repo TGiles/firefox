@@ -11,10 +11,7 @@ import {
 } from "style-dictionary/utils";
 import StyleDictionary from "style-dictionary";
 import { transformGroups } from "style-dictionary/enums";
-// import { formats as StyleDictionaryFormats } from "style-dictionary/enums";
 import { formats as fileFormats } from "style-dictionary/enums";
-// const figmaConfig = require("./figma-tokens-config");
-const { javascriptModuleFlat } = fileFormats;
 import { platform, formats } from "./figma-tokens-config.js";
 
 const figmaConfig = {
@@ -111,6 +108,8 @@ const MEDIA_QUERY_PROPERTY_MAP = {
   "prefers-contrast": "prefersContrast",
 };
 
+let TOKENS_SHARED_DICTIONARY = {};
+
 function formatBaseTokenNames(str) {
   return str.replaceAll(/(?<tokenName>\w+)-base(?=\b)/g, "$<tokenName>");
 }
@@ -162,9 +161,6 @@ const createDesktopFormat = surface => args => {
  * @returns {string} Tokens formatted into a CSS string.
  */
 function formatTokens({ mediaQuery, surface, args }) {
-  // console.log(surface);
-  // console.log(args);
-  // console.log(`which surface are we failing on? ${surface}`);
   let prop = MEDIA_QUERY_PROPERTY_MAP[mediaQuery] ?? "default";
   let dictionary = Object.assign({}, args.dictionary);
   let tokens = [];
@@ -172,10 +168,6 @@ function formatTokens({ mediaQuery, surface, args }) {
   dictionary.allTokens.forEach(token => {
     let originalVal = getOriginalTokenValue(token, prop, surface);
     if (originalVal != undefined) {
-      // console.log(`current token value: `);
-      // console.log(token.value);
-      // console.log(`original token value: ${originalVal}`);
-      // console.log(`current surface: ${surface}`);
       let formattedToken = transformToken(
         token,
         originalVal,
@@ -260,16 +252,7 @@ function getOriginalTokenValue(token, prop, surface) {
  */
 function transformToken(token, originalVal, dictionary, surface) {
   let value = originalVal;
-  // console.log(token);
   if (usesReferences(value, dictionary.tokens)) {
-    console.log("what is bar?");
-    console.log(value);
-    console.log(JSON.stringify(token, undefined, 2));
-
-    // console.log(getReferences(value, dictionary.tokens));
-    let foo = getReferences(value, dictionary.tokens);
-    console.log(`what is foo?`);
-    console.log(foo);
     getReferences(value, dictionary.tokens).forEach(ref => {
       value = value.replace(`{${ref.path.join(".")}}`, `var(--${ref.name})`);
     });
@@ -446,9 +429,6 @@ function storybookJSFormat(args) {
   });
   dictionary.allTokens = dictionary.allProperties = resolvedTokens;
 
-  // console.log("did we resolve all the tokens?");
-  // console.log(dictionary.allTokens);
-  // console.log(JSON.parse(dictionary));
   // let parsedData = JSON.parse(
   //   formatBaseTokenNames(
   //     javascriptModuleFlat({
@@ -536,20 +516,20 @@ function getTableName(tokenName) {
     : `${category}-${type}`;
 }
 
-StyleDictionary.registerFormat({
-  name: "css/variables/shared",
-  format: createDesktopFormat(),
-});
+// StyleDictionary.registerFormat({
+//   name: "css/variables/shared",
+//   format: createDesktopFormat(),
+// });
 
-StyleDictionary.registerFormat({
-  name: "css/variables/brand",
-  format: createDesktopFormat("brand"),
-});
+// StyleDictionary.registerFormat({
+//   name: "css/variables/brand",
+//   format: createDesktopFormat("brand"),
+// });
 
-StyleDictionary.registerFormat({
-  name: "css/variables/platform",
-  format: createDesktopFormat("platform"),
-});
+// StyleDictionary.registerFormat({
+//   name: "css/variables/platform",
+//   format: createDesktopFormat("platform"),
+// });
 
 // StyleDictionary.registerFormat({
 //   name: "javascript/storybook",
@@ -574,9 +554,18 @@ StyleDictionary.registerFormat({
 export default {
   source: ["design-tokens.json"],
   format: {
-    // "css/variables/shared": createDesktopFormat(),
-    // "css/variables/brand": createDesktopFormat("brand"),
-    // "css/variables/platform": createDesktopFormat("platform"),
+    "css/variables/shared": StyleDictionary.registerFormat({
+      name: "css/variables/shared",
+      format: createDesktopFormat(),
+    }),
+    "css/variables/brand": StyleDictionary.registerFormat({
+      name: "css/variables/brand",
+      format: createDesktopFormat("brand"),
+    }),
+    "css/variables/platform": StyleDictionary.registerFormat({
+      name: "css/variables/platform",
+      format: createDesktopFormat("platform"),
+    }),
     // "javascript/storybook": storybookJSFormat,
     // ...figmaConfig.formats,
   },
@@ -598,16 +587,10 @@ export default {
         {
           destination: "tokens-brand.css",
           format: "css/variables/brand",
-          filter: token =>
-            typeof token.original.value == "object" &&
-            token.original.value.brand,
         },
         {
           destination: "tokens-platform.css",
           format: "css/variables/platform",
-          filter: token =>
-            typeof token.original.value == "object" &&
-            token.original.value.platform,
         },
       ],
     },

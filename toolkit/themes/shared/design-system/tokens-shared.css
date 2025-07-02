@@ -105,7 +105,7 @@
 
     /** Checkbox **/
     --checkbox-margin-inline: var(--space-small);
-    --checkbox-size: var(--size-item-small); /* TODO Bug 1876537: Make this em-based, probably? */
+    --checkbox-size: var(--size-item-small); /** TODO Bug 1876537: Make this em-based, probably? */
 
     /** Color **/
     --color-blue-0: oklch(97% 0.05 260);
@@ -273,13 +273,13 @@
     --size-item-large: 32px;
 
     /** Space **/
-    --space-xxsmall: calc(0.5 * var(--space-xsmall)); /* 2px */
-    --space-xsmall: 0.267rem; /* 4px */
-    --space-small: calc(2 * var(--space-xsmall)); /* 8px */
-    --space-medium: calc(3 * var(--space-xsmall)); /* 12px */
-    --space-large: calc(4 * var(--space-xsmall)); /* 16px */
-    --space-xlarge: calc(6 * var(--space-xsmall)); /* 24px */
-    --space-xxlarge: calc(8 * var(--space-xsmall)); /* 32px */
+    --space-xxsmall: calc(0.5 * var(--space-xsmall)); /** 2px */
+    --space-xsmall: 0.267rem; /** 4px */
+    --space-small: calc(2 * var(--space-xsmall)); /** 8px */
+    --space-medium: calc(3 * var(--space-xsmall)); /** 12px */
+    --space-large: calc(4 * var(--space-xsmall)); /** 16px */
+    --space-xlarge: calc(6 * var(--space-xsmall)); /** 24px */
+    --space-xxlarge: calc(8 * var(--space-xsmall)); /** 32px */
 
     /** Table Row **/
     --table-row-background-color: var(--background-color-canvas);
@@ -353,7 +353,7 @@
       --border-color-interactive-disabled: GrayText;
 
       /** Button **/
-      --button-background-color: ButtonFace; /* TODO Bug 1821203 - Gray use needs to be consolidated */
+      --button-background-color: ButtonFace; /** TODO Bug 1821203 - Gray use needs to be consolidated */
       --button-background-color-hover: SelectedItemText;
       --button-background-color-active: SelectedItemText;
       --button-background-color-disabled: ButtonFace;
@@ -402,7 +402,7 @@
       --link-color-visited: var(--link-color);
 
       /** Table Row **/
-      --table-row-background-color-alternate: var(--background-color-canvas); /* TODO Bug 1821203 - Gray use needs to be consolidated */
+      --table-row-background-color-alternate: var(--background-color-canvas); /** TODO Bug 1821203 - Gray use needs to be consolidated */
 
       /** Text **/
       --text-color-disabled: GrayText;

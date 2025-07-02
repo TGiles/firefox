@@ -1,0 +1,53 @@
+
+> build
+> (npm ls || npm ci) && style-dictionary build --config ./tokens-config.js && prettier ./tokens-storybook.mjs ./tokens-figma-*.json ./tokens-*.css --write
+
+design-system@ G:\mozilla\firefox\toolkit\themes\shared\design-system
+└── style-dictionary@4.4.0
+
+? what is the surface? undefined ?
+? what the hell is args.tokens.color?.white ?
+{
+  value: '#ffffff',
+  filePath: 'design-tokens.json',
+  isSource: true,
+  original: { value: '#ffffff' },
+  name: 'color-white',
+  attributes: { category: 'color', type: 'white' },
+  path: [ 'color', 'white' ]
+}
+? what is the surface? brand ?
+? what the hell is args.tokens.color?.white ?
+{
+  value: '#ffffff',
+  filePath: 'design-tokens.json',
+  isSource: true,
+  original: { value: '#ffffff' },
+  name: 'color-white',
+  attributes: { category: 'color', type: 'white' },
+  path: [ 'color', 'white' ]
+}
+? what is the surface? platform ?
+? what the hell is args.tokens.color?.white ?
+{
+  value: '#ffffff',
+  filePath: 'design-tokens.json',
+  isSource: true,
+  original: { value: '#ffffff' },
+  name: 'color-white',
+  attributes: { category: 'color', type: 'white' },
+  path: [ 'color', 'white' ]
+}
+
+css
+✔︎ tokens-shared.css
+✔︎ tokens-brand.css
+✔︎ tokens-platform.css
+[90mtokens-storybook.mjs[39m 69ms (unchanged)
+[90mtokens-figma-colors.json[39m 2ms (unchanged)
+[90mtokens-figma-primitives.json[39m 2ms (unchanged)
+[90mtokens-figma-theme.json[39m 5ms (unchanged)
+[90mtokens-brand.css[39m 18ms (unchanged)
+tokens-platform.css 3ms
+tokens-shared.css 23ms
+[90mtokens-table.css[39m 12ms (unchanged)
