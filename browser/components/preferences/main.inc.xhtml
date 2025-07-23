@@ -151,38 +151,7 @@
     <checkbox id="tabGroupSuggestions" data-l10n-id="settings-tabs-show-group-and-tab-suggestions"
               preference="browser.tabs.groups.smart.userEnabled" hidden="true"/>
 
-    <vbox id="browserContainersbox" hidden="true">
-      <hbox id="browserContainersExtensionContent"
-            align="center" class="extension-controlled info-box-container">
-        <hbox flex="1">
-          <description control="disableContainersExtension" class="description-with-side-element" flex="1" />
-        </hbox>
-        <button id="disableContainersExtension"
-                is="highlightable-button"
-                class="extension-controlled-button accessory-button"
-                data-l10n-id="disable-extension" />
-      </hbox>
-      <hbox align="center">
-        <checkbox id="browserContainersCheckbox"
-                  class="tail-with-learn-more"
-                  data-l10n-id="browser-containers-enabled"
-                  preference="privacy.userContext.enabled"/>
-        <html:a
-          is="moz-support-link"
-          support-page="containers"
-          data-l10n-id="browser-containers-learn-more"
-        />
-        <spacer flex="1"/>
-        <button id="browserContainersSettings"
-                is="highlightable-button"
-                class="accessory-button"
-                data-l10n-id="browser-containers-settings"
-                search-l10n-ids="containers-add-button.label,
-                  containers-settings-button.label,
-                  containers-remove-button.label"
-                />
-      </hbox>
-    </vbox>
+    <html:setting-group groupid="testContainers"/>
 </groupbox>
 
 <!-- Browser layout -->

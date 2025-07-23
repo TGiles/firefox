@@ -149,6 +149,8 @@ export class SettingControl extends MozLitElement {
 
   /**
    * The default properties that a control accepts.
+   * Note: for the disabled property, a setting can either be locked,
+   * or controlled by an extension but not both.
    */
   getPropertyMapping(config) {
     const props = {
@@ -159,7 +161,7 @@ export class SettingControl extends MozLitElement {
       ".parentDisabled": this.parentDisabled,
       ".control": this,
       "data-subcategory": config.subcategory,
-      "?disabled": this.setting.locked,
+      "?disabled": this.setting.locked || this.setting.extensionControlled,
       ...config.controlAttrs,
     };
 
@@ -186,6 +188,7 @@ export class SettingControl extends MozLitElement {
 
   setValue = () => {
     this.value = this.setting.value;
+    this.requestUpdate();
   };
 
   controlValue(el) {
@@ -199,6 +202,10 @@ export class SettingControl extends MozLitElement {
   onChange(el) {
     this.setting.userChange(this.controlValue(el));
     this.setValue();
+  }
+
+  async disableExtension() {
+    this.setting.disableControllingExtension();
   }
 
   render() {
@@ -244,7 +251,24 @@ export class SettingControl extends MozLitElement {
     }
 
     let tag = unsafeStatic(config.control || "moz-checkbox");
-    return staticHtml`<${tag}
+    let messageBar;
+    if (this.setting.extensionControlled) {
+      let args = { name: this.setting.extensionName };
+      messageBar = html`<moz-message-bar
+        type="warning"
+        .messageL10nId=${"extension-controlling-privacy-containers2"}
+        .messageL10nArgs=${args}
+      >
+        <moz-button
+          slot="actions"
+          @click=${this.disableExtension}
+          data-l10n-id="disable-extension"
+        ></moz-button>
+      </moz-message-bar>`;
+    }
+    return staticHtml`
+    ${ifDefined(messageBar)}
+    <${tag}
       ${spread(controlProps)}
       ${ref(this.controlRef)}
     >${controlChildren}${nestedSettings}</${tag}>`;

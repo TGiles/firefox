@@ -120,6 +120,8 @@ extension-controlling-proxy-config = <img data-l10n-name ="icon"/> <strong>{ $na
 # <img data-l10n-name="menu-icon"/> will be replaced with Menu icon
 extension-controlled-enable = To enable the extension go to <img data-l10n-name="addons-icon"/> Add-ons in the <img data-l10n-name="menu-icon"/> menu.
 
+extension-controlling-privacy-containers2 = <strong>{ $name }</strong> requires Container Tabs.
+
 ## Preferences UI Search Results
 
 search-results-header = Search Results

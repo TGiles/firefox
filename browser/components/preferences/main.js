@@ -213,6 +213,7 @@ if (AppConstants.MOZ_UPDATER) {
 Preferences.addSetting({
   id: "useAutoScroll",
   pref: "general.autoScroll",
+  extensionPrefKey: "privacy.containers",
 });
 Preferences.addSetting({
   id: "useSmoothScrolling",
@@ -331,6 +332,10 @@ Preferences.addSetting({
   id: "cfrRecommendations-features",
   pref: "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features",
 });
+Preferences.addSetting({
+  id: "browserContainersCheckbox",
+  pref: "privacy.userContext.enabled"
+});
 
 let SETTINGS_CONFIG = {
   browsing: {
@@ -412,6 +417,14 @@ let SETTINGS_CONFIG = {
             l10nId: "link-preview-settings-long-press",
           },
         ],
+      },
+    ],
+  },
+  testContainers: {
+    items: [
+      {
+        id: "browserContainersCheckbox",
+        l10nId: "browser-containers-enabled",
       },
     ],
   },
@@ -536,7 +549,12 @@ var gMainPane = {
       }, backoffTimes[this._backoffIndex]);
     }
 
-    this.initBrowserContainers();
+    initSettingGroup("testContainers");
+    let containersGroup = document.querySelector("setting-group[groupid='testContainers']");
+    containersGroup.updateComplete.then(() => {
+      this.initBrowserContainers();
+    });
+    // this.initBrowserContainers();
     this.buildContentProcessCountMenuList();
 
     this.updateDefaultPerformanceSettingsPref();
@@ -724,16 +742,16 @@ var gMainPane = {
       "command",
       gMainPane.showConnections
     );
-    setEventListener(
-      "browserContainersCheckbox",
-      "command",
-      gMainPane.checkBrowserContainers
-    );
-    setEventListener(
-      "browserContainersSettings",
-      "command",
-      gMainPane.showContainerSettings
-    );
+    // setEventListener(
+    //   "browserContainersCheckbox",
+    //   "command",
+    //   gMainPane.checkBrowserContainers
+    // );
+    // setEventListener(
+    //   "browserContainersSettings",
+    //   "command",
+    //   gMainPane.showContainerSettings
+    // );
     setEventListener(
       "data-migration",
       "command",
@@ -1032,10 +1050,10 @@ var gMainPane = {
       document.getElementById("linkTargeting"),
       () => this.writeLinkTarget()
     );
-    Preferences.addSyncFromPrefListener(
-      document.getElementById("browserContainersCheckbox"),
-      () => this.readBrowserContainersCheckbox()
-    );
+    // Preferences.addSyncFromPrefListener(
+    //   document.getElementById("browserContainersCheckbox"),
+    //   () => this.readBrowserContainersCheckbox()
+    // );
 
     if (!Services.prefs.getBoolPref("browser.download.enableDeletePrivate")) {
       let deletePrivateCheckbox = document.getElementById("deletePrivate");
@@ -1100,14 +1118,14 @@ var gMainPane = {
    */
   readBrowserContainersCheckbox() {
     const pref = Preferences.get("privacy.userContext.enabled");
-    const settings = document.getElementById("browserContainersSettings");
+    // const settings = document.getElementById("browserContainersSettings");
+    // const settings = document.querySelector("settings-group[groupid='testContainers']");
+    // settings.disabled = !pref.value;
+    let containersCheckbox = document.getElementById("browserContainersCheckbox");
+    containersCheckbox.disabled = !pref.value;
 
-    settings.disabled = !pref.value;
     const containersEnabled = Services.prefs.getBoolPref(
       "privacy.userContext.enabled"
-    );
-    const containersCheckbox = document.getElementById(
-      "browserContainersCheckbox"
     );
     containersCheckbox.checked = containersEnabled;
     handleControllingExtension(PREF_SETTING_TYPE, CONTAINERS_KEY).then(

@@ -14,6 +14,8 @@ const Preferences = (window.Preferences = (function () {
   const lazy = {};
   ChromeUtils.defineESModuleGetters(lazy, {
     DeferredTask: "resource://gre/modules/DeferredTask.sys.mjs",
+    ExtensionSettingsStore: "resource://gre/modules/ExtensionSettingsStore.sys.mjs",
+    AddonManager: "resource://gre/modules/AddonManager.sys.mjs", 
   });
 
   function getElementsByAttribute(name, value) {
@@ -685,16 +687,35 @@ const Preferences = (window.Preferences = (function () {
   }
 
   class Setting extends EventEmitter {
+    async _initializeExtensionStore() {
+      await lazy.ExtensionSettingsStore.initialize();
+      let info = lazy.ExtensionSettingsStore.getSetting(
+        "prefs",
+        this.config.extensionPrefKey
+      );
+      if (info && info.id) {
+        this.extensionControlled = true;
+        this.extensionId = info.id;
+        this.extensionPrefKey = this.config.extensionPrefKey;
+        let addon = await lazy.AddonManager.getAddonByID(info.id);
+        this.extensionName = addon.name;
+        this.onChange();
+      }
+    }
     constructor(id, config) {
       super();
       this.id = id;
       this.config = config;
       this.pref = config.pref && Preferences.get(config.pref);
+      this.extensionControlled = false;
+      this.extensionPrefKey = this.config.extensionPrefKey;
       if (this.pref) {
         this.pref.on("change", this.onChange);
       }
+      if (this.config.extensionPrefKey) {
+        this._initializeExtensionStore();
+      }
     }
-
     onChange = () => {
       this.emit("change");
     };
@@ -733,6 +754,19 @@ const Preferences = (window.Preferences = (function () {
       this.value = val;
       if (this.config.onUserChange) {
         this.config.onUserChange(val);
+      }
+    }
+
+    async disableControllingExtension() {
+      if (this.extensionControlled) {
+        await lazy.ExtensionSettingsStore.initialize();
+        let { id } = await lazy.ExtensionSettingsStore.getSetting("prefs", this.extensionPrefKey);
+        if (id) {
+          let addon = await lazy.AddonManager.getAddonByID(id);
+          await addon.disable();
+        }
+        this.extensionControlled = false;
+        this.onChange();
       }
     }
   }
