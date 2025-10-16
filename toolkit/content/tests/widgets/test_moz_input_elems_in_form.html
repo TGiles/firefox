@@ -103,12 +103,20 @@
         let assertChangedValue = (event, form) => {
           event.preventDefault();
           const formData = new FormData(form);
-          for (let f of formData) {
-            is(
-              f,
-              "non-default-value",
-              `${f.key} should have a non-default submitted value`
-            );
+          for (let [key, value] of formData) {
+            if (key === "moz-radio-group") {
+              is(
+                value,
+                "radio_val_2",
+                `${key} should have a non-default value`
+              );
+            } else {
+              is(
+                value,
+                "non-default value",
+                `${key} should have a non-default submitted value`
+              );
+            }
           }
           testDone.resolve();
         };
