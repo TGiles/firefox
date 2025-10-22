@@ -37,7 +37,7 @@ radio-option-2 =
 extension-controlled-input =
   .label = Setting controlled by extension
 extension-controlled-message = <strong>My Extension</strong> requires Controlled Setting.
-`,
+extension-controlled-enable = Storybook Only: Refresh the page to enable the extension. To enable the extension go to <img data-l10n-name="addons-icon"/> Add-ons in the <img data-l10n-name="menu-icon"/> menu.`,
   },
 };
 
@@ -134,10 +134,20 @@ ExtensionControlled.args = {
   },
   setting: {
     ...DEFAULT_SETTING,
+    disableControllingExtension() {
+      delete this.controllingExtensionInfo.id;
+      delete this.controllingExtensionInfo.name;
+      this.controllingExtensionInfo.showEnableMessage = true;
+      document
+        .querySelector("with-common-styles")
+        .shadowRoot.querySelector("setting-control")
+        .requestUpdate();
+    },
     controllingExtensionInfo: {
       id: "extension-controlled-example",
       l10nId: "extension-controlled-message",
       name: "My Extension",
+      showEnableMessage: false,
     },
   },
 };

@@ -270,27 +270,30 @@
         let setting = Preferences.getSetting(SETTING_ID);
         let control = await renderTemplate(itemConfig, setting);
         // Assert that moz-message-bar appears with the correct Fluent attributes/args
-        let messageBar = control.querySelector("moz-message-bar");
+        let extensionControlledMessageBar = control.querySelector(
+          "moz-message-bar.extension-controlled-message-bar"
+        );
         ok(
-          messageBar,
+          extensionControlledMessageBar,
           "There should be an extension controlled message bar element"
         );
 
         is(
-          messageBar.messageL10nId,
+          extensionControlledMessageBar.messageL10nId,
           TEST_FLUENT_ID,
           "The l10nId should be the same as the one in the config"
         );
         is(
-          messageBar.messageL10nArgs.name,
+          extensionControlledMessageBar.messageL10nArgs.name,
           ADDON_NAME,
           "The name used within the message-bar should be the extension name"
         );
 
         // Assert that moz-message-bar appears with an actions button with correct Fluent attributes
-        let disableExtensionButton = messageBar.querySelector(
-          "moz-button[slot='actions']"
-        );
+        let disableExtensionButton =
+          extensionControlledMessageBar.querySelector(
+            "moz-button[slot='actions']"
+          );
         ok(
           disableExtensionButton,
           "There should be a button to disable the extension"
@@ -304,14 +307,25 @@
         await disableExtensionByMouse(disableExtensionButton);
 
         await TestUtils.waitForCondition(
-          () => !control.querySelector("moz-message-bar"),
-          "Wait for the message bar to be removed after disabling the only controlling extension"
+          () =>
+            !control.querySelector(
+              "moz-message-bar.extension-controlled-message-bar"
+            ),
+          "Wait for the extension controlled message bar to be removed after disabling the only controlling extension"
         );
 
-        messageBar = control.querySelector("moz-message-bar");
+        let enableExtensionMessageBar = control.querySelector(
+          "moz-message-bar.reenable-extensions-message-bar"
+        );
         ok(
-          !messageBar,
-          "The message bar should be removed after activating the disable extension button."
+          enableExtensionMessageBar,
+          "there should be a message bar for re-enabling extensions"
+        );
+
+        is(
+          enableExtensionMessageBar.getAttribute("data-l10n-id"),
+          "extension-controlled-enable-2",
+          "The message bar to re-enable the extension should be rendered."
         );
 
         await addon.enable();
@@ -320,10 +334,19 @@
           "Wait for the control to become disabled as a side-effect of enabling the controlling extension"
         );
 
-        messageBar = control.querySelector("moz-message-bar");
+        await TestUtils.waitForCondition(
+          () =>
+            !control.querySelector(
+              "moz-message-bar.reenable-extensions-message-bar"
+            ),
+          "The re-enable extension message bar should be removed when the extension is enabled again."
+        );
+        extensionControlledMessageBar = control.querySelector(
+          "moz-message-bar.extension-controlled-message-bar"
+        );
         ok(
-          messageBar,
-          "The message bar should be rendered when the controlling addon is enabled elsewhere."
+          extensionControlledMessageBar,
+          "The extension controlled message bar should be rendered when the controlling addon is enabled elsewhere."
         );
 
         await addon.disable();
@@ -332,9 +355,18 @@
           "Wait for the control to become mutable as a side-effect of disabling the controlling extension"
         );
 
-        messageBar = control.querySelector("moz-message-bar");
+        enableExtensionMessageBar = control.querySelector(
+          "moz-message-bar.reenable-extensions-message-bar"
+        );
+        is(
+          enableExtensionMessageBar.getAttribute("data-l10n-id"),
+          "extension-controlled-enable-2",
+          "The message bar to re-enable the extension should be rendered."
+        );
         ok(
-          !messageBar,
+          !control.querySelector(
+            "moz-message-bar.extension-controlled-message-bar"
+          ),
           "The message bar should not be rendered when the controlling addon is disabled elsewhere."
         );
 
@@ -354,10 +386,20 @@
           () => !control.controlEl.disabled,
           "Wait for the control to become mutable as a side-effect of disabling the controlling extension"
         );
-        messageBar = control.querySelector("moz-message-bar");
+        extensionControlledMessageBar = control.querySelector(
+          "moz-message-bar.extension-controlled-message-bar"
+        );
         ok(
-          !messageBar,
-          "The message bar should not be rendered after hitting Space on the disable extension button."
+          !extensionControlledMessageBar,
+          "The extension controlled message bar should not be rendered after hitting Space on the disable extension button."
+        );
+
+        enableExtensionMessageBar = control.querySelector(
+          "moz-message-bar.reenable-extensions-message-bar"
+        );
+        ok(
+          enableExtensionMessageBar,
+          "The message bar to re-enable the extension should be rendered"
         );
 
         // Unload the test extension and remove the setting control
@@ -448,26 +490,29 @@
         );
 
         // Assert that moz-message-bar appears with the correct Fluent attributes/args
-        let messageBar = control.querySelector("moz-message-bar");
+        let extensionControlledMessageBar = control.querySelector(
+          "moz-message-bar.extension-controlled-message-bar"
+        );
         ok(
-          messageBar,
+          extensionControlledMessageBar,
           "There should be an extension controlled message bar element"
         );
         is(
-          messageBar.messageL10nId,
+          extensionControlledMessageBar.messageL10nId,
           TEST_FLUENT_ID,
           "The l10nId should be the same as the one in the config"
         );
         is(
-          messageBar.messageL10nArgs.name,
+          extensionControlledMessageBar.messageL10nArgs.name,
           ADDON_NAME_2,
           "The name used within the message-bar should be the most recently enabled extension name"
         );
 
         // Assert that moz-message-bar appears with an actions button with correct Fluent attributes
-        let disableExtensionButton = messageBar.querySelector(
-          "moz-button[slot='actions']"
-        );
+        let disableExtensionButton =
+          extensionControlledMessageBar.querySelector(
+            "moz-button[slot='actions']"
+          );
         ok(
           disableExtensionButton,
           "There should be a button to disable the extension"
@@ -477,6 +522,7 @@
           "disable-extension",
           "The disable extension button should have the correct data-l10n-id"
         );
+
         await disableExtensionByMouse(disableExtensionButton);
 
         await TestUtils.waitForCondition(
@@ -486,17 +532,18 @@
           "Wait for the message bar to be refreshed after disabling the controlling extension"
         );
 
-        messageBar = control.querySelector("moz-message-bar");
-        disableExtensionButton = messageBar.querySelector(
+        extensionControlledMessageBar =
+          control.querySelector("moz-message-bar");
+        disableExtensionButton = extensionControlledMessageBar.querySelector(
           "moz-button[slot='actions']"
         );
         ok(
-          messageBar,
+          extensionControlledMessageBar,
           "The message bar should still be present due to multiple extensions controlling the setting"
         );
 
         is(
-          messageBar.messageL10nArgs.name,
+          extensionControlledMessageBar.messageL10nArgs.name,
           ADDON_NAME,
           "The name used within the message-bar should be the oldest enabled extension name"
         );
@@ -510,7 +557,10 @@
         await disableExtensionByMouse(disableExtensionButton);
 
         await TestUtils.waitForCondition(
-          () => !control.querySelector("moz-message-bar"),
+          () =>
+            !control.querySelector(
+              "moz-message-bar.extension-controlled-message-bar"
+            ),
           "Wait for the message bar to be removed after disabling the last controlling extension"
         );
 
@@ -520,9 +570,86 @@
           "The control element should not be disabled since there are no more controlling extensions"
         );
 
+        let enableExtensionMessageBar = control.querySelector(
+          "moz-message-bar.reenable-extensions-message-bar"
+        );
+        ok(
+          enableExtensionMessageBar,
+          "The message bar for enabling extensions should be rendered"
+        );
+
         // Clean up extensions and rendered setting control element
         await extension.unload();
         await secondExtension.unload();
+        control.remove();
+      });
+      add_task(async function test_no_initial_controlling_extension() {
+        // TODO: assert that the enable extension message bar does not appear
+        // if there are no controlling extensions on initial load.
+        // TODO: assert that the extension controlled message bar does not appear
+        // if there are no controlling extensions on initial load.
+
+        // Setup pre-test items: extension, Preferences, ExtensionSettingStore
+        const SETTING_ID = "extension-controlled-setting";
+        const ADDON_ID = "ext-controlled@mochi.test";
+        const ADDON_NAME = "Ext Controlled";
+        const STORE_ID = "privacy.containers";
+        const TEST_FLUENT_ID = "test-fluent-id";
+
+        // Assert there is no markup that is generated by pre-test setup since we
+        // don't have a setting that is being controlled by the STORE_ID
+
+        let settingControl = document.getElementById(SETTING_ID);
+        is(
+          settingControl,
+          null,
+          "The setting control under test should not exist yet."
+        );
+
+        // Add setting that is not initially controlled by an extension,
+        // but is configured so that it can be controlled.
+        Preferences.addSetting({
+          id: SETTING_ID,
+          pref: PREF_ID,
+          controllingExtensionInfo: {
+            storeId: STORE_ID,
+            l10nId: TEST_FLUENT_ID,
+          },
+        });
+
+        // Create itemConfig for expected setting-control element
+        let itemConfig = {
+          l10nId: "test-fluent-id",
+          id: SETTING_ID,
+        };
+
+        // Wait for setting-control element to be rendered
+        let setting = Preferences.getSetting(SETTING_ID);
+        let control = await renderTemplate(itemConfig, setting);
+
+        // Assert checkbox control is created and NOT disabled due to
+        // no extension controlling the pref.
+
+        is(
+          control.controlEl.localName,
+          "moz-checkbox",
+          "The control rendered the default checkbox"
+        );
+        is(
+          control.controlEl.disabled,
+          false,
+          "The control should not disabled since it is not controlled by an extension"
+        );
+
+        // Assert that there are no moz-message-bar elements rendered since
+        // the setting is not controlled by an extension
+        let messageBars = control.querySelectorAll("moz-message-bar");
+
+        ok(
+          !messageBars.length,
+          "There should be no rendered message bar elements"
+        );
+
         control.remove();
       });
     </script>

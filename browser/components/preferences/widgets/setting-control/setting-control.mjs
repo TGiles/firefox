@@ -230,6 +230,10 @@ export class SettingControl extends SettingElement {
     );
   }
 
+  shouldShowEnableMessage() {
+    return this.setting.controllingExtensionInfo?.showEnableMessage;
+  }
+
   get extensionName() {
     return this.setting.controllingExtensionInfo.name;
   }
@@ -279,6 +283,9 @@ export class SettingControl extends SettingElement {
 
     let tag = unsafeStatic(control);
     let messageBar;
+
+    // NOTE: the showEnableMessage message bar should ONLY appear when
+    // there are no extensions controlling the setting.
     if (this.isControlledByExtension()) {
       let args = { name: this.extensionName };
       messageBar = html`<moz-message-bar
@@ -291,6 +298,22 @@ export class SettingControl extends SettingElement {
           @click=${this.disableExtension}
           data-l10n-id="disable-extension"
         ></moz-button>
+      </moz-message-bar>`;
+    } else if (this.shouldShowEnableMessage()) {
+      // NOTE: snippet that uses data-l10n-id instead of directly setting
+      // the .messageL10nId property on the message-bar element.
+
+      // messageBar = html`<moz-message-bar
+      //   class="reenable-extensions-message-bar"
+      //   dismissable=""
+      //   data-l10n-id="extension-controlled-enable-2"
+      // >
+
+      messageBar = html`<moz-message-bar
+        class="reenable-extensions-message-bar"
+        dismissable=""
+        .messageL10nId=${`extension-controlled-enable`}
+      >
       </moz-message-bar>`;
     }
     return staticHtml`

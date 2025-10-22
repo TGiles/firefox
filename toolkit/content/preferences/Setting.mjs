@@ -247,6 +247,7 @@ export class Setting extends EventEmitter {
       if (addon) {
         this.controllingExtensionInfo.name = addon.name;
         this.controllingExtensionInfo.id = info.id;
+        this.controllingExtensionInfo.showEnableMessage = false;
         this.emit("change");
         return;
       }
@@ -255,6 +256,14 @@ export class Setting extends EventEmitter {
   }
 
   _clearControllingExtensionInfo() {
+    // We only want to show the "To enable the extension go to..."
+    // message bar if there was a previously enabled extension.
+    if (
+      this.controllingExtensionInfo.id &&
+      this.controllingExtensionInfo.name
+    ) {
+      this.controllingExtensionInfo.showEnableMessage = true;
+    }
     delete this.controllingExtensionInfo.id;
     delete this.controllingExtensionInfo.name;
     // Request an update to the setting control so the UI is in the correct state
