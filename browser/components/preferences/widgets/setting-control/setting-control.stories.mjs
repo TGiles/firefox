@@ -37,6 +37,9 @@ radio-option-2 =
 extension-controlled-input =
   .label = Setting controlled by extension
 extension-controlled-message = <strong>My Extension</strong> requires Controlled Setting.
+disable-extension =
+  .label = Disable extension
+  .tooltiptext = Disable extension
 extension-controlled-enable = Storybook Only: Refresh the page to enable the extension. To enable the extension go to <img data-l10n-name="addons-icon"/> Add-ons in the <img data-l10n-name="menu-icon"/> menu.`,
   },
 };
