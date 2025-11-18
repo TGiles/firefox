@@ -22,6 +22,8 @@ Preferences.addSetting({
   },
 });
 
+// Could be the place to add Preferences.addSetting for the new website languages config
+
 var gLanguagesDialog = {
   _availableLanguagesList: [],
   _acceptLanguages: {},

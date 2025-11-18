@@ -404,6 +404,20 @@ language-header = Language
 
 choose-language-description = Choose your preferred language for displaying pages
 
+website-language-heading = 
+  .label = Website language
+  .description = Some web pages are displayed in multiple languages. Choose languages in your preferred order.
+
+website-preferred-language = 
+  .label = Preferred languages
+
+website-add-language =
+  .label = Add language
+
+# TODO: remove this before landing
+website-test-item =
+  .label = English (en-US)
+
 choose-button =
     .label = Choose…
     .accesskey = o

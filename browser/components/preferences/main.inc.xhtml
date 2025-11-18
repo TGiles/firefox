@@ -12,6 +12,7 @@
 
 <script src="chrome://mozapps/content/preferences/fontbuilder.js"/>
 
+<script src="chrome://browser/content/preferences/dialogs/languages.js" />
 <html:template id="template-paneGeneral">
 <hbox id="generalCategory"
       class="subcategory"
@@ -173,6 +174,7 @@
 <html:setting-group id="zoomGroup" groupid="zoom" data-category="paneGeneral" hidden="true" />
 
 <!-- Languages -->
+<html:setting-group groupid="websiteLanguage" hidden="true" data-category="paneGeneral"></html:setting-group>
 <groupbox id="languagesGroup" data-category="paneGeneral" hidden="true">
   <label><html:h2 data-l10n-id="language-header"/></label>
 

@@ -637,6 +637,123 @@ Preferences.addSetting({
 });
 
 Preferences.addSetting({
+  id: "availableLanguages",
+  get() {
+    let availableLanguages = [];
+    let localeCodes = [];
+    let localeValues = [];
+    let bundle = Services.strings.createBundle(
+      "resource://gre/res/language.properties"
+    );
+    for (let currString of bundle.strings) {
+      let property = currString.key.split(".");
+      if (property[1] == "accept") {
+        localeCodes.push(property[0]);
+        localeValues.push(currString.value);
+      }
+    }
+
+    let localeNames = Services.intl.getLocaleDisplayNames(
+      undefined,
+      localeCodes
+    );
+
+    for (let i in localeCodes) {
+      let isVisible =
+        localeValues[i] == "true" &&
+        (!(localeCodes[i] in this._acceptLanguages) ||
+          !this._acceptLanguages[localeCodes[i]]);
+      let locale = {
+        code: localeCodes[i],
+        displayName: localeNames[i],
+        isVisible,
+      };
+      availableLanguages.push(locale);
+    }
+
+    return availableLanguages;
+  },
+});
+
+// TODO:
+// - [] Render actual language options in the "Add Language" select
+// - [] Make plus button add the selected language
+// - [] Make trash can button delete the row
+Preferences.addSetting({
+  id: "website-language-wrapper",
+  deps: ["acceptLanguages"],
+  getControlConfig(config, deps) {
+    let languagePref = deps.acceptLanguages.value;
+    if (languagePref == "") {
+      return config;
+    }
+    let availableLanguages = [];
+    let activeLanguages = [];
+    let localeCodes = languagePref.toLowerCase().split(/\s*,\s*/);
+    let localeDisplayNames = Services.intl.getLocaleDisplayNames(
+      undefined,
+      localeCodes
+    );
+    for (let i in localeCodes) {
+      let locale = { code: localeCodes[i], displayName: localeDisplayNames[i] };
+      availableLanguages.push(locale);
+    }
+    for (let lang of availableLanguages) {
+      let displayName = lang.displayName;
+      let localeCode = lang.code;
+      // TODO: figure out how to deal with all the logic in languages.js
+      let langConfig = {
+        id: localeCode,
+        l10nId: "languages-code-format",
+        controlAttrs: {
+          "data-l10n-attrs": ["locale", "code"],
+        },
+        l10nArgs: {
+          locale: displayName,
+          code: localeCode,
+        },
+        control: "moz-box-item",
+        options: [
+          {
+            control: "moz-button",
+            controlAttrs: {
+              slot: "actions-start",
+              iconsrc: "chrome://global/skin/icons/delete.svg",
+            },
+          },
+          {
+            control: "moz-button",
+            controlAttrs: {
+              slot: "actions",
+              iconsrc: "chrome://global/skin/icons/more.svg",
+            },
+          },
+        ],
+      };
+      activeLanguages.push(langConfig);
+    }
+
+    for (let lang of activeLanguages) {
+      config.options.push(lang);
+    }
+    return config;
+  },
+});
+Preferences.addSetting({
+  id: "website-language-picker-wrapper",
+  deps: ["availableLanguages"],
+  getControlConfig(config, deps) {
+    // TODO:
+    // - [] port over _loadAvailableLanguages() from languages.js
+    // - [] Figure out if the options are overwritten by website-language-wrapper
+    let availableLanguages = deps.availableLanguages.value;
+    return config;
+  },
+});
+Preferences.addSetting({ id: "website-language-picker" });
+
+Preferences.addSetting({ id: "zoomPlaceholder" });
+Preferences.addSetting({
   id: "containersPane",
   onUserClick(e) {
     e.preventDefault();
@@ -2177,6 +2294,52 @@ SettingGroupManager.registerGroups({
       },
     ],
   },
+  websiteLanguage: {
+    inProgress: true,
+    l10nId: "website-language-heading",
+    headingLevel: 2,
+    items: [
+      {
+        id: "website-language-wrapper",
+        control: "moz-box-group",
+        controlAttrs: {
+          type: "reorderable-list",
+        },
+        options: [
+          {
+            id: "website-language-picker-wrapper",
+            l10nId: "website-preferred-language",
+            control: "moz-box-item",
+            controlAttrs: {
+              slot: "header",
+            },
+            options: [
+              {
+                id: "website-language-picker",
+                control: "moz-select",
+                options: [
+                  {
+                    control: "moz-option",
+                    l10nId: "website-add-language",
+                  },
+                ],
+                controlAttrs: {
+                  slot: "actions",
+                },
+              },
+              {
+                control: "moz-button",
+                controlAttrs: {
+                  slot: "actions",
+                  iconsrc: "chrome://global/skin/icons/plus.svg",
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
   downloads: {
     l10nId: "downloads-header-2",
     headingLevel: 2,
@@ -3533,6 +3696,7 @@ var gMainPane = {
     initSettingGroup("downloads");
     initSettingGroup("drm");
     initSettingGroup("contrast");
+    initSettingGroup("websiteLanguage");
     initSettingGroup("browsing");
     initSettingGroup("zoom");
     initSettingGroup("support");
