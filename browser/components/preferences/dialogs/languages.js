@@ -5,23 +5,6 @@
 
 /* import-globals-from /toolkit/content/preferencesBindings.js */
 
-Preferences.addAll([
-  { id: "intl.accept_languages", type: "string" },
-  { id: "pref.browser.language.disable_button.up", type: "bool" },
-  { id: "pref.browser.language.disable_button.down", type: "bool" },
-  { id: "pref.browser.language.disable_button.remove", type: "bool" },
-  { id: "privacy.spoof_english", type: "int" },
-]);
-Preferences.addSetting({
-  id: "acceptLanguages",
-  pref: "intl.accept_languages",
-  get(prefVal, _, setting) {
-    return setting.pref.defaultValue != prefVal
-      ? prefVal
-      : Services.locale.acceptLanguages;
-  },
-});
-
 // Could be the place to add Preferences.addSetting for the new website languages config
 
 var gLanguagesDialog = {
@@ -39,10 +22,16 @@ var gLanguagesDialog = {
       gLanguagesDialog.writeSpoofEnglish()
     );
 
+    // TODO:
+    // - [] Figure out how to get this dialog to be able to access "acceptLanguages"
+    // without having to do Preferences.add() in this file
     Preferences.getSetting("acceptLanguages").on("change", () =>
       this._readAcceptLanguages().catch(console.error)
     );
 
+    // TODO:
+    // - [] Figure out how to either extract the shared logic to a module
+    // or figure out how to only make this load when the dialog is actually opened
     let addListener = (id, cmd) => {
       document.getElementById(id).addEventListener(cmd, this);
     };

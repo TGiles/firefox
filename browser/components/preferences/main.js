@@ -128,6 +128,11 @@ Preferences.addAll([
   // Languages
   { id: "intl.regional_prefs.use_os_locales", type: "bool" },
 
+  { id: "intl.accept_languages", type: "string" },
+  { id: "pref.browser.language.disable_button.up", type: "bool" },
+  { id: "pref.browser.language.disable_button.down", type: "bool" },
+  { id: "pref.browser.language.disable_button.remove", type: "bool" },
+  { id: "privacy.spoof_english", type: "int" },
   // General tab
 
   /* Accessibility
@@ -637,15 +642,28 @@ Preferences.addSetting({
 });
 
 Preferences.addSetting({
+  id: "acceptLanguages",
+  pref: "intl.accept_languages",
+  get(prefVal, _, setting) {
+    return setting.pref.defaultValue != prefVal
+      ? prefVal
+      : Services.locale.acceptLanguages;
+  },
+});
+Preferences.addSetting({
   id: "availableLanguages",
-  get() {
+  deps: ["acceptLanguages"],
+  get(_, { acceptLanguages }) {
+    let re = /\s*(?:,|$)\s*/;
+    let _acceptLanguages = acceptLanguages.value.split(re);
     let availableLanguages = [];
     let localeCodes = [];
     let localeValues = [];
     let bundle = Services.strings.createBundle(
       "resource://gre/res/language.properties"
     );
-    for (let currString of bundle.strings) {
+
+    for (let currString of bundle.getSimpleEnumeration()) {
       let property = currString.key.split(".");
       if (property[1] == "accept") {
         localeCodes.push(property[0]);
@@ -661,8 +679,8 @@ Preferences.addSetting({
     for (let i in localeCodes) {
       let isVisible =
         localeValues[i] == "true" &&
-        (!(localeCodes[i] in this._acceptLanguages) ||
-          !this._acceptLanguages[localeCodes[i]]);
+        (!(localeCodes[i] in _acceptLanguages) ||
+          !_acceptLanguages[localeCodes[i]]);
       let locale = {
         code: localeCodes[i],
         displayName: localeNames[i],
@@ -671,6 +689,8 @@ Preferences.addSetting({
       availableLanguages.push(locale);
     }
 
+    // console.log("### what are our available languages?");
+    // console.log(availableLanguages);
     return availableLanguages;
   },
 });
@@ -683,6 +703,7 @@ Preferences.addSetting({
   id: "website-language-wrapper",
   deps: ["acceptLanguages"],
   getControlConfig(config, deps) {
+    // console.log(deps);
     let languagePref = deps.acceptLanguages.value;
     if (languagePref == "") {
       return config;
@@ -741,16 +762,45 @@ Preferences.addSetting({
 });
 Preferences.addSetting({
   id: "website-language-picker-wrapper",
-  deps: ["availableLanguages"],
+});
+Preferences.addSetting({
+  id: "website-language-picker",
+  deps: ["availableLanguages", "acceptLanguages"],
   getControlConfig(config, deps) {
     // TODO:
     // - [] port over _loadAvailableLanguages() from languages.js
     // - [] Figure out if the options are overwritten by website-language-wrapper
+    debugger;
+
+    let re = /\s*(?:,|$)\s*/;
     let availableLanguages = deps.availableLanguages.value;
+    let acceptLanguages = deps.acceptLanguages.value.split(re);
+
+    for (let locale of availableLanguages) {
+      let localeCode = locale.code;
+      // if the following is true, create a new option
+      if (
+        locale.isVisible &&
+        (!(localeCode in acceptLanguages) || !acceptLanguages[localeCode])
+      ) {
+        let optionConfig = {
+          id: localeCode,
+          l10nId: "languages-code-format",
+          control: "moz-option",
+          controlAttrs: {
+            "data-l10n-attrs": ["locale", "code"],
+          },
+          l10nArgs: {
+            locale: locale.displayName,
+            code: localeCode,
+          },
+        };
+        config.options.push(optionConfig);
+      }
+    }
     return config;
   },
 });
-Preferences.addSetting({ id: "website-language-picker" });
 
 Preferences.addSetting({ id: "zoomPlaceholder" });
 Preferences.addSetting({
@@ -2307,15 +2357,21 @@ SettingGroupManager.registerGroups({
         },
         options: [
           {
+            id: "spoofEnglish",
+            l10nId: "languages-customize-spoof-english",
+            control: "moz-checkbox",
+          },
+          {
             id: "website-language-picker-wrapper",
             l10nId: "website-preferred-language",
             control: "moz-box-item",
             controlAttrs: {
               slot: "header",
             },
-            options: [
+            items: [
               {
                 id: "website-language-picker",
+                slot: "actions",
                 control: "moz-select",
                 options: [
                   {
@@ -2323,10 +2379,9 @@ SettingGroupManager.registerGroups({
                     l10nId: "website-add-language",
                   },
                 ],
-                controlAttrs: {
-                  slot: "actions",
-                },
               },
+            ],
+            options: [
               {
                 control: "moz-button",
                 controlAttrs: {
