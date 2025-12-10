@@ -20,5 +20,7 @@ if CONFIG["MOZ_UPDATE_AGENT"]:
 
 JAR_MANIFESTS += ["jar.mn"]
 
+EXTRA_JS_MODULES += ["websiteLanguages.mjs"]
+
 with Files("**"):
     BUG_COMPONENT = ("Firefox", "Settings UI")

@@ -8,6 +8,6 @@
  *
  * **/
 
-export default function () {
+export function init() {
   console.log("we loaded websiteLanguages");
 }
