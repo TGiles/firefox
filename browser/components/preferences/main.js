@@ -676,6 +676,8 @@ Preferences.addSetting({
       localeCodes
     );
 
+    // FIXME: accepted languages should not appear in the available
+    // languages select element
     for (let i in localeCodes) {
       let isVisible =
         localeValues[i] == "true" &&

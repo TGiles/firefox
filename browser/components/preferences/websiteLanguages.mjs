@@ -7,3 +7,7 @@
  *  - [] have fun?
  *
  * **/
+
+export default function () {
+  console.log("we loaded websiteLanguages");
+}

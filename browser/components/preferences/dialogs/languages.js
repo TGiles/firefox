@@ -7,6 +7,7 @@
 
 // Could be the place to add Preferences.addSetting for the new website languages config
 
+// FIXME: Uncaught error: Failed to load chrome://global/content/browser/preferences/websiteLanguages.js
 ChromeUtils.importESModule(
   "chrome://global/content/browser/preferences/websiteLanguages.js",
   { global: "current" }
