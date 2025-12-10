@@ -11,8 +11,12 @@
 #endif
 
 <script src="chrome://mozapps/content/preferences/fontbuilder.js"/>
-
-<script src="chrome://browser/content/preferences/dialogs/languages.js" />
+  <!-- 
+       We can't load languages.js as is, otherwise the onload handler fires and
+       will throw errors due to missing elements, missing Settings, missing preferences,
+       etc.
+  -->
+<!-- <script src="chrome://browser/content/preferences/dialogs/languages.js" /> -->
 <html:template id="template-paneGeneral">
 <hbox id="generalCategory"
       class="subcategory"

@@ -7,6 +7,11 @@
 
 // Could be the place to add Preferences.addSetting for the new website languages config
 
+ChromeUtils.importESModule(
+  "chrome://global/content/browser/preferences/websiteLanguages.js",
+  { global: "current" }
+);
+
 var gLanguagesDialog = {
   _availableLanguagesList: [],
   _acceptLanguages: {},
