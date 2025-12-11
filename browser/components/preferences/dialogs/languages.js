@@ -5,8 +5,6 @@
 
 /* import-globals-from /toolkit/content/preferencesBindings.js */
 
-// Could be the place to add Preferences.addSetting for the new website languages config
-
 const websiteLanguages = ChromeUtils.importESModule(
   "chrome://browser/content/preferences/websiteLanguages.mjs",
   { global: "current" }
@@ -18,7 +16,12 @@ var gLanguagesDialog = {
 
   _selectedItemID: null,
 
+  // FIXME: the Preferences object that this file is accessing is not
+  // the same as the Preferences object in main.js.
+  // Because of this, Preferences.getSetting("acceptLanguage") will
+  // always throw errors.
   onLoad() {
+    websiteLanguages.init();
     let spoofEnglishElement = document.getElementById("spoofEnglish");
     Preferences.addSyncFromPrefListener(spoofEnglishElement, () =>
       gLanguagesDialog.readSpoofEnglish()
