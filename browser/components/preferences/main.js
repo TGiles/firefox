@@ -646,8 +646,8 @@ Preferences.addSetting({
   pref: "intl.accept_languages",
   get(prefVal, _, setting) {
     return setting.pref.defaultValue != prefVal
-      ? prefVal
-      : Services.locale.acceptLanguages;
+      ? prefVal.toLowerCase()
+      : Services.locale.acceptLanguages.toLowerCase();
   },
 });
 Preferences.addSetting({
@@ -676,8 +676,6 @@ Preferences.addSetting({
       localeCodes
     );
 
-    // FIXME: accepted languages should not appear in the available
-    // languages select element
     for (let i in localeCodes) {
       let isVisible =
         localeValues[i] == "true" &&
@@ -691,14 +689,12 @@ Preferences.addSetting({
       availableLanguages.push(locale);
     }
 
-    // console.log("### what are our available languages?");
-    // console.log(availableLanguages);
     return availableLanguages;
   },
 });
 
 // TODO:
-// - [] Render language options in correct order in the "Add Language" select
+// - [x] Render language options in correct order in the "Add Language" select
 // - [] Make plus button add the selected language
 // - [] Make trash can button delete the row
 Preferences.addSetting({
@@ -723,7 +719,6 @@ Preferences.addSetting({
     for (let lang of availableLanguages) {
       let displayName = lang.displayName;
       let localeCode = lang.code;
-      // TODO: figure out how to deal with all the logic in languages.js
       let langConfig = {
         id: localeCode,
         l10nId: "languages-code-format",
@@ -768,14 +763,6 @@ Preferences.addSetting({
   id: "website-language-picker",
   deps: ["availableLanguages", "acceptLanguages"],
   getControlConfig(config, deps) {
-    // TODO:
-    // - [] port over _loadAvailableLanguages() from languages.js
-    // - [x] Figure out if the options are overwritten by website-language-wrapper
-    //    Doesn't appear to be overwritten.
-    // - [x] Figure out why selecting an option when the current value
-    //  is "Add Language" always picks the last option instead of the
-    //  one from the dropdown...
-    //    It was because of non-unique values for the options.
     debugger;
 
     let re = /\s*(?:,|$)\s*/;
@@ -784,10 +771,11 @@ Preferences.addSetting({
     let sortedOptions = [];
     for (let locale of availableLanguages) {
       let localeCode = locale.code;
-      // if the following is true, create a new option
+      // If the locale is visible and not already in the accepted
+      // languages list, create a new option
       if (
         locale.isVisible &&
-        (!(localeCode in acceptLanguages) || !acceptLanguages[localeCode])
+        !acceptLanguages.find(elem => elem === localeCode)
       ) {
         let optionConfig = {
           id: localeCode,
@@ -802,7 +790,6 @@ Preferences.addSetting({
             code: localeCode,
           },
         };
-        // config.options.push(optionConfig);
         sortedOptions.push(optionConfig);
       }
     }
@@ -2392,9 +2379,6 @@ SettingGroupManager.registerGroups({
                 id: "website-language-picker",
                 slot: "actions",
                 control: "moz-select",
-                // controlAttrs: {
-                //   value: "-1",
-                // },
                 options: [
                   {
                     control: "moz-option",
