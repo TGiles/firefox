@@ -698,14 +698,13 @@ Preferences.addSetting({
 });
 
 // TODO:
-// - [] Render actual language options in the "Add Language" select
+// - [] Render language options in correct order in the "Add Language" select
 // - [] Make plus button add the selected language
 // - [] Make trash can button delete the row
 Preferences.addSetting({
   id: "website-language-wrapper",
   deps: ["acceptLanguages"],
   getControlConfig(config, deps) {
-    // console.log(deps);
     let languagePref = deps.acceptLanguages.value;
     if (languagePref == "") {
       return config;
@@ -771,13 +770,18 @@ Preferences.addSetting({
   getControlConfig(config, deps) {
     // TODO:
     // - [] port over _loadAvailableLanguages() from languages.js
-    // - [] Figure out if the options are overwritten by website-language-wrapper
+    // - [x] Figure out if the options are overwritten by website-language-wrapper
+    //    Doesn't appear to be overwritten.
+    // - [x] Figure out why selecting an option when the current value
+    //  is "Add Language" always picks the last option instead of the
+    //  one from the dropdown...
+    //    It was because of non-unique values for the options.
     debugger;
 
     let re = /\s*(?:,|$)\s*/;
     let availableLanguages = deps.availableLanguages.value;
     let acceptLanguages = deps.acceptLanguages.value.split(re);
-
+    let sortedOptions = [];
     for (let locale of availableLanguages) {
       let localeCode = locale.code;
       // if the following is true, create a new option
@@ -791,15 +795,28 @@ Preferences.addSetting({
           control: "moz-option",
           controlAttrs: {
             "data-l10n-attrs": ["locale", "code"],
+            value: localeCode,
           },
           l10nArgs: {
             locale: locale.displayName,
             code: localeCode,
           },
         };
-        config.options.push(optionConfig);
+        // config.options.push(optionConfig);
+        sortedOptions.push(optionConfig);
       }
     }
+    // Sort the list of languages by name
+    let comp = new Services.intl.Collator(undefined, {
+      usage: "sort",
+    });
+
+    sortedOptions.sort((a, b) => {
+      return comp.compare(a.l10nArgs.locale, b.l10nArgs.locale);
+    });
+    // Take the existing "Add Language" option and prepend it.
+    sortedOptions.unshift(config.options[0]);
+    config.options = sortedOptions;
     return config;
   },
 });
@@ -2375,10 +2392,16 @@ SettingGroupManager.registerGroups({
                 id: "website-language-picker",
                 slot: "actions",
                 control: "moz-select",
+                // controlAttrs: {
+                //   value: "-1",
+                // },
                 options: [
                   {
                     control: "moz-option",
                     l10nId: "website-add-language",
+                    controlAttrs: {
+                      value: "-1",
+                    },
                   },
                 ],
               },

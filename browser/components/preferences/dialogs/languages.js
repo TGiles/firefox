@@ -20,6 +20,10 @@ var gLanguagesDialog = {
   // the same as the Preferences object in main.js.
   // Because of this, Preferences.getSetting("acceptLanguage") will
   // always throw errors.
+
+  // NOTE: I assumed that the `Preferences` object that we get from
+  // `preferencesBindings.js` would be a global singleton like object.
+  // This does not appear to be the case unfortunately.
   onLoad() {
     websiteLanguages.init();
     let spoofEnglishElement = document.getElementById("spoofEnglish");
