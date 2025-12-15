@@ -759,6 +759,17 @@ Preferences.addSetting({
 Preferences.addSetting({
   id: "website-language-picker-wrapper",
 });
+
+Preferences.addSetting({
+  id: "website-language-add-language",
+  onUserClick(e) {
+    // TODO: when this button is activated, add the current option from
+    // the "website-language-picker" select element to the accepted
+    // languages list.
+    // See languages.js addLanguage() for prior art.
+  },
+});
+
 Preferences.addSetting({
   id: "website-language-picker",
   deps: ["availableLanguages", "acceptLanguages"],
@@ -2388,6 +2399,11 @@ SettingGroupManager.registerGroups({
                     },
                   },
                 ],
+              },
+              {
+                id: "website-language-add-language",
+                slot: "actions",
+                control: "moz-button",
               },
             ],
             options: [
