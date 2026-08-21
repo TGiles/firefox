@@ -4,6 +4,7 @@
 
 import os
 import re
+from pathlib import Path
 
 from mach.decorators import Command, CommandArgument
 from mach.util import UserError
@@ -133,6 +134,102 @@ def update_acorn_elements_in_file(file_path, updated_elements):
 
     with open(file_path, "w", newline="\n") as file:
         file.writelines(new_lines)
+
+
+SUPPORTED_MARKUP_SUFFIXES = {".html", ".xhtml", ".xul"}
+INPUT_COMPONENTS = {
+    "checkbox": "moz-checkbox",
+    "color": "moz-input-color",
+    "email": "moz-input-email",
+    "number": "moz-input-number",
+    "password": "moz-input-password",
+    "search": "moz-input-search",
+    "tel": "moz-input-tel",
+    "text": "moz-input-text",
+    "url": "moz-input-url",
+}
+ELEMENT_COMPONENTS = {
+    "button": "moz-button",
+    "textarea": "moz-textarea",
+    "fieldset": "moz-fieldset",
+}
+OPENING_ELEMENT_PATTERN = re.compile(
+    r"""<(?P<tag>(?:html:)?(?:button|textarea|fieldset|input))\b
+        (?P<attributes>(?:[^"'<>]|"[^"]*"|'[^']*')*)>""",
+    re.IGNORECASE | re.VERBOSE,
+)
+INPUT_TYPE_PATTERN = re.compile(
+    r"""(?:^|\s)type\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s"'=<>`]+))""",
+    re.IGNORECASE,
+)
+
+
+def find_acorn_candidates(directory):
+    directory = Path(directory)
+    if not directory.is_dir():
+        raise UserError(f"Not a directory: {directory}")
+
+    candidates = []
+    files = sorted(
+        (
+            path
+            for path in directory.rglob("*")
+            if path.is_file() and path.suffix.lower() in SUPPORTED_MARKUP_SUFFIXES
+        ),
+        key=lambda path: path.relative_to(directory).as_posix(),
+    )
+    for path in files:
+        relative_path = path.relative_to(directory).as_posix()
+        content = path.read_text(encoding="utf-8", errors="replace")
+        for match in OPENING_ELEMENT_PATTERN.finditer(content):
+            source_tag = match.group("tag").lower()
+            element_name = source_tag.removeprefix("html:")
+            if element_name == "input":
+                type_match = INPUT_TYPE_PATTERN.search(match.group("attributes"))
+                if not type_match:
+                    continue
+                input_type = next(
+                    value for value in type_match.groups() if value is not None
+                ).lower()
+                component = INPUT_COMPONENTS.get(input_type)
+            else:
+                component = ELEMENT_COMPONENTS[element_name]
+            if not component:
+                continue
+
+            offset = match.start()
+            line = content.count("\n", 0, offset) + 1
+            column = offset - content.rfind("\n", 0, offset)
+            candidates.append((
+                relative_path,
+                offset,
+                component,
+                line,
+                column,
+                source_tag,
+            ))
+
+    return sorted(candidates, key=lambda candidate: candidate[:3])
+
+
+@Command(
+    "find-acorn-candidates",
+    category="misc",
+    description="Find markup elements that are candidates for Acorn components.",
+)
+@CommandArgument(
+    "directory",
+    type=Path,
+    help="Directory containing .html, .xhtml, or .xul files to inspect.",
+)
+def find_acorn_candidates_command(command_context, directory):
+    for relative_path, _, component, line, column, source_tag in find_acorn_candidates(
+        directory
+    ):
+        print(
+            f"{relative_path}:{line}:{column}: candidate <{source_tag}> "
+            f"for <{component}>"
+        )
 
 
 @Command(

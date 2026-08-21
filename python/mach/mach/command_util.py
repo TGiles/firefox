@@ -116,6 +116,9 @@ MACH_COMMANDS = {
     "file-info": MachCommandReference(
         "python/mozbuild/mozbuild/frontend/mach_commands.py"
     ),
+    "find-acorn-candidates": MachCommandReference(
+        "toolkit/content/widgets/mach_commands.py"
+    ),
     "firefox-devtools-mcp": MachCommandReference("tools/mach_commands.py"),
     "firefox-ui-functional": MachCommandReference(
         "testing/firefox-ui/mach_commands.py"
