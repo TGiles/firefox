@@ -4,6 +4,9 @@
 
 import os
 import re
+import xml.parsers.expat
+from dataclasses import dataclass, field
+from html.parser import HTMLParser
 from pathlib import Path
 
 from mach.decorators import Command, CommandArgument
@@ -137,6 +140,7 @@ def update_acorn_elements_in_file(file_path, updated_elements):
 
 
 SUPPORTED_MARKUP_SUFFIXES = {".html", ".xhtml", ".xul"}
+XHTML_NAMESPACE = "http://www.w3.org/1999/xhtml"
 INPUT_COMPONENTS = {
     "checkbox": "moz-checkbox",
     "color": "moz-input-color",
@@ -167,6 +171,16 @@ LABEL_EXCLUDED_ATTRIBUTES = ("is", "control", "value", "crop", "href")
 LABEL_RELEVANT_ATTRIBUTES = ("for", *LABEL_EXCLUDED_ATTRIBUTES)
 
 
+@dataclass
+class AcornElement:
+    name: str
+    attributes: list
+    offset: int
+    namespace: str | None = None
+    local_name: str | None = None
+    children: list = field(default_factory=list)
+
+
 def _is_static_relevant_value(value):
     return (
         value is not None
@@ -175,121 +189,170 @@ def _is_static_relevant_value(value):
     )
 
 
-def _parse_start_tag(content, offset):
-    """Return a start tag's spelling and attributes, or None if malformed."""
-    length = len(content)
-    position = offset + 1
-    name_start = position
-    while position < length and (
-        content[position].isalnum() or content[position] in "-_:"
-    ):
-        position += 1
-    if position == name_start:
+def _coordinates(content, offset):
+    return content.count("\n", 0, offset) + 1, offset - content.rfind("\n", 0, offset)
+
+
+def _line_offsets(content):
+    offsets = [0]
+    for index, character in enumerate(content):
+        if character == "\n":
+            offsets.append(index + 1)
+    return offsets
+
+
+def _offset_from_position(line_offsets, line, column):
+    return line_offsets[line - 1] + column
+
+
+def _inert_ranges(content):
+    ranges = []
+    for opening, closing in (("{{", "}}"), ("<%", "%>"), ("<![CDATA[", "]]>")):
+        start = 0
+        while (start := content.find(opening, start)) != -1:
+            end = content.find(closing, start + len(opening))
+            if end == -1:
+                ranges.append((start, len(content)))
+                break
+            ranges.append((start, end + len(closing)))
+            start = end + len(closing)
+    return ranges
+
+
+def _is_inert(offset, ranges):
+    return any(start <= offset < end for start, end in ranges)
+
+
+class _HTMLAcornTokenizer(HTMLParser):
+    def __init__(self, content):
+        super().__init__(convert_charrefs=False)
+        self.content = content
+        self.line_offsets = _line_offsets(content)
+        self.inert_ranges = _inert_ranges(content)
+        self.search_offset = 0
+        self.elements = []
+
+    def handle_starttag(self, tag, attrs):
+        source = self.get_starttag_text()
+        approximate_offset = _offset_from_position(self.line_offsets, *self.getpos())
+        offset = self.content.rfind(
+            source, self.search_offset, approximate_offset + len(source) + 1
+        )
+        if offset == -1:
+            offset = approximate_offset
+        self.search_offset = offset + len(source)
+        if "<" not in source[1:] and not _is_inert(offset, self.inert_ranges):
+            self.elements.append(AcornElement(tag, attrs, offset, local_name=tag))
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+
+
+def _tokenize_html(content):
+    tokenizer = _HTMLAcornTokenizer(content)
+    tokenizer.feed(content)
+    tokenizer.close()
+    return tokenizer.elements
+
+
+def _split_expanded_name(name):
+    parts = name.split("|", 2)
+    if len(parts) == 1:
+        return None, name
+    return parts[0], parts[1]
+
+
+def _source_tag_name(content, offset):
+    end = offset + 1
+    while end < len(content) and (content[end].isalnum() or content[end] in "-_:."):
+        end += 1
+    return content[offset + 1 : end]
+
+
+def _xml_byte_to_character_offsets(content):
+    offsets = {}
+    byte_offset = 0
+    for character_offset in range(len(content) + 1):
+        offsets[byte_offset] = character_offset
+        if character_offset < len(content):
+            byte_offset += len(content[character_offset].encode("utf-8"))
+    return offsets
+
+
+def _parse_xml(content):
+    byte_offsets = _xml_byte_to_character_offsets(content)
+    parser = xml.parsers.expat.ParserCreate(namespace_separator="|")
+    parser.namespace_prefixes = True
+    elements = []
+    roots = []
+    stack = []
+
+    def start_element(name, attributes):
+        offset = byte_offsets.get(parser.CurrentByteIndex)
+        if offset is None:
+            raise ValueError("XML parser returned a non-character boundary")
+        namespace, local_name = _split_expanded_name(name)
+        element = AcornElement(
+            _source_tag_name(content, offset),
+            [
+                (_split_expanded_name(attribute_name), value)
+                for attribute_name, value in attributes.items()
+            ],
+            offset,
+            namespace,
+            local_name,
+        )
+        if stack:
+            stack[-1].children.append(element)
+        else:
+            roots.append(element)
+        stack.append(element)
+        elements.append((element, local_name))
+
+    def character_data(data):
+        if stack:
+            stack[-1].children.append(("text", data))
+
+    def comment(data):
+        if stack:
+            stack[-1].children.append(("comment", data))
+
+    def processing_instruction(target, data):
+        if stack:
+            stack[-1].children.append(("processing-instruction", target, data))
+
+    def start_cdata_section():
+        if stack:
+            stack[-1].children.append(("cdata-start",))
+
+    def end_cdata_section():
+        if stack:
+            stack[-1].children.append(("cdata-end",))
+
+    def end_element(name):
+        stack.pop()
+
+    parser.StartElementHandler = start_element
+    parser.EndElementHandler = end_element
+    parser.CharacterDataHandler = character_data
+    parser.CommentHandler = comment
+    parser.ProcessingInstructionHandler = processing_instruction
+    parser.StartCdataSectionHandler = start_cdata_section
+    parser.EndCdataSectionHandler = end_cdata_section
+    try:
+        parser.Parse(content, True)
+    except (xml.parsers.expat.ExpatError, ValueError):
         return None
-
-    tag_name = content[name_start:position]
-    attributes = []
-    while position < length:
-        while position < length and content[position].isspace():
-            position += 1
-        if content.startswith("/>", position):
-            return tag_name, attributes, position + 2
-        if position < length and content[position] == ">":
-            return tag_name, attributes, position + 1
-        if position >= length or content[position] in "<>":
-            return None
-
-        attribute_start = position
-        while position < length and (
-            content[position].isalnum() or content[position] in "-_:."
-        ):
-            position += 1
-        if position == attribute_start:
-            return None
-        attribute_name = content[attribute_start:position]
-
-        while position < length and content[position].isspace():
-            position += 1
-        value = None
-        if position < length and content[position] == "=":
-            position += 1
-            while position < length and content[position].isspace():
-                position += 1
-            if position >= length:
-                return None
-            if content[position] in "\"'":
-                quote = content[position]
-                position += 1
-                value_start = position
-                while position < length and content[position] != quote:
-                    if content[position] == "<":
-                        return None
-                    position += 1
-                if position >= length:
-                    return None
-                value = content[value_start:position]
-                position += 1
-            else:
-                value_start = position
-                while (
-                    position < length
-                    and not content[position].isspace()
-                    and content[position] not in "'\"=<>`"
-                ):
-                    position += 1
-                if position == value_start:
-                    return None
-                value = content[value_start:position]
-        attributes.append((attribute_name, value))
-    return None
-
-
-def _iter_start_tags(content):
-    """Yield lexical start tags outside comments, raw-text, and template regions."""
-    offset = 0
-    raw_text_tag = None
-    while offset < len(content):
-        if content.startswith("<!--", offset):
-            end = content.find("-->", offset + 4)
-            offset = len(content) if end == -1 else end + 3
-            continue
-        if content.startswith("<%", offset) or content.startswith("{{", offset):
-            closing = "%>" if content.startswith("<%", offset) else "}}"
-            end = content.find(closing, offset + len(closing))
-            offset = len(content) if end == -1 else end + len(closing)
-            continue
-        if content[offset] != "<":
-            offset += 1
-            continue
-        if content.startswith("</", offset):
-            close = content.find(">", offset + 2)
-            if close == -1:
-                return
-            name = content[offset + 2 : close].strip().lower()
-            if name == raw_text_tag:
-                raw_text_tag = None
-            offset = close + 1
-            continue
-        if content.startswith("<!", offset) or content.startswith("<?", offset):
-            close = content.find(">", offset + 2)
-            offset = len(content) if close == -1 else close + 1
-            continue
-        parsed = _parse_start_tag(content, offset)
-        if not parsed:
-            offset += 1
-            continue
-        tag_name, attributes, end = parsed
-        lower_name = tag_name.lower()
-        if raw_text_tag is None:
-            yield offset, tag_name, attributes
-            if lower_name in {"script", "style"}:
-                raw_text_tag = lower_name
-        offset = end
+    return roots, elements
 
 
 def _relevant_attributes(attributes, names, html_case_insensitive):
     values = {}
     for attribute_name, value in attributes:
+        if isinstance(attribute_name, tuple):
+            namespace, attribute_name = attribute_name
+            if namespace is not None:
+                continue
         key = attribute_name.lower() if html_case_insensitive else attribute_name
         if key not in names:
             continue
@@ -299,14 +362,21 @@ def _relevant_attributes(attributes, names, html_case_insensitive):
     return values
 
 
-def _is_html_tag(tag_name, element_name, suffix):
+def _candidate_elements(content, suffix):
     if suffix == ".html":
-        return tag_name.lower() == element_name
-    return tag_name == f"html:{element_name}"
-
-
-def _coordinates(content, offset):
-    return content.count("\n", 0, offset) + 1, offset - content.rfind("\n", 0, offset)
+        return _tokenize_html(content), True
+    parsed = _parse_xml(content)
+    if parsed is None:
+        return None, False
+    return (
+        [
+            element
+            for element, local_name in parsed[1]
+            if element.namespace == XHTML_NAMESPACE
+            and local_name in (*LABELABLE_ELEMENTS, "label", "fieldset")
+        ],
+        False,
+    )
 
 
 def find_acorn_candidates(directory):
@@ -325,65 +395,69 @@ def find_acorn_candidates(directory):
     )
     for path in files:
         relative_path = path.relative_to(directory).as_posix()
-        content = path.read_text(encoding="utf-8", errors="replace")
+        with path.open(encoding="utf-8", errors="replace", newline="") as markup_file:
+            content = markup_file.read()
         suffix = path.suffix.lower()
-        html_case_insensitive = suffix != ".xhtml"
-        tags = list(_iter_start_tags(content))
+        elements, html_case_insensitive = _candidate_elements(content, suffix)
+        if elements is None:
+            continue
+
         target_ids = {}
-        for offset, tag_name, attributes in tags:
-            element_name = tag_name.lower() if html_case_insensitive else tag_name
-            if not any(
-                _is_html_tag(tag_name, labelable_element, suffix)
-                for labelable_element in LABELABLE_ELEMENTS
-            ):
+        for element in elements:
+            element_name = (
+                element.name.lower() if html_case_insensitive else element.local_name
+            )
+            if element_name not in LABELABLE_ELEMENTS:
                 continue
             relevant = _relevant_attributes(
-                attributes, {"id", "type"}, html_case_insensitive
+                element.attributes, {"id", "type"}, html_case_insensitive
             )
             if relevant is None or "id" not in relevant:
                 continue
             target_id = relevant["id"]
             if not _is_static_relevant_value(target_id):
                 continue
-            if element_name.removeprefix("html:") == "input" and "type" in relevant:
+            if element_name == "input" and "type" in relevant:
                 if not _is_static_relevant_value(relevant["type"]):
                     continue
                 if relevant["type"].lower() == "hidden":
                     continue
-            target_ids.setdefault(target_id, []).append((offset, tag_name))
+            target_ids.setdefault(target_id, []).append(element)
 
-        for offset, tag_name, attributes in tags:
-            if not _is_html_tag(tag_name, "label", suffix):
+        for element in elements:
+            element_name = (
+                element.name.lower() if html_case_insensitive else element.local_name
+            )
+            if element_name != "label":
                 continue
             relevant = _relevant_attributes(
-                attributes, LABEL_RELEVANT_ATTRIBUTES, html_case_insensitive
+                element.attributes, LABEL_RELEVANT_ATTRIBUTES, html_case_insensitive
             )
             if (
                 relevant is None
                 or "for" not in relevant
                 or not _is_static_relevant_value(relevant["for"])
                 or any(attribute in relevant for attribute in LABEL_EXCLUDED_ATTRIBUTES)
+                or len(target_ids.get(relevant["for"], [])) != 1
             ):
                 continue
-            targets = target_ids.get(relevant["for"], [])
-            if len(targets) != 1:
-                continue
-            line, column = _coordinates(content, offset)
+            line, column = _coordinates(content, element.offset)
             candidates.append((
                 relative_path,
-                offset,
+                element.offset,
                 'label is="moz-label"',
                 line,
                 column,
-                tag_name.lower(),
+                element.name.lower(),
             ))
 
-        for offset, tag_name, attributes in tags:
-            source_tag = tag_name.lower()
-            element_name = source_tag.removeprefix("html:")
+        for element in elements:
+            element_name = (
+                element.name.lower() if html_case_insensitive else element.local_name
+            )
             if element_name == "input":
                 relevant = _relevant_attributes(
-                    attributes, {"type"}, html_case_insensitive
+                    element.attributes, {"type"}, html_case_insensitive
                 )
                 if relevant is None or "type" not in relevant:
                     continue
@@ -391,22 +465,19 @@ def find_acorn_candidates(directory):
                 if not _is_static_relevant_value(input_type):
                     continue
                 component = INPUT_COMPONENTS.get(input_type.lower())
-            elif element_name in ELEMENT_COMPONENTS:
-                component = ELEMENT_COMPONENTS[element_name]
             else:
-                continue
+                component = ELEMENT_COMPONENTS.get(element_name)
             if not component:
                 continue
-            line, column = _coordinates(content, offset)
+            line, column = _coordinates(content, element.offset)
             candidates.append((
                 relative_path,
-                offset,
+                element.offset,
                 component,
                 line,
                 column,
-                source_tag,
+                element.name.lower(),
             ))
-
     return sorted(candidates, key=lambda candidate: candidate[:3])
 
 

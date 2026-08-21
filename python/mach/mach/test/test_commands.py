@@ -26,8 +26,9 @@ vars(Registrar).clear()
 vars(Registrar).update(_registrar_state)
 
 
-def acorn_record(path, content, source_tag, component):
-    offset = content.index(f"<{source_tag}")
+def acorn_record(path, content, source_tag, component, offset=None):
+    if offset is None:
+        offset = content.index(f"<{source_tag}")
     return (
         path,
         offset,
@@ -40,7 +41,11 @@ def acorn_record(path, content, source_tag, component):
 
 def test_find_acorn_label_candidates(tmp_path):
     html = '<label for="field">Field</label><input id="field">'
-    xhtml = '<html:label for="field">Field</html:label><html:input id="field">'
+    xhtml = (
+        '<html:root xmlns:html="http://www.w3.org/1999/xhtml">'
+        '<html:label for="field">Field</html:label><html:input id="field"/>'
+        "</html:root>"
+    )
     (tmp_path / "labels.html").write_text(html)
     (tmp_path / "labels.xhtml").write_text(xhtml)
 
@@ -145,6 +150,130 @@ def test_find_acorn_candidates_preserves_inputs_and_tuple_order(tmp_path):
         acorn_record("nested/a.html", first, "input", "moz-input-text"),
         acorn_record("z.html", second, "button", "moz-button"),
         acorn_record("z.html", second, "textarea", "moz-textarea"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "suffix, content, source_tag",
+    [
+        (
+            ".xhtml",
+            '<root xmlns="http://www.w3.org/1999/xhtml"><button></button></root>',
+            "button",
+        ),
+        (
+            ".xhtml",
+            '<root xmlns="urn:not-html"><button></button>'
+            '<html:button xmlns:html="http://www.w3.org/1999/xhtml"/>'
+            "</root>",
+            "html:button",
+        ),
+        (
+            ".xul",
+            '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+            '<html:button xmlns:html="http://www.w3.org/1999/xhtml"/>'
+            "</window>",
+            "html:button",
+        ),
+    ],
+)
+def test_find_acorn_candidates_uses_xml_namespaces(
+    tmp_path, suffix, content, source_tag
+):
+    path = f"namespaces{suffix}"
+    (tmp_path / path).write_text(content)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == [
+        acorn_record(path, content, source_tag, "moz-button"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "suffix, content",
+    [
+        (
+            ".xhtml",
+            '<root xmlns="http://www.w3.org/1999/xhtml">'
+            "<button></button><bad:button/></root>",
+        ),
+        (
+            ".xhtml",
+            '<root xmlns="http://www.w3.org/1999/xhtml">'
+            "<button></button><broken></root>",
+        ),
+        (
+            ".xul",
+            '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+            '<html:button xmlns:html="http://www.w3.org/1999/xhtml"/>'
+            "<broken></window>",
+        ),
+    ],
+)
+def test_find_acorn_candidates_discards_malformed_xml_files(tmp_path, suffix, content):
+    (tmp_path / f"invalid{suffix}").write_text(content)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == []
+
+
+def test_find_acorn_candidates_preserves_xml_case_rules(tmp_path):
+    content = (
+        '<root xmlns="http://www.w3.org/1999/xhtml">'
+        "<button></button><BUTTON></BUTTON></root>"
+    )
+    (tmp_path / "case.xhtml").write_text(content)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == [
+        acorn_record("case.xhtml", content, "button", "moz-button"),
+    ]
+
+
+def test_find_acorn_candidates_preserves_decoded_coordinates_and_inert_regions(
+    tmp_path,
+):
+    html = (
+        "😀\r\n<!-- <button> --><script><button></script><style><button></style>"
+        "{{ <button> }}<% <button> %><![CDATA[<button>]]>"
+        "<button></button><textarea></textarea>"
+    )
+    xhtml = (
+        '<?xml version="1.0"?><!DOCTYPE root [<!ENTITY ignored "text">]>'
+        '<root xmlns="http://www.w3.org/1999/xhtml">&ignored;<![CDATA[<button>]]>'
+        "😀\r\n<button></button><textarea></textarea></root>"
+    )
+    with (tmp_path / "inert.html").open("w", newline="") as html_file:
+        html_file.write(html)
+    with (tmp_path / "inert.xhtml").open("w", newline="") as xhtml_file:
+        xhtml_file.write(xhtml)
+    invalid_utf8 = tmp_path / "replacement.html"
+    invalid_utf8.write_bytes(b"\xff<button></button>")
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == [
+        acorn_record(
+            "inert.html",
+            html,
+            "button",
+            "moz-button",
+            html.rindex("<button"),
+        ),
+        acorn_record("inert.html", html, "textarea", "moz-textarea"),
+        acorn_record(
+            "inert.xhtml",
+            xhtml,
+            "button",
+            "moz-button",
+            xhtml.rindex("<button"),
+        ),
+        acorn_record("inert.xhtml", xhtml, "textarea", "moz-textarea"),
+        acorn_record("replacement.html", "�<button></button>", "button", "moz-button"),
+    ]
+
+
+def test_find_acorn_candidates_recovers_html_after_malformed_markup(tmp_path):
+    content = '<button broken=<><input type="text"><!-- <textarea> -->'
+    (tmp_path / "recovery.html").write_text(content)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == [
+        acorn_record("recovery.html", content, "input", "moz-input-text"),
     ]
 
 
