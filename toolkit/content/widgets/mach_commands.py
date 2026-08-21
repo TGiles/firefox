@@ -153,15 +153,160 @@ ELEMENT_COMPONENTS = {
     "textarea": "moz-textarea",
     "fieldset": "moz-fieldset",
 }
-OPENING_ELEMENT_PATTERN = re.compile(
-    r"""<(?P<tag>(?:html:)?(?:button|textarea|fieldset|input))\b
-        (?P<attributes>(?:[^"'<>]|"[^"]*"|'[^']*')*)>""",
-    re.IGNORECASE | re.VERBOSE,
-)
-INPUT_TYPE_PATTERN = re.compile(
-    r"""(?:^|\s)type\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s"'=<>`]+))""",
-    re.IGNORECASE,
-)
+RELEVANT_VALUE_DELIMITERS = ("&", "${", "{{", "<%")
+LABELABLE_ELEMENTS = {
+    "button",
+    "input",
+    "meter",
+    "output",
+    "progress",
+    "select",
+    "textarea",
+}
+LABEL_EXCLUDED_ATTRIBUTES = ("is", "control", "value", "crop", "href")
+LABEL_RELEVANT_ATTRIBUTES = ("for", *LABEL_EXCLUDED_ATTRIBUTES)
+
+
+def _is_static_relevant_value(value):
+    return (
+        value is not None
+        and value != ""
+        and not any(delimiter in value for delimiter in RELEVANT_VALUE_DELIMITERS)
+    )
+
+
+def _parse_start_tag(content, offset):
+    """Return a start tag's spelling and attributes, or None if malformed."""
+    length = len(content)
+    position = offset + 1
+    name_start = position
+    while position < length and (
+        content[position].isalnum() or content[position] in "-_:"
+    ):
+        position += 1
+    if position == name_start:
+        return None
+
+    tag_name = content[name_start:position]
+    attributes = []
+    while position < length:
+        while position < length and content[position].isspace():
+            position += 1
+        if content.startswith("/>", position):
+            return tag_name, attributes, position + 2
+        if position < length and content[position] == ">":
+            return tag_name, attributes, position + 1
+        if position >= length or content[position] in "<>":
+            return None
+
+        attribute_start = position
+        while position < length and (
+            content[position].isalnum() or content[position] in "-_:."
+        ):
+            position += 1
+        if position == attribute_start:
+            return None
+        attribute_name = content[attribute_start:position]
+
+        while position < length and content[position].isspace():
+            position += 1
+        value = None
+        if position < length and content[position] == "=":
+            position += 1
+            while position < length and content[position].isspace():
+                position += 1
+            if position >= length:
+                return None
+            if content[position] in "\"'":
+                quote = content[position]
+                position += 1
+                value_start = position
+                while position < length and content[position] != quote:
+                    if content[position] == "<":
+                        return None
+                    position += 1
+                if position >= length:
+                    return None
+                value = content[value_start:position]
+                position += 1
+            else:
+                value_start = position
+                while (
+                    position < length
+                    and not content[position].isspace()
+                    and content[position] not in "'\"=<>`"
+                ):
+                    position += 1
+                if position == value_start:
+                    return None
+                value = content[value_start:position]
+        attributes.append((attribute_name, value))
+    return None
+
+
+def _iter_start_tags(content):
+    """Yield lexical start tags outside comments, raw-text, and template regions."""
+    offset = 0
+    raw_text_tag = None
+    while offset < len(content):
+        if content.startswith("<!--", offset):
+            end = content.find("-->", offset + 4)
+            offset = len(content) if end == -1 else end + 3
+            continue
+        if content.startswith("<%", offset) or content.startswith("{{", offset):
+            closing = "%>" if content.startswith("<%", offset) else "}}"
+            end = content.find(closing, offset + len(closing))
+            offset = len(content) if end == -1 else end + len(closing)
+            continue
+        if content[offset] != "<":
+            offset += 1
+            continue
+        if content.startswith("</", offset):
+            close = content.find(">", offset + 2)
+            if close == -1:
+                return
+            name = content[offset + 2 : close].strip().lower()
+            if name == raw_text_tag:
+                raw_text_tag = None
+            offset = close + 1
+            continue
+        if content.startswith("<!", offset) or content.startswith("<?", offset):
+            close = content.find(">", offset + 2)
+            offset = len(content) if close == -1 else close + 1
+            continue
+        parsed = _parse_start_tag(content, offset)
+        if not parsed:
+            offset += 1
+            continue
+        tag_name, attributes, end = parsed
+        lower_name = tag_name.lower()
+        if raw_text_tag is None:
+            yield offset, tag_name, attributes
+            if lower_name in {"script", "style"}:
+                raw_text_tag = lower_name
+        offset = end
+
+
+def _relevant_attributes(attributes, names, html_case_insensitive):
+    values = {}
+    for attribute_name, value in attributes:
+        key = attribute_name.lower() if html_case_insensitive else attribute_name
+        if key not in names:
+            continue
+        if key in values:
+            return None
+        values[key] = value
+    return values
+
+
+def _is_html_tag(tag_name, element_name, suffix):
+    if suffix == ".html":
+        return tag_name.lower() == element_name
+    return tag_name == f"html:{element_name}"
+
+
+def _coordinates(content, offset):
+    return content.count("\n", 0, offset) + 1, offset - content.rfind("\n", 0, offset)
 
 
 def find_acorn_candidates(directory):
@@ -181,25 +326,78 @@ def find_acorn_candidates(directory):
     for path in files:
         relative_path = path.relative_to(directory).as_posix()
         content = path.read_text(encoding="utf-8", errors="replace")
-        for match in OPENING_ELEMENT_PATTERN.finditer(content):
-            source_tag = match.group("tag").lower()
+        suffix = path.suffix.lower()
+        html_case_insensitive = suffix != ".xhtml"
+        tags = list(_iter_start_tags(content))
+        target_ids = {}
+        for offset, tag_name, attributes in tags:
+            element_name = tag_name.lower() if html_case_insensitive else tag_name
+            if not any(
+                _is_html_tag(tag_name, labelable_element, suffix)
+                for labelable_element in LABELABLE_ELEMENTS
+            ):
+                continue
+            relevant = _relevant_attributes(
+                attributes, {"id", "type"}, html_case_insensitive
+            )
+            if relevant is None or "id" not in relevant:
+                continue
+            target_id = relevant["id"]
+            if not _is_static_relevant_value(target_id):
+                continue
+            if element_name.removeprefix("html:") == "input" and "type" in relevant:
+                if not _is_static_relevant_value(relevant["type"]):
+                    continue
+                if relevant["type"].lower() == "hidden":
+                    continue
+            target_ids.setdefault(target_id, []).append((offset, tag_name))
+
+        for offset, tag_name, attributes in tags:
+            if not _is_html_tag(tag_name, "label", suffix):
+                continue
+            relevant = _relevant_attributes(
+                attributes, LABEL_RELEVANT_ATTRIBUTES, html_case_insensitive
+            )
+            if (
+                relevant is None
+                or "for" not in relevant
+                or not _is_static_relevant_value(relevant["for"])
+                or any(attribute in relevant for attribute in LABEL_EXCLUDED_ATTRIBUTES)
+            ):
+                continue
+            targets = target_ids.get(relevant["for"], [])
+            if len(targets) != 1:
+                continue
+            line, column = _coordinates(content, offset)
+            candidates.append((
+                relative_path,
+                offset,
+                'label is="moz-label"',
+                line,
+                column,
+                tag_name.lower(),
+            ))
+
+        for offset, tag_name, attributes in tags:
+            source_tag = tag_name.lower()
             element_name = source_tag.removeprefix("html:")
             if element_name == "input":
-                type_match = INPUT_TYPE_PATTERN.search(match.group("attributes"))
-                if not type_match:
+                relevant = _relevant_attributes(
+                    attributes, {"type"}, html_case_insensitive
+                )
+                if relevant is None or "type" not in relevant:
                     continue
-                input_type = next(
-                    value for value in type_match.groups() if value is not None
-                ).lower()
-                component = INPUT_COMPONENTS.get(input_type)
-            else:
+                input_type = relevant["type"]
+                if not _is_static_relevant_value(input_type):
+                    continue
+                component = INPUT_COMPONENTS.get(input_type.lower())
+            elif element_name in ELEMENT_COMPONENTS:
                 component = ELEMENT_COMPONENTS[element_name]
+            else:
+                continue
             if not component:
                 continue
-
-            offset = match.start()
-            line = content.count("\n", 0, offset) + 1
-            column = offset - content.rfind("\n", 0, offset)
+            line, column = _coordinates(content, offset)
             candidates.append((
                 relative_path,
                 offset,
