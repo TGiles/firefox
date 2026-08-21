@@ -64,7 +64,49 @@ def test_find_acorn_label_candidates_command_output(tmp_path, capsys):
     assert (
         capsys.readouterr().out
         == 'candidate.html:1:1: candidate <label> for <label is="moz-label">\n'
+        "\n"
+        "Candidate counts by component:\n"
+        '<label is="moz-label">: 1\n'
     )
+
+
+def test_find_acorn_candidates_command_summarizes_sorted_categories(tmp_path, capsys):
+    markup = (
+        '<button></button><button></button><label for="field">Field</label>'
+        '<input id="field">'
+    )
+    xul = (
+        '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">\n'
+        '<radiogroup><radio label="One"/></radiogroup>\n'
+        "</window>"
+    )
+    (tmp_path / "alpha.html").write_text(markup)
+    (tmp_path / "groups.xul").write_text(xul)
+
+    acorn_widget_commands.find_acorn_candidates_command(None, tmp_path)
+
+    assert (
+        capsys.readouterr().out
+        == "alpha.html:1:1: candidate <button> for <moz-button>\n"
+        "alpha.html:1:18: candidate <button> for <moz-button>\n"
+        'alpha.html:1:35: candidate <label> for <label is="moz-label">\n'
+        "groups.xul:2:1: candidate <radiogroup> for <moz-radio-group>\n"
+        "\n"
+        "Candidate counts by component:\n"
+        '<label is="moz-label">: 1\n'
+        "<moz-button>: 2\n"
+        "<moz-radio-group>: 1\n"
+    )
+
+
+def test_find_acorn_candidates_command_skips_summary_without_candidates(
+    tmp_path, capsys
+):
+    (tmp_path / "empty.html").write_text("<div></div>")
+
+    acorn_widget_commands.find_acorn_candidates_command(None, tmp_path)
+
+    assert capsys.readouterr().out == ""
 
 
 @pytest.mark.parametrize(

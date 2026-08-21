@@ -626,13 +626,21 @@ def find_acorn_candidates(directory):
     help="Directory containing .html, .xhtml, or .xul files to inspect.",
 )
 def find_acorn_candidates_command(command_context, directory):
-    for relative_path, _, component, line, column, source_tag in find_acorn_candidates(
-        directory
-    ):
+    candidates = find_acorn_candidates(directory)
+    for relative_path, _, component, line, column, source_tag in candidates:
         print(
             f"{relative_path}:{line}:{column}: candidate <{source_tag}> "
             f"for <{component}>"
         )
+
+    if candidates:
+        counts = {}
+        for _, _, component, _, _, _ in candidates:
+            counts[component] = counts.get(component, 0) + 1
+
+        print("\nCandidate counts by component:")
+        for component in sorted(counts):
+            print(f"<{component}>: {counts[component]}")
 
 
 @Command(
