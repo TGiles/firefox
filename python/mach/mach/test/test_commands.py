@@ -277,6 +277,102 @@ def test_find_acorn_candidates_recovers_html_after_malformed_markup(tmp_path):
     ]
 
 
+def test_find_acorn_radio_group_candidates(tmp_path):
+    xul = (
+        '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+        '<radiogroup name="choices" orient="vertical">'
+        "\n<!-- permitted -->\n"
+        '<radio label="One" value="one"/>'
+        '<radio label="Two" value="two" selected="true"/>'
+        "</radiogroup>"
+        '<radiogroup orient="horizontal" value="two"><radio data-l10n-id="one" value="one"/>'
+        '<radio data-l10n-id="two" data-l10n-args="{}" value="two"/>'
+        '<radio data-l10n-id="three" data-l10n-attrs="label" value="three"/>'
+        "</radiogroup>"
+        "</window>"
+    )
+    with (tmp_path / "groups.xul").open("w", newline="") as xul_file:
+        xul_file.write(xul)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == [
+        acorn_record("groups.xul", xul, "radiogroup", "moz-radio-group"),
+        acorn_record(
+            "groups.xul",
+            xul,
+            "radiogroup",
+            "moz-radio-group",
+            xul.rindex("<radiogroup"),
+        ),
+    ]
+
+
+@pytest.mark.parametrize(
+    "group",
+    [
+        '<radiogroup><radio label="One" selected="true"/>'
+        '<radio label="Two" selected="true"/></radiogroup>',
+        '<radiogroup value="missing"><radio label="One" value="one"/></radiogroup>',
+        '<radiogroup value="one"><radio label="One" value="one"/>'
+        '<radio label="Again" value="one"/></radiogroup>',
+        '<radiogroup value="one"><radio label="One" value="one" disabled="true"/>'
+        "</radiogroup>",
+        '<radiogroup value="one"><radio label="One" value="one" selected="false"/>'
+        '<radio label="Two" value="two" selected="true"/></radiogroup>',
+        '<radiogroup hidden="true"><radio label="One"/></radiogroup>',
+        '<radiogroup orient="diagonal"><radio label="One"/></radiogroup>',
+        '<radiogroup orient="${orient}"><radio label="One"/></radiogroup>',
+        '<radiogroup><radio label="One" form="settings"/></radiogroup>',
+        '<radiogroup><radio hidden="true" label="One"/></radiogroup>',
+        '<radiogroup><radio label="One" required="true"/></radiogroup>',
+        '<radiogroup><radio label="One" name="choice"/></radiogroup>',
+        '<radiogroup><radio label="${label}"/></radiogroup>',
+        '<radiogroup><radio data-l10n-args="{}"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="one" data-l10n-id="two"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="${id}"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="one" data-l10n-args="${args}"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="one" data-l10n-attrs="title"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="one" data-l10n-name="label"/></radiogroup>',
+        '<radiogroup><radio data-l10n-id="one" data-l10n-attrs="${attrs}"/></radiogroup>',
+        '<radiogroup><radio label="One" disabled="maybe"/></radiogroup>',
+        '<radiogroup><radio label="One" selected="${selected}"/></radiogroup>',
+        '<radiogroup preference="pref"><radio label="One"/></radiogroup>',
+        '<radiogroup group="legacy"><radio label="One"/></radiogroup>',
+        '<radiogroup><radio label="One" observes="binding"/></radiogroup>',
+        '<radiogroup><template><radio label="One"/></template></radiogroup>',
+        '<radiogroup><radio label="One" oncommand="run()"/></radiogroup>',
+        '<radiogroup><radio label="One" flex="1"/></radiogroup>',
+        '<radiogroup>text<radio label="One"/></radiogroup>',
+        '<radiogroup><![CDATA[text]]><radio label="One"/></radiogroup>',
+        '<radiogroup><?pi value?><radio label="One"/></radiogroup>',
+        '<radiogroup><box><radio label="One"/></box></radiogroup>',
+        '<radiogroup><button/><radio label="One"/></radiogroup>',
+    ],
+)
+def test_find_acorn_radio_groups_reject_unapproved_source(tmp_path, group):
+    content = (
+        '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+        f"{group}</window>"
+    )
+    (tmp_path / "invalid.xul").write_text(content)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == []
+
+
+def test_find_acorn_radio_groups_reject_lone_radio_and_malformed_xml(tmp_path):
+    lone_radio = (
+        '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+        '<radio label="One"/></window>'
+    )
+    malformed = (
+        '<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'
+        '<radiogroup><radio label="One"/></radiogroup><broken></window>'
+    )
+    (tmp_path / "lone.xul").write_text(lone_radio)
+    (tmp_path / "malformed.xul").write_text(malformed)
+
+    assert acorn_widget_commands.find_acorn_candidates(tmp_path) == []
+
+
 ALL_COMMANDS = [
     "cmd_bar",
     "cmd_foo",

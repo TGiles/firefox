@@ -168,6 +168,20 @@ LABELABLE_ELEMENTS = {
     "textarea",
 }
 LABEL_EXCLUDED_ATTRIBUTES = ("is", "control", "value", "crop", "href")
+
+XUL_NAMESPACE = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+RADIO_GROUP_COMPONENT = "moz-radio-group"
+RADIO_GROUP_ATTRIBUTES = {"value", "name", "orient"}
+RADIO_ATTRIBUTES = {
+    "label",
+    "value",
+    "disabled",
+    "selected",
+    "data-l10n-id",
+    "data-l10n-args",
+    "data-l10n-attrs",
+}
+RADIO_BOOLEAN_ATTRIBUTES = {"disabled", "selected"}
 LABEL_RELEVANT_ATTRIBUTES = ("for", *LABEL_EXCLUDED_ATTRIBUTES)
 
 
@@ -362,6 +376,102 @@ def _relevant_attributes(attributes, names, html_case_insensitive):
     return values
 
 
+def _xul_attributes(element, allowed_attributes):
+    attributes = {}
+    for attribute_name, value in element.attributes:
+        namespace, local_name = attribute_name
+        if namespace is not None or local_name not in allowed_attributes:
+            return None
+        if local_name in attributes or not _is_static_relevant_value(value):
+            return None
+        attributes[local_name] = value
+    return attributes
+
+
+def _is_xul_radio(element):
+    return (
+        isinstance(element, AcornElement)
+        and element.namespace == XUL_NAMESPACE
+        and element.local_name == "radio"
+    )
+
+
+def _radio_group_candidate(group):
+    group_attributes = _xul_attributes(group, RADIO_GROUP_ATTRIBUTES)
+    if group_attributes is None:
+        return False
+    if "orient" in group_attributes and group_attributes["orient"] not in {
+        "vertical",
+        "horizontal",
+    }:
+        return False
+
+    radios = []
+    for child in group.children:
+        if _is_xul_radio(child):
+            radios.append(child)
+        elif isinstance(child, AcornElement):
+            return False
+        elif child[0] == "comment":
+            continue
+        elif child[0] == "text" and child[1].isspace():
+            continue
+        else:
+            return False
+    if not radios:
+        return False
+
+    selected_radio = None
+    enabled_radios = []
+    for radio in radios:
+        attributes = _xul_attributes(radio, RADIO_ATTRIBUTES)
+        if attributes is None:
+            return False
+        if "label" in attributes:
+            if any(
+                attribute in attributes
+                for attribute in (
+                    "data-l10n-id",
+                    "data-l10n-args",
+                    "data-l10n-attrs",
+                )
+            ):
+                return False
+        elif "data-l10n-id" not in attributes:
+            return False
+        elif (
+            "data-l10n-attrs" in attributes and attributes["data-l10n-attrs"] != "label"
+        ):
+            return False
+        for attribute in RADIO_BOOLEAN_ATTRIBUTES:
+            if attribute in attributes and attributes[attribute] not in {
+                "true",
+                "false",
+            }:
+                return False
+        if attributes.get("selected") == "true":
+            if selected_radio is not None:
+                return False
+            selected_radio = radio
+        if attributes.get("disabled") != "true":
+            enabled_radios.append(radio)
+
+    if "value" not in group_attributes:
+        return True
+    value = group_attributes["value"]
+    matching_radios = [
+        radio
+        for radio in enabled_radios
+        if (
+            "value" in _xul_attributes(radio, RADIO_ATTRIBUTES)
+            and _xul_attributes(radio, RADIO_ATTRIBUTES)["value"] == value
+        )
+    ]
+    return len(matching_radios) == 1 and (
+        selected_radio is None or selected_radio is matching_radios[0]
+    )
+
+
 def _candidate_elements(content, suffix):
     if suffix == ".html":
         return _tokenize_html(content), True
@@ -372,8 +482,15 @@ def _candidate_elements(content, suffix):
         [
             element
             for element, local_name in parsed[1]
-            if element.namespace == XHTML_NAMESPACE
-            and local_name in (*LABELABLE_ELEMENTS, "label", "fieldset")
+            if (
+                element.namespace == XHTML_NAMESPACE
+                and local_name in (*LABELABLE_ELEMENTS, "label", "fieldset")
+            )
+            or (
+                suffix == ".xul"
+                and element.namespace == XUL_NAMESPACE
+                and local_name == "radiogroup"
+            )
         ],
         False,
     )
@@ -446,6 +563,23 @@ def find_acorn_candidates(directory):
                 relative_path,
                 element.offset,
                 'label is="moz-label"',
+                line,
+                column,
+                element.name.lower(),
+            ))
+
+        for element in elements:
+            if (
+                element.namespace != XUL_NAMESPACE
+                or element.local_name != "radiogroup"
+                or not _radio_group_candidate(element)
+            ):
+                continue
+            line, column = _coordinates(content, element.offset)
+            candidates.append((
+                relative_path,
+                element.offset,
+                RADIO_GROUP_COMPONENT,
                 line,
                 column,
                 element.name.lower(),
